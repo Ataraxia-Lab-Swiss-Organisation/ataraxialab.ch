@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+title: Mentions légales
+description: Mentions légales du site Ataraxia Lab — éditeur, hébergement, propriété intellectuelle et protection des données.
+---
+
+<section>
+  <h1>Mentions légales</h1>
+
+  <h2>Éditeur du site</h2>
+  <p>Association Ataraxia Lab<br>
+  Forme juridique : Association à but non lucratif (art. 60 ss CC)<br>
+  IDE : CHE-425.759.729<br>
+  Siège : Crêt-Vaillant 22, 2400 Le Locle, Suisse<br>
+  Email : <span id="email-mentions"></span></p>
+
+  <h2>Hébergement</h2>
+  <p>Infomaniak Network SA<br>
+  Rue Eugène-Marziano 25, 1227 Les Acacias, Suisse</p>
+
+  <h2>Propriété intellectuelle</h2>
+  <p>L'ensemble des contenus présents sur ce site est protégé par le droit d'auteur et demeure la propriété exclusive de l'Association Ataraxia Lab ou de ses ayants droit.</p>
+
+  <h2>Protection des données</h2>
+  <p>Conformément à la LPD, les modalités de collecte et de traitement des données personnelles sont détaillées dans notre <a href="/confidentialite/">Politique de confidentialité</a>.</p>
+
+  <h2>Droit applicable</h2>
+  <p>Les présentes mentions légales sont soumises au droit suisse. Tout litige sera soumis aux tribunaux du Canton de Neuchâtel.</p>
+</section>
+
+<script>
+  document.getElementById('email-mentions').innerHTML =
+    '<a href="mailto:' + 'contact' + '@' + 'ataraxialab.ch' + '">' +
+    'contact' + '@' + 'ataraxialab.ch' + '</a>';
+</script>

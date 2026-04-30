@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} — Ataraxia Lab</title>
+  <meta name="description" content="{{ description }}">
+  <meta property="og:title" content="{{ title }} — Ataraxia Lab">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.ataraxialab.ch">
+  <meta property="og:locale" content="fr_CH">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="/images/logo_ataraxialab_plein.svg">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Ataraxia Lab",
+  "url": "https://ataraxialab.ch",
+  "logo": "https://ataraxialab.ch/images/logo_ataraxialab_plein.svg",
+  "description": "Association à but non lucratif réunissant des passionné·e·s du numérique en Suisse romande pour construire ensemble une technologie éthique, ouverte et responsable.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Crêt-Vaillant 22",
+    "addressLocality": "Le Locle",
+    "postalCode": "2400",
+    "addressCountry": "CH"
+  },
+  "email": "contact@ataraxialab.ch",
+  "foundingDate": "2026",
+  "nonprofitStatus": "NonprofitType"
+}
+</script>
+</head>
+<body>
+  <header>
+    <a href="/">
+      <img src="/images/logo_allonge_1_corr.svg" alt="Ataraxia Lab" height="40">
+    </a>
+    <nav>
+      <a href="/">Accueil</a>
+      <a href="/a-propos/">À propos</a>
+      <a href="/activites/">Activités</a>
+      <a href="/rejoindre/">Rejoindre</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+  </header>
+  <main>
+    {{ content | safe }}
+  </main>
+  <footer>
+    <span>Ataraxia Lab — 2400 Le Locle — Numérique éthique, depuis 2026. — <span id="email-footer"></span></span>
+    <span>
+      <a href="/mentions-legales/">Mentions légales</a> ·
+      <a href="/confidentialite/">Confidentialité</a> ·
+      <a href="/charte-ethique/">Charte éthique IA</a>
+    </span>
+  </footer>
+  <script>
+    document.getElementById('email-footer').innerHTML =
+      '<a href="mailto:' + 'contact' + '@' + 'ataraxialab.ch' + '">' +
+      'contact' + '@' + 'ataraxialab.ch' + '</a>';
+  </script>
+</body>
+</html>
