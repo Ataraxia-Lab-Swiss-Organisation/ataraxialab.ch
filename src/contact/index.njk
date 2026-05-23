@@ -1,0 +1,74 @@
+---
+layout: layouts/base.njk
+title: Contact
+description: Contactez Ataraxia Lab pour toute question, projet ou collaboration. Nous sommes à l'écoute.
+---
+
+<section>
+  <h1>On adore les bonnes idées. Même les idées un peu folles.</h1>
+  <p>Une question, une idée, un projet, une envie de rejoindre l'aventure ? Nous sommes à l'écoute.</p>
+</section>
+
+<section>
+  <h2>Formulaire de contact</h2>
+  <form action="https://formspree.io/f/xvzdeybn" method="POST">
+    <div class="champ">
+      <label for="nom">Nom</label>
+      <input type="text" id="nom" name="nom" required>
+    </div>
+    <div class="champ">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div class="champ">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+    </div>
+    <button type="submit" class="btn">Envoyer</button>
+  </form>
+</section>
+
+<section>
+  <h2>Demande de devis</h2>
+  <p>Vous souhaitez un audit LPD, un site vitrine, un atelier ou un accompagnement ? Décrivez-nous votre projet — nous vous répondons sous 48 heures avec un devis gratuit et sans engagement.</p>
+  <form action="https://formspree.io/f/xvzdeybn" method="POST">
+    <div class="champ">
+      <label for="devis-nom">Nom / Organisation</label>
+      <input type="text" id="devis-nom" name="devis-nom" required>
+    </div>
+    <div class="champ">
+      <label for="devis-email">Email</label>
+      <input type="email" id="devis-email" name="devis-email" required>
+    </div>
+    <div class="champ">
+      <label for="devis-type">Type de prestation</label>
+      <select id="devis-type" name="devis-type" required>
+        <option value="">— Choisir —</option>
+        <option value="audit-lpd">Audit de conformité LPD</option>
+        <option value="site-vitrine">Création de site vitrine</option>
+        <option value="conseil">Conseil et accompagnement</option>
+        <option value="atelier">Atelier / formation</option>
+        <option value="autre">Autre</option>
+      </select>
+    </div>
+    <div class="champ">
+      <label for="devis-projet">Description du projet</label>
+      <textarea id="devis-projet" name="devis-projet" rows="6" required placeholder="Décrivez brièvement votre projet, vos besoins et votre structure (association, PME, indépendant...)"></textarea>
+    </div>
+    <p style="font-size:0.85rem;color:#555;margin-bottom:1rem;">Vos données sont utilisées uniquement pour répondre à votre demande de devis et ne sont jamais transmises à des tiers. <a href="/confidentialite/">Politique de confidentialité →</a></p>
+    <button type="submit" class="btn">Envoyer la demande</button>
+  </form>
+</section>
+
+<section>
+  <h2>Par courrier</h2>
+  <p>Ataraxia Lab<br>
+  Crêt-Vaillant 22<br>
+  2400 Le Locle<br>
+  Suisse</p>
+</section>
+
+<section>
+  <h2>Vous souhaitez nous rejoindre ?</h2>
+  <p>Consultez notre page <a href="/rejoindre/">Rejoindre</a> pour découvrir toutes les façons de contribuer.</p>
+</section>

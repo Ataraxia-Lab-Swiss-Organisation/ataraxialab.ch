@@ -1,0 +1,258 @@
+- titre: "Votre site web est-il conforme LPD ? Les 5 points à vérifier"
+  slug: "site-web-conforme-lpd"
+  description: "Checklist pratique pour vérifier la conformité LPD de votre site web en Suisse — mentions légales, cookies, formulaires, fonts et données personnelles."
+  date: "2026-05-03"
+  date_affichee: "3 mai 2026"
+  categorie: "LPD"
+  niveau: "Débutant"
+  temps_lecture: "5 min"
+  ordre: 1
+
+- titre: "Mentions légales en Suisse — Ce qui est obligatoire en 2026"
+  slug: "mentions-legales-suisse-obligatoire"
+  description: "Ce que votre site web doit obligatoirement afficher selon la LCD suisse — identité, coordonnées, IDE — et les sanctions en cas de manquement."
+  date: "2026-05-04"
+  date_affichee: "4 mai 2026"
+  categorie: "LPD"
+  niveau: "Débutant"
+  temps_lecture: "4 min"
+  ordre: 2
+
+- titre: "Google Fonts et LPD — Pourquoi c'est un problème et comment le régler"
+  slug: "google-fonts-lpd-conformite"
+  description: "Charger Google Fonts depuis les serveurs de Google transmet l'IP de vos visiteurs. Voici pourquoi c'est un problème LPD et comment auto-héberger vos polices."
+  date: "2026-05-04"
+  date_affichee: "4 mai 2026"
+  categorie: "LPD"
+  niveau: "Intermédiaire"
+  temps_lecture: "5 min"
+  ordre: 3
+
+- titre: "Le formulaire de contact et la LPD — 4 règles à respecter"
+  slug: "formulaire-contact-lpd"
+  description: "Tout formulaire qui collecte des données personnelles doit respecter la LPD. Voici les 4 règles concrètes pour être en conformité."
+  date: "2026-05-04"
+  date_affichee: "4 mai 2026"
+  categorie: "LPD"
+  niveau: "Débutant"
+  temps_lecture: "4 min"
+  ordre: 4
+
+- titre: "Association et LPD — Vos obligations concrètes en tant que responsable du traitement"
+  slug: "association-lpd-obligations"
+  description: "Les associations suisses sont soumises à la LPD dès qu'elles traitent des données personnelles. Voici ce qui est obligatoire pour votre structure."
+  date: "2026-05-04"
+  date_affichee: "4 mai 2026"
+  categorie: "LPD"
+  niveau: "Débutant"
+  temps_lecture: "6 min"
+  ordre: 5
+
+- titre: "Site web associatif : par où commencer quand on n'y connaît rien ?"
+  slug: "site-web-associatif-par-ou-commencer"
+  description: "Créer le site de votre association sans être informaticien : les 4 questions à se poser, les 3 options réalistes et la checklist indispensable — guide pratique pour la Suisse romande."
+  date: "2026-05-05"
+  date_affichee: "5 mai 2026"
+  categorie: "Association numérique"
+  niveau: "Débutant"
+  temps_lecture: "5 min"
+  ordre: 6
+
+- titre: "Héberger son site associatif en Suisse : comparatif éthique et conforme LPD"
+  slug: "heberger-site-associatif-suisse"
+  description: "Infomaniak, Hostpoint, Hetzner ou GitHub Pages — quel hébergeur choisir pour le site de votre association en Suisse ? Comparatif honnête, critères LPD et conseils pratiques."
+  date: "2026-05-05"
+  date_affichee: "5 mai 2026"
+  categorie: "Association numérique"
+  niveau: "Débutant"
+  temps_lecture: "5 min"
+  ordre: 7
+
+- titre: "Nom de domaine et adresses mail pour l'asso : les bonnes pratiques (sans GAFAM)"
+  slug: "nom-de-domaine-email-association"
+  description: "Comment choisir un nom de domaine en .ch pour son association, quelles adresses mail créer et comment éviter Gmail et les serveurs américains — guide pratique LPD pour la Suisse romande."
+  date: "2026-05-05"
+  date_affichee: "5 mai 2026"
+  categorie: "Association numérique"
+  niveau: "Débutant"
+  temps_lecture: "5 min"
+  ordre: 8
+
+- titre: "Créer un formulaire d'adhésion en ligne respectueux de la vie privée"
+  slug: "formulaire-adhesion-association-en-ligne"
+  description: "Quelles données collecter, quelles mentions afficher, quel outil choisir — guide pratique pour créer un formulaire d'adhésion en ligne conforme à la LPD suisse."
+  date: "2026-05-05"
+  date_affichee: "5 mai 2026"
+  categorie: "Association numérique"
+  niveau: "Débutant"
+  temps_lecture: "5 min"
+  ordre: 9
+
+- titre: "Association et LPD — cas pratiques : membres, photos, listes de diffusion"
+  slug: "association-lpd-cas-pratiques-membres"
+  description: "Registre des membres, photos d'événements, newsletter — comment appliquer concrètement la LPD dans la vie quotidienne d'une association suisse. Trois cas pratiques avec les bons réflexes."
+  date: "2026-05-05"
+  date_affichee: "5 mai 2026"
+  categorie: "Association numérique"
+  niveau: "Débutant"
+  temps_lecture: "6 min"
+  ordre: 10
+
+- titre: "Numérique éthique à petit budget : la boîte à outils de l'association romande"
+  slug: "boite-outils-numerique-association-romande"
+  description: "Site web, email, stockage, visioconférence, gestion des membres — tous les outils dont une association suisse a besoin, gratuits ou presque, hébergés en Suisse ou dans l'UE."
+  date: "2026-05-05"
+  date_affichee: "5 mai 2026"
+  categorie: "Association numérique"
+  niveau: "Débutant"
+  temps_lecture: "6 min"
+  ordre: 11
+
+- titre: "L'IA générative en 2026 : ce que c'est vraiment"
+  slug: "ia-generative-2026-ce-que-cest-vraiment"
+  description: "Comprendre ce qu'est l'IA générative, comment elle fonctionne et quel est son coût énergétique réel, pour l'expliquer simplement autour de soi."
+  date: "2026-05-12"
+  date_affichee: "12 mai 2026"
+  categorie: "IA pratique"
+  niveau: "Débutant"
+  temps_lecture: "5 min"
+  ordre: 12
+
+- titre: "Ce que vous donnez à l'IA sans le savoir — et comment limiter les dégâts"
+  slug: "donnees-ia-protection-lpd"
+  description: "Protéger ses données personnelles et celles d'autrui en utilisant ChatGPT, Claude ou Gemini, en conformité avec la LPD suisse."
+  date: "2026-05-12"
+  date_affichee: "12 mai 2026"
+  categorie: "IA pratique"
+  niveau: "Débutant"
+  temps_lecture: "5 min"
+  ordre: 13
+
+- titre: "ChatGPT, Claude, Gemini : lequel pour vous ?"
+  slug: "chatgpt-claude-gemini-lequel-choisir"
+  description: "Comparatif orienté usage non-expert pour choisir son IA générative en fonction de la confidentialité, du budget et des besoins."
+  date: "2026-05-12"
+  date_affichee: "12 mai 2026"
+  categorie: "IA pratique"
+  niveau: "Débutant"
+  temps_lecture: "6 min"
+  ordre: 14
+
+- titre: "Écrire un bon prompt : la méthode en cinq étapes"
+  slug: "ecrire-un-bon-prompt-cinq-etapes"
+  description: "Cinq étapes illustrées pour transformer un prompt vague en instruction précise et obtenir un résultat utile du premier coup."
+  date: "2026-05-16"
+  date_affichee: "16 mai 2026"
+  categorie: "IA pratique"
+  niveau: "Débutant"
+  temps_lecture: "5 min"
+  ordre: 15
+ 
+- titre: "Peut-on faire confiance à une réponse d'IA ?"
+  slug: "faire-confiance-reponse-ia"
+  description: "Détecter une hallucination d'IA et vérifier une information en trois gestes simples, sans catastrophisme."
+  date: "2026-05-16"
+  date_affichee: "16 mai 2026"
+  categorie: "IA pratique"
+  niveau: "Débutant"
+  temps_lecture: "4 min"
+  ordre: 16
+ 
+- titre: "L'IA et les droits d'auteur : ce que dit le droit suisse en 2026"
+  slug: "ia-droits-auteur-droit-suisse-2026"
+  description: "À qui appartient une création générée par IA en Suisse ? Le point sur le droit d'auteur, les logos, les contrats et les zones floues."
+  date: "2026-05-16"
+  date_affichee: "16 mai 2026"
+  categorie: "IA pratique"
+  niveau: "Débutant"
+  temps_lecture: "5 min"
+  ordre: 17
+
+- titre: "L'empreinte cachée de l'IA : pourquoi chaque requête a un coût"
+  slug: "empreinte-cachee-ia-cout-energetique"
+  description: "Chiffres, comparaisons et alternatives légères pour un usage raisonné de l'IA générative, en cohérence avec la Charte éthique."
+  date: "2026-05-18"
+  date_affichee: "18 mai 2026"
+  categorie: "IA pratique"
+  niveau: "Débutant"
+  temps_lecture: "4 min"
+  ordre: 18
+ 
+- titre: "Association et IA : ce que vous pouvez déléguer (et ce que vous ne devriez pas)"
+  slug: "association-ia-deleguer-sans-risque"
+  description: "Liste opérationnelle pour les comités et bénévoles : ce qu'on peut confier à l'IA sans risque, et ce qui exige une relecture humaine."
+  date: "2026-05-19"
+  date_affichee: "19 mai 2026"
+  categorie: "IA pratique"
+  niveau: "Débutant"
+  temps_lecture: "4 min"
+  ordre: 19
+ 
+- titre: "Pourquoi le logiciel libre vous concerne — même si vous n'êtes pas développeur"
+  slug: "logiciel-libre-souverainete-numerique-profane"
+  description: "Comprendre le logiciel libre comme une question de confiance et de durabilité, sans discours militant, pour reprendre le contrôle de ses outils."
+  date: "2026-05-20"
+  date_affichee: "20 mai 2026"
+  categorie: "Souveraineté numérique"
+  niveau: "Débutant"
+  temps_lecture: "4 min"
+  ordre: 20
+ 
+- titre: "Reprendre le contrôle de ses mails : sortir de Google et Microsoft sans se compliquer la vie"
+  slug: "migration-email-infomaniak-proton-sans-risque"
+  description: "Guide pas à pas pour migrer de Gmail ou Outlook vers Infomaniak Mail ou Proton Mail, en douceur et sans risque."
+  date: "2026-05-21"
+  date_affichee: "21 mai 2026"
+  categorie: "Souveraineté numérique"
+  niveau: "Débutant"
+  temps_lecture: "5 min"
+  ordre: 21
+ 
+- titre: "Infomaniak, Proton, Tresorit : l'écosystème numérique suisse décrypté"
+  slug: "ecosysteme-numerique-suisse-infomaniak-proton-tresorit"
+  description: "Panorama des alternatives suisses aux GAFAM : stockage, mail, visioconférence, avec critères de choix et conformité LPD."
+  date: "2026-05-22"
+  date_affichee: "22 mai 2026"
+  categorie: "Souveraineté numérique"
+  niveau: "Débutant"
+  temps_lecture: "4 min"
+  ordre: 22
+ 
+- titre: "Sauvegarder ses données : la règle 3-2-1 expliquée sans jargon"
+  slug: "sauvegarde-donnees-regle-321-suisse"
+  description: "Mettre en place une sauvegarde robuste en 15 minutes pour un particulier, une association ou une PME, avec des exemples suisses."
+  date: "2026-05-23"
+  date_affichee: "23 mai 2026"
+  categorie: "Souveraineté numérique"
+  niveau: "Débutant"
+  temps_lecture: "3 min"
+  ordre: 23
+- titre: "Votre navigateur vous surveille-t-il ? — Ce qui se passe vraiment en coulisses"
+  slug: "votre-navigateur-vous-surveille"
+  description: "Cookies tiers, fingerprinting, scripts de tracking : ce que votre navigateur transmet sans que vous le sachiez, et comment reprendre le contrôle progressivement."
+  date: "2026-05-24"
+  date_affichee: "24 mai 2026"
+  categorie: "Souveraineté numérique"
+  niveau: "Débutant"
+  temps_lecture: "5 min"
+  ordre: 24
+
+- titre: "Open source au quotidien : dix outils qui remplacent vos habitudes"
+  slug: "open-source-au-quotidien"
+  description: "Dix alternatives libres et gratuites aux outils propriétaires du quotidien — de LibreOffice à Bitwarden — avec le niveau de difficulté et les liens de téléchargement."
+  date: "2026-05-25"
+  date_affichee: "25 mai 2026"
+  categorie: "Souveraineté numérique"
+  niveau: "Débutant"
+  temps_lecture: "5 min"
+  ordre: 25
+
+- titre: "Le numérique décentralisé : pourquoi ça change quelque chose pour vous"
+  slug: "numerique-decentralise"
+  description: "Mastodon, Nextcloud, Peertube, Matrix : comprendre la décentralisation du numérique sans jargon, et pourquoi ça change quelque chose pour votre vie privée et votre autonomie."
+  date: "2026-05-26"
+  date_affichee: "26 mai 2026"
+  categorie: "Souveraineté numérique"
+  niveau: "Débutant"
+  temps_lecture: "4 min"
+  ordre: 26

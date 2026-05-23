@@ -1,0 +1,104 @@
+﻿---
+layout: layouts/base.njk
+title: "Google Fonts et LPD — Pourquoi c'est un problème et comment le régler"
+description: "Charger Google Fonts depuis les serveurs de Google transmet l'IP de vos visiteurs. Voici pourquoi c'est un problème LPD et comment auto-héberger vos polices."
+permalink: /tutoriels/google-fonts-lpd-conformite/
+type: tutoriel
+datePublished: "2026-05-04"
+categorie: "LPD"
+---
+
+<div class="page-hero">
+  <div class="article-meta">
+    <span class="tutoriel-categorie">LPD</span>
+    <span class="tutoriel-niveau">Intermédiaire</span>
+  </div>
+  <div class="article-date">4 mai 2026 · 5 min de lecture</div>
+  <h1 class="page-title">Google Fonts et LPD — Pourquoi c'est un problème et comment le régler</h1>
+  <p class="page-subtitle">Google Fonts est utilisé par des millions de sites web. C'est gratuit, pratique, et les polices sont belles. Mais depuis la révision de la LPD et la jurisprudence européenne (notamment le tribunal de Munich en 2022), l'intégration de Google Fonts via CDN pose un problème légal concret. Voici ce qu'il faut savoir et comment le régler définitivement.</p>
+</div>
+
+<div class="article-body">
+  <h2>Pourquoi Google Fonts pose problème</h2>
+  <p>Quand votre site charge une police depuis les serveurs de Google (via <code>fonts.googleapis.com</code>), voici ce qui se passe :</p>
+  <ul>
+    <li>Le navigateur de votre visiteur envoie une requête aux serveurs de Google</li>
+    <li>Cette requête contient l'adresse IP du visiteur</li>
+    <li>Google enregistre cette adresse IP</li>
+  </ul>
+  <p>L'adresse IP est une donnée personnelle au sens de la LPD et du RGPD. Sa transmission à Google sans information préalable de l'utilisateur et sans base légale suffisante constitue un traitement de données non conforme.</p>
+  <p>En 2022, un tribunal munichois a condamné un site web allemand à 100€ d'amende pour cette raison. En Suisse, la LPD révisée impose les mêmes exigences de transparence.</p>
+
+  <h2>La solution : auto-héberger les polices</h2>
+  <p>Auto-héberger signifie placer les fichiers de polices directement sur votre serveur, dans un dossier <code>/fonts/</code>. Le navigateur charge alors la police depuis votre propre domaine — aucune donnée n'est transmise à un tiers.</p>
+
+  <h3>Étape 1 — Télécharger les polices</h3>
+  <p>Rendez-vous sur <a href="https://gwfh.mranftl.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">google-webfonts-helper</a> ou <a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">fonts.google.com</a>. Téléchargez les fichiers en format <code>.woff2</code> (le format moderne, léger, supporté par tous les navigateurs actuels).</p>
+
+  <h3>Étape 2 — Placer les fichiers sur votre serveur</h3>
+  <p>Copiez les fichiers <code>.woff2</code> dans un dossier <code>/fonts/</code> de votre site.</p>
+
+  <h3>Étape 3 — Déclarer les polices en CSS</h3>
+  <p>Remplacez le lien Google Fonts dans votre HTML par des règles <code>@font-face</code> dans votre CSS :</p>
+  <pre><code>@font-face {
+  font-family: 'Votre Police';
+  src: url('/fonts/votre-police-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}</code></pre>
+
+  <h3>Étape 4 — Supprimer le lien Google Fonts</h3>
+  <p>Supprimez toute ligne <code>&lt;link href="https://fonts.googleapis.com/..."&gt;</code> dans votre HTML. Vérifiez qu'aucune requête vers <code>fonts.googleapis.com</code> n'apparaît dans les outils de développement du navigateur (onglet Réseau).</p>
+
+  <h2>Résultat</h2>
+  <ul>
+    <li>Zéro donnée transmise à Google</li>
+    <li>Site plus rapide (une requête externe en moins)</li>
+    <li>Conformité LPD assurée sur ce point</li>
+    <li>Plus besoin de bandeau cookie pour les polices</li>
+  </ul>
+
+  <h2>Checklist</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Étape</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Polices téléchargées en .woff2</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Fichiers placés dans /fonts/</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Règles @font-face ajoutées au CSS</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Lien Google Fonts supprimé du HTML</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Vérification dans les outils développeur</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="article-cta">
+  <h2>Besoin d'un accompagnement ?</h2>
+  <p>Ataraxia Lab propose des audits de conformité LPD pour les petites structures. Simple, concret, sans jargon.</p>
+  <a href="/contact/" class="btn">Nous contacter →</a>
+</div>
+
+<nav class="article-nav">
+  <p><a href="/tutoriels/mentions-legales-suisse-obligatoire/">← Article précédent</a> — <a href="/tutoriels/formulaire-contact-lpd/">Article suivant →</a></p>
+  <p><a href="/tutoriels/">← Retour aux tutoriels</a></p>
+</nav>

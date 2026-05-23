@@ -1,0 +1,43 @@
+---
+layout: layouts/base.njk
+title: Réalisations — Ataraxia Lab
+description: "Découvrez les projets web et éditoriaux réalisés par Ataraxia Lab : sites, thèmes WordPress, contenus juridiques et civic tech."
+permalink: /realisations/
+---
+
+<section class="page-hero">
+  <h1 class="page-title">Réalisations</h1>
+  <p class="page-subtitle">Ce que nous avons construit.</p>
+</section>
+
+<section class="realisations-grille">
+  {% for item in realisations %}
+  <article class="realisation-carte">
+    <div class="realisation-entete">
+      <span class="realisation-type">{{ item.type }}</span>
+      {% if item.statut == "en-ligne" %}
+      <span class="realisation-statut">En ligne</span>
+      {% endif %}
+    </div>
+    <h2 class="realisation-titre">{{ item.titre }}</h2>
+    <p class="realisation-accroche">{{ item.accroche }}</p>
+    <ul class="realisation-tags" aria-label="Technologies et compétences">
+      {% for tag in item.tags %}
+      <li class="realisation-tag">{{ tag }}</li>
+      {% endfor %}
+    </ul>
+    <a
+      href="{{ item.url }}"
+      class="realisation-lien"
+      target="_blank"
+      rel="noopener noreferrer"
+      referrerpolicy="no-referrer"
+      aria-label="Voir le projet {{ item.titre }} (nouvelle fenêtre)"
+    >Voir le projet →</a>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="realisations-cta">
+  <p>Vous avez un projet ? <a href="/rejoindre/">Rejoignez l'association</a> ou <a href="/contact/">contactez-nous</a>.</p>
+</section>

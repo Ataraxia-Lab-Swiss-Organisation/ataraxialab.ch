@@ -1,0 +1,36 @@
+---
+layout: layouts/base.njk
+title: Tutoriels — Ataraxia Lab
+description: "Guides pratiques sur la LPD, la conformité numérique et la création de sites web éthiques — par Ataraxia Lab."
+permalink: /tutoriels/
+---
+
+<div class="page-hero">
+  <h1 class="page-title">Tutoriels</h1>
+  <p class="page-subtitle">Guides pratiques pour un numérique éthique et conforme.</p>
+</div>
+
+<div class="tutoriels-grille">
+{% for tuto in tutoriels | sort(attribute='ordre') %}
+  <article class="tutoriel-carte">
+    <div class="tutoriel-meta">
+      <span class="tutoriel-categorie">{{ tuto.categorie }}</span>
+      <span class="tutoriel-niveau">{{ tuto.niveau }}</span>
+      <span class="tutoriel-temps">{{ tuto.temps_lecture }}</span>
+    </div>
+    <h2 class="tutoriel-titre">
+      <a href="/tutoriels/{{ tuto.slug }}/">{{ tuto.titre }}</a>
+    </h2>
+    <p class="tutoriel-description">{{ tuto.description }}</p>
+    <div class="tutoriel-footer">
+      <span class="tutoriel-date">{{ tuto.date_affichee }}</span>
+      <a href="/tutoriels/{{ tuto.slug }}/" class="tutoriel-lien">Lire →</a>
+    </div>
+  </article>
+{% endfor %}
+</div>
+
+<div class="realisations-cta">
+  <p>Vous avez besoin d'un accompagnement ?<br>Ataraxia Lab propose des audits et formations.</p>
+  <a href="/contact/" class="btn">Nous contacter →</a>
+</div>

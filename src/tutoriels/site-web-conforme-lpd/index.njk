@@ -1,0 +1,113 @@
+﻿---
+layout: layouts/base.njk
+title: "Votre site web est-il conforme LPD ? Les 5 points à vérifier"
+description: "Checklist pratique pour vérifier la conformité LPD de votre site web en Suisse — mentions légales, cookies, formulaires, fonts et données personnelles."
+permalink: /tutoriels/site-web-conforme-lpd/
+type: tutoriel
+datePublished: "2026-05-03"
+categorie: "LPD"
+---
+
+<div class="page-hero">
+  <div class="article-meta">
+    <span class="tutoriel-categorie">LPD</span>
+    <span class="tutoriel-niveau">Débutant</span>
+  </div>
+  <div class="article-date">3 mai 2026 · 5 min de lecture</div>
+  <h1 class="page-title">Votre site web est-il conforme LPD ? Les 5 points à vérifier</h1>
+  <p class="page-subtitle">Depuis le 1<sup>er</sup> septembre 2023, la loi fédérale suisse sur la protection des données (LPD révisée) est en vigueur. Elle concerne toutes les organisations qui traitent des données personnelles — y compris les associations, les indépendants et les PME. Votre site web est souvent le premier endroit où des données sont collectées. Voici les 5 points essentiels à vérifier.</p>
+</div>
+
+<div class="article-body">
+  <h2>Point 1 — Mentions légales</h2>
+  <p>Votre site doit afficher clairement :</p>
+  <ul>
+    <li>Le nom et l’adresse de l’organisation responsable du site</li>
+    <li>Un email de contact accessible</li>
+    <li>Le numéro IDE (CHE-xxx.xxx.xxx) si vous êtes une personne morale</li>
+  </ul>
+  <p>En Suisse, cette obligation découle de l’art. 3 al. 1 let. s LCD (loi contre la concurrence déloyale). L’absence de mentions légales peut être sanctionnée.</p>
+  <p>✅ <strong>À vérifier :</strong> un lien « Mentions légales » est-il visible depuis toutes les pages (généralement dans le pied de page) ?</p>
+
+  <h2>Point 2 — Politique de confidentialité</h2>
+  <p>Dès que votre site collecte des données (formulaire de contact, newsletter, cookies analytiques, etc.), une politique de confidentialité est obligatoire. Elle doit indiquer :</p>
+  <ul>
+    <li>Quelles données sont collectées et pourquoi</li>
+    <li>Combien de temps elles sont conservées</li>
+    <li>Qui y a accès</li>
+    <li>Comment exercer ses droits (accès, rectification, effacement)</li>
+  </ul>
+  <p>✅ <strong>À vérifier :</strong> avez-vous une page dédiée, accessible depuis le pied de page ?</p>
+
+  <h2>Point 3 — Cookies et traceurs</h2>
+  <p>Les cookies strictement nécessaires au fonctionnement du site (session, sécurité) ne nécessitent pas de consentement. En revanche, les cookies analytiques (Google Analytics, Matomo) ou marketing nécessitent un consentement explicite avant leur dépôt.</p>
+  <p>Un bandeau de consentement est donc obligatoire si vous utilisez des cookies non essentiels.</p>
+  <p>✅ <strong>À vérifier :</strong> utilisez-vous Google Analytics ou un outil similaire ? Si oui, avez-vous un bandeau de consentement fonctionnel ?</p>
+  <p><strong>Astuce :</strong> La solution la plus simple est d’utiliser un outil d’analyse respectueux de la vie privée (Plausible, Matomo en mode sans cookies) qui ne nécessite pas de bandeau.</p>
+
+  <h2>Point 4 — Polices et ressources externes (Google Fonts, CDN)</h2>
+  <p>C’est le point le plus méconnu. Chaque fois que votre site charge une ressource depuis un serveur externe (Google Fonts, Cloudflare, un CDN tiers), l’adresse IP de votre visiteur est transmise à ce serveur tiers. En Suisse et en Europe, cette transmission constitue un transfert de données personnelles.</p>
+  <p>Google Fonts chargé depuis les serveurs de Google est donc problématique au regard de la LPD et du RGPD.</p>
+  <p>✅ <strong>À vérifier :</strong> vos polices sont-elles auto-hébergées sur votre propre serveur ?</p>
+  <p><strong>Solution :</strong> Téléchargez les polices et hébergez-les dans votre propre dossier <code>/fonts/</code>. C’est gratuit, simple, et élimine le problème.</p>
+
+  <h2>Point 5 — Formulaires de contact</h2>
+  <p>Tout formulaire qui collecte des données personnelles (nom, email, message) doit :</p>
+  <ul>
+    <li>Informer l’utilisateur de l’utilisation de ses données</li>
+    <li>Recueillir un consentement explicite si les données sont utilisées à des fins de marketing</li>
+    <li>Ne pas stocker plus de données que nécessaire (principe de minimisation)</li>
+  </ul>
+  <p>✅ <strong>À vérifier :</strong> votre formulaire de contact mentionne-t-il comment les données sont traitées ? Avez-vous une case de consentement si vous utilisez les données pour autre chose que répondre au message ?</p>
+
+  <h2>Récapitulatif — Checklist rapide</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Point</th>
+        <th>Quoi vérifier</th>
+        <th>Obligatoire</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Mentions légales visibles en pied de page</td>
+        <td>✅ Oui</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Page politique de confidentialité</td>
+        <td>✅ Oui (si collecte de données)</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Bandeau cookies si analytics</td>
+        <td>✅ Oui (si cookies non essentiels)</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Polices auto-hébergées</td>
+        <td>✅ Recommandé fortement</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Formulaire conforme LPD</td>
+        <td>✅ Oui</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Conclusion</h2>
+  <p>Ces 5 points couvrent l’essentiel de ce qu’un site web d’une petite structure doit respecter. La bonne nouvelle : la plupart se corrigent en quelques heures. Si vous n’êtes pas sûr de votre situation, un audit rapide peut tout clarifier.</p>
+</div>
+
+<div class="article-cta">
+  <h2>Besoin d’un accompagnement ?</h2>
+  <p>Ataraxia Lab propose des audits de conformité LPD pour les petites structures. Simple, concret, sans jargon.</p>
+  <a href="/contact/" class="btn">Nous contacter →</a>
+</div>
+
+<nav class="article-nav">
+  <a href="/tutoriels/">← Retour aux tutoriels</a>
+</nav>

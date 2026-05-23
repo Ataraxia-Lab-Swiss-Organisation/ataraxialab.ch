@@ -1,0 +1,26 @@
+- titre: "Recto/Verso — Plateforme éditoriale droits de l'enfant"
+  type: "Projet web complet"
+  statut: "en-ligne"
+  url: "https://rectoverso.online"
+  accroche: "Un site dual conçu de A à Z — thème WordPress maison, proxies juridiques, 33 articles d'investigation et guides pratiques sur les droits fondamentaux en Suisse."
+  tags:
+    - "WordPress"
+    - "Thème maison"
+    - "Civic tech"
+    - "Édition juridique"
+    - "LPD"
+  ordre: 1
+  
+
+- titre: "Ataraxia Lab — Site vitrine officiel"
+  type: "Site statique"
+  statut: "en-ligne"
+  url: "https://ataraxialab.ch"
+  accroche: "Site vitrine statique haute performance, de la charte graphique au déploiement — identité visuelle, Eleventy, conformité LPD, conçu et réalisé en interne."
+  tags:
+    - "Eleventy"
+    - "Design"
+    - "LPD"
+    - "SEO"
+    - "Accessibilité"
+  ordre: 2

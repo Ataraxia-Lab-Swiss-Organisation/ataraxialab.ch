@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} — Ataraxia Lab</title>
+  <meta name="description" content="{{ description }}">
+  <link rel="canonical" href="https://ataraxialab.ch{{ page.url }}">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Ataraxia Lab">
+  <meta property="og:title" content="{{ title }} — Ataraxia Lab">
+  <meta property="og:description" content="{{ description }}">
+  {% if type == 'tutoriel' %}
+  <meta property="og:type" content="article">
+  {% else %}
+  <meta property="og:type" content="website">
+  {% endif %}
+  <meta property="og:url" content="https://ataraxialab.ch{{ page.url }}">
+  <meta property="og:locale" content="fr_CH">
+  <meta property="og:image" content="https://ataraxialab.ch/images/og-default.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title }} — Ataraxia Lab">
+  <meta name="twitter:description" content="{{ description }}">
+  <meta name="twitter:image" content="https://ataraxialab.ch/images/og-default.jpg">
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="/images/logo_ataraxialab_plein.svg">
+
+  <!-- JSON-LD Organization (toutes les pages) -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Ataraxia Lab",
+  "url": "https://ataraxialab.ch",
+  "logo": "https://ataraxialab.ch/images/logo_ataraxialab_plein.svg",
+  "description": "Association à but non lucratif réunissant des passionné·e·s du numérique en Suisse romande pour construire ensemble une technologie éthique, ouverte et responsable.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Crêt-Vaillant 22",
+    "addressLocality": "Le Locle",
+    "postalCode": "2400",
+    "addressCountry": "CH"
+  },
+  "email": "contact@ataraxialab.ch",
+  "foundingDate": "2026",
+  "nonprofitStatus": "NonprofitType"
+}
+</script>
+
+  <!-- JSON-LD BlogPosting (tutoriels uniquement) -->
+  {% if type == 'tutoriel' %}
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ title }}",
+  "description": "{{ description }}",
+  "image": "https://ataraxialab.ch/images/og-default.jpg",
+  "datePublished": "{{ datePublished }}T00:00:00+02:00",
+  "dateModified": "{{ datePublished }}T00:00:00+02:00",
+  "url": "https://ataraxialab.ch{{ page.url }}",
+  "inLanguage": "fr-CH",
+  "author": {
+    "@type": "Organization",
+    "name": "Ataraxia Lab",
+    "url": "https://ataraxialab.ch"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Ataraxia Lab",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ataraxialab.ch/images/logo_ataraxialab_plein.svg"
+    }
+  },
+  "keywords": "{{ categorie }}, numérique éthique, Suisse romande"
+}
+</script>
+  {% endif %}
+
+</head>
+<body>
+ <a href="#main-content" class="skip-nav">Aller au contenu principal</a>
+  <header>
+    <a href="/">
+      <img src="/images/logo_allonge_1_corr.svg" alt="Ataraxia Lab" width="119" height="40" fetchpriority="high">
+    </a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <a href="/">Accueil</a>
+      <a href="/a-propos/">À propos</a>
+      <a href="/activites/">Activités</a>
+      <a href="/realisations/">Réalisations</a>
+      <a href="/tutoriels/">Tutoriels</a>
+      <a href="/rejoindre/">Rejoindre</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+  </header>
+  <main id="main-content">
+    {{ content | safe }}
+  </main>
+  <footer>
+    <span>© 2026 Ataraxia Lab — Association à but non lucratif — CHE-425.759.729 — 2400 Le Locle — <span id="email-footer"></span> — <a href="/mentions-legales/">Mentions légales</a> · <a href="/confidentialite/">Confidentialité</a> · <a href="/charte-ethique/">Charte éthique IA</a> · <a href="/documents/statuts-ataraxia-lab.pdf">Statuts</a></span>
+  </footer>
+  <script>
+    document.getElementById('email-footer').innerHTML =
+      '<a href="mailto:' + 'contact' + '@' + 'ataraxialab.ch' + '">' +
+      'contact' + '@' + 'ataraxialab.ch' + '</a>';
+    var toggle = document.querySelector('.nav-toggle');
+    var navMenu = document.querySelector('nav');
+    if (toggle && navMenu) {
+      toggle.addEventListener('click', function() {
+        var open = navMenu.classList.toggle('open');
+        this.setAttribute('aria-expanded', open);
+      });
+    }
+  </script>
+</body>
+</html>
