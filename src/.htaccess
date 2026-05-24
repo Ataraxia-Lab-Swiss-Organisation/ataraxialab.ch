@@ -1,0 +1,45 @@
+# -----------------------------------------------
+# Ataraxia Lab — .htaccess — 11.05.2026
+# -----------------------------------------------
+
+# Redirection HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Headers de sécurité
+<IfModule mod_headers.c>
+
+  # HSTS — force HTTPS pendant 1 an
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+  # Empêche le MIME sniffing
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Empêche l'affichage en iframe (clickjacking)
+  Header always set X-Frame-Options "DENY"
+
+  # Contrôle les informations de référent
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Permissions navigateur — désactive les fonctions non utilisées
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+
+  # Content Security Policy — 24.05.2026
+  # Hashes calculés sur les 3 scripts inline du site (sans unsafe-inline)
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-MlBsOVMYfpbOVe8PbB3pEcz7tgfvRJ0Cc7bIGE8308Y=' 'sha256-HmIvnGAerCvcfrt3E3r0fjJQf5HknuqVlpFIzB5wZkc=' 'sha256-QcpggXZLv/c2Kg5G2wv2/rrN6rl/dm0sUUPTXHFMfIQ='; style-src 'self'; font-src 'self'; img-src 'self' data:; form-action 'self' https://formspree.io; connect-src 'self' https://formspree.io; frame-ancestors 'none'; object-src 'none'; base-uri 'self'"
+
+</IfModule>
+
+# Cache statique — fichiers immuables
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+# Page 404 personnalisée
+ErrorDocument 404 /404.html
