@@ -1,0 +1,48 @@
+---
+layout: layouts/base.njk
+title: "Chiffrer ses emails avec PGP — pourquoi et comment"
+description: "PGP permet à vos emails d'être lisibles uniquement par leur destinataire. Ce tutoriel explique le principe et les outils accessibles pour une association romande."
+permalink: /tutoriels/chiffrement-email-pgp-associations/
+type: tutoriel
+datePublished: "2026-05-26"
+categorie: "Sécurité"
+---
+
+<div class="page-hero">
+  <div class="article-meta">
+    <span class="tutoriel-categorie">Sécurité</span>
+    <span class="tutoriel-niveau">Intermédiaire</span>
+  </div>
+  <div class="article-date">26 mai 2026 · 6 min de lecture</div>
+  <h1 class="page-title">Chiffrer ses emails avec PGP — pourquoi et comment</h1>
+  <p class="page-subtitle">Un email non chiffré, c'est comme une carte postale : tout le monde qui la manipule peut la lire. PGP transforme cette carte postale en lettre sous pli cacheté. Voici comment le mettre en place sans diplôme en informatique.</p>
+</div>
+
+<div class="article-body">
+  <h2>La métaphore du cadenas</h2>
+  <p>PGP fonctionne avec deux clés : la <strong>clé publique</strong> (le cadenas que vous distribuez à tous) et la <strong>clé privée</strong> (que vous seul possédez). Ce qui est chiffré avec votre cadenas ne peut être ouvert que par votre clé privée — c'est mathématiquement irréversible en pratique.</p>
+
+  <h2>Trois approches selon votre niveau</h2>
+  <p><strong>Option 1 — Proton Mail (recommandé pour débutants)</strong><br>Le chiffrement PGP est intégré et automatique entre utilisateurs Proton. Rien à configurer.</p>
+  <p><strong>Option 2 — Mailvelope</strong><br>Extension de navigateur qui ajoute PGP à Gmail, Outlook, ou Infomaniak Mail. Accessible sans ligne de commande.</p>
+  <p><strong>Option 3 — Thunderbird</strong><br>Intègre nativement OpenPGP depuis la version 78. Génération de clés, gestion du trousseau, chiffrement — tout en local.</p>
+
+  <h2>Ce que PGP ne fait pas</h2>
+  <p>PGP chiffre le <em>contenu</em> de l'email, pas les <em>métadonnées</em> : l'expéditeur, le destinataire et l'objet restent visibles. Pour une confidentialité totale des métadonnées, Proton Mail vers Proton Mail est la seule option grand public.</p>
+
+  <h2>Pertinence LPD</h2>
+  <p>Si votre association traite des données sensibles par email (dossiers médicaux, situations familiales, informations judiciaires), le chiffrement des emails est une mesure de sécurité que le PFPDT peut vous demander de justifier en cas de violation (art. 8 LPD).</p>
+
+  <h2>Exercice pratique</h2>
+  <p>✅ <strong>À faire maintenant :</strong> créez un compte Proton Mail gratuit pour votre adresse associative secondaire (ex. : privacy@votreassociation.ch). Testez l'envoi d'un email chiffré entre deux comptes Proton. Comprenez le mécanisme avant de l'adopter en production.</p>
+</div>
+
+<div class="article-cta">
+  <h2>Formation à la sécurité des communications</h2>
+  <p>Ataraxia Lab propose des ateliers pratiques sur la sécurité des communications pour les associations romandes.</p>
+  <a href="/contact/" class="btn">Nous contacter →</a>
+</div>
+
+<nav class="article-nav">
+  <a href="/tutoriels/">← Retour aux tutoriels</a>
+</nav>

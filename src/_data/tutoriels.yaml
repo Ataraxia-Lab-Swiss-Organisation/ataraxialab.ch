@@ -256,3 +256,194 @@
   niveau: "Débutant"
   temps_lecture: "4 min"
   ordre: 26
+
+- titre: "Violation de données — que faire dans les 72 heures"
+  slug: "violation-donnees-procedure-lpd"
+  description: "Fuite de données, piratage, vol de matériel — la LPD vous impose d'agir vite. Voici la procédure concrète pour notifier le PFPDT et protéger vos membres."
+  date: "2026-05-26"
+  date_affichee: "1 juillet 2026"
+  categorie: "LPD"
+  niveau: "Intermédiaire"
+  temps_lecture: "6 min"
+  ordre: 27
+
+- titre: "Registre des activités de traitement — le guide pratique pour les associations"
+  slug: "registre-traitements-lpd-associations"
+  description: "Obligatoire depuis septembre 2023, le registre LPD est moins complexe qu'il n'y paraît. Voici comment le construire en une heure, pas en une semaine."
+  date: "2026-05-26"
+  date_affichee: "3 juillet 2026"
+  categorie: "LPD"
+  niveau: "Débutant"
+  temps_lecture: "5 min"
+  ordre: 28
+
+- titre: "L'Analyse d'impact (AIPD) — quand et comment la réaliser"
+  slug: "analyse-impact-protection-donnees-aipd"
+  description: "Caméra de surveillance, traitement de données de santé, profilage — certains traitements obligent à une AIPD. Ce tutoriel explique comment s'y prendre sans être juriste."
+  date: "2026-05-26"
+  date_affichee: "5 juillet 2026"
+  categorie: "LPD"
+  niveau: "Intermédiaire"
+  temps_lecture: "5 min"
+  ordre: 29
+
+- titre: "Délégué à la protection des données — en avez-vous besoin ?"
+  slug: "delegue-protection-donnees-association-suisse"
+  description: "La désignation d'un conseiller LPD n'est pas obligatoire pour toutes les associations suisses. Mais elle est souvent utile. Ce tutoriel vous aide à décider."
+  date: "2026-05-26"
+  date_affichee: "8 juillet 2026"
+  categorie: "LPD"
+  niveau: "Débutant"
+  temps_lecture: "5 min"
+  ordre: 30
+
+- titre: "Transferts de données à l'étranger — ce que la LPD exige vraiment"
+  slug: "transferts-donnees-etranger-lpd-suisse"
+  description: "Google Drive, Mailchimp, Zoom — chaque fois que vos données partent hors de Suisse, la LPD entre en jeu. Voici comment rester conforme sans tout désinstaller."
+  date: "2026-05-26"
+  date_affichee: "10 juillet 2026"
+  categorie: "LPD"
+  niveau: "Intermédiaire"
+  temps_lecture: "5 min"
+  ordre: 31
+
+- titre: "Mots de passe : finissons-en avec les mauvaises habitudes"
+  slug: "mots-de-passe-bitwarden-gestionnaire"
+  description: "«123456» reste le mot de passe le plus utilisé en 2025. Ce tutoriel explique pourquoi — et comment Bitwarden résout définitivement le problème, gratuitement."
+  date: "2026-05-26"
+  date_affichee: "12 juillet 2026"
+  categorie: "Sécurité"
+  niveau: "Débutant"
+  temps_lecture: "5 min"
+  ordre: 32
+
+- titre: "Authentification à deux facteurs — le geste le plus efficace pour vos comptes"
+  slug: "authentification-deux-facteurs-2fa-associations"
+  description: "La 2FA bloque 99 % des attaques automatisées. Ce tutoriel explique comment l'activer sur tous les comptes critiques de votre association, étape par étape."
+  date: "2026-05-26"
+  date_affichee: "15 juillet 2026"
+  categorie: "Sécurité"
+  niveau: "Débutant"
+  temps_lecture: "5 min"
+  ordre: 33
+
+- titre: "Chiffrer ses emails avec PGP — pourquoi et comment"
+  slug: "chiffrement-email-pgp-associations"
+  description: "PGP permet à vos emails d'être lisibles uniquement par leur destinataire. Ce tutoriel explique le principe et les outils accessibles pour une association romande."
+  date: "2026-05-26"
+  date_affichee: "17 juillet 2026"
+  categorie: "Sécurité"
+  niveau: "Intermédiaire"
+  temps_lecture: "6 min"
+  ordre: 34
+
+- titre: "YunoHost — l'auto-hébergement accessible sans diplôme d'ingénieur"
+  slug: "yunohost-auto-hebergement-association"
+  description: "YunoHost permet d'héberger votre site, votre cloud et vos emails sur votre propre serveur en quelques clics. Ce tutoriel vous explique si c'est fait pour vous."
+  date: "2026-05-26"
+  date_affichee: "22 juillet 2026"
+  categorie: "Outils libres"
+  niveau: "Intermédiaire"
+  temps_lecture: "6 min"
+  ordre: 35
+
+- titre: "Nextcloud pour les associations — votre cloud privé hébergé en Suisse"
+  slug: "nextcloud-cloud-prive-associations-suisse"
+  description: "Nextcloud remplace Google Drive, Google Agenda et les outils de visioconférence par une solution open source que vous contrôlez. Voici comment le déployer."
+  date: "2026-05-26"
+  date_affichee: "24 juillet 2026"
+  categorie: "Outils libres"
+  niveau: "Débutant"
+  temps_lecture: "6 min"
+  ordre: 36
+
+- titre: "Signature numérique en Suisse — valeur légale et outils pratiques"
+  slug: "signature-numerique-zert-es-suisse-associations"
+  description: "La signature électronique qualifiée a la même valeur que la signature manuscrite en droit suisse (ZertES). Ce tutoriel présente les outils disponibles et leurs cas d'usage."
+  date: "2026-05-26"
+  date_affichee: "26 juillet 2026"
+  categorie: "Outils libres"
+  niveau: "Intermédiaire"
+  temps_lecture: "6 min"
+  ordre: 37
+
+- titre: "IA locale avec Ollama — traiter vos données sans les envoyer à l'extérieur"
+  slug: "ia-locale-ollama-donnees-confidentielles"
+  description: "Avec Ollama, vous exécutez un modèle de langage sur votre propre ordinateur. Vos données ne quittent jamais votre machine. Ce tutoriel explique si c'est pour vous."
+  date: "2026-05-26"
+  date_affichee: "1 août 2026"
+  categorie: "IA & Éthique"
+  niveau: "Intermédiaire"
+  temps_lecture: "6 min"
+  ordre: 38
+
+- titre: "Les biais des IA — comment les détecter et garder son esprit critique"
+  slug: "biais-ia-esprit-critique-detection"
+  description: "Les IA reproduisent et amplifient les biais de leurs données d'entraînement. Ce tutoriel vous donne les outils pour rester critique face aux réponses d'une IA."
+  date: "2026-05-26"
+  date_affichee: "5 août 2026"
+  categorie: "IA & Éthique"
+  niveau: "Intermédiaire"
+  temps_lecture: "5 min"
+  ordre: 39
+
+- titre: "Charte éthique IA pour votre association — construire les règles du jeu"
+  slug: "charte-ethique-ia-association"
+  description: "L'IA peut transformer votre association si vous l'utilisez de façon réfléchie. Une charte éthique définit le cadre. Ce tutoriel vous guide pour en rédiger une."
+  date: "2026-05-26"
+  date_affichee: "8 août 2026"
+  categorie: "IA & Éthique"
+  niveau: "Intermédiaire"
+  temps_lecture: "5 min"
+  ordre: 40
+
+- titre: "Lire les logs de votre serveur — comprendre ce qui se passe vraiment"
+  slug: "lire-logs-serveur-securite"
+  description: "Vos logs serveur racontent une histoire. Attaques automatisées, erreurs cachées, comportements suspects — ce tutoriel vous apprend à les lire sans être ingénieur."
+  date: "2026-05-26"
+  date_affichee: "12 août 2026"
+  categorie: "Sécurité"
+  niveau: "Avancé"
+  temps_lecture: "6 min"
+  ordre: 41
+
+- titre: "Qui a accès à quoi ? La gestion des identités et des droits dans votre association"
+  slug: "gestion-acces-droits-iam-association"
+  description: "Un accès mal géré est l'une des premières causes de violations de données. Ce tutoriel explique comment structurer les droits d'accès dans une petite association suisse."
+  date: "2026-05-26"
+  date_affichee: "15 août 2026"
+  categorie: "Sécurité"
+  niveau: "Intermédiaire"
+  temps_lecture: "5 min"
+  ordre: 42
+
+- titre: "Plan de réponse aux incidents — préparer l'imprévisible"
+  slug: "plan-reponse-incidents-securite-association"
+  description: "Un incident de sécurité, ça n'arrive pas qu'aux grandes entreprises. Ce tutoriel vous aide à créer un plan de réponse adapté à une petite association, sans équipe IT."
+  date: "2026-05-26"
+  date_affichee: "19 août 2026"
+  categorie: "Sécurité"
+  niveau: "Intermédiaire"
+  temps_lecture: "6 min"
+  ordre: 43
+
+- titre: "Gouvernance des données — gérer vos données comme un actif précieux"
+  slug: "gouvernance-donnees-associations"
+  description: "Les données de vos membres sont un actif de votre association. Ce tutoriel explique comment les gérer de façon cohérente, conforme à la LPD et durable."
+  date: "2026-05-26"
+  date_affichee: "22 août 2026"
+  categorie: "LPD"
+  niveau: "Intermédiaire"
+  temps_lecture: "5 min"
+  ordre: 44
+
+- titre: "Politique de sécurité — construire le cadre de règles de votre association"
+  slug: "politique-securite-numerique-association"
+  description: "Une politique de sécurité transforme les bonnes pratiques en règles partagées. Ce tutoriel vous guide pour en rédiger une adaptée à une petite association suisse."
+  date: "2026-05-26"
+  date_affichee: "26 août 2026"
+  categorie: "Sécurité"
+  niveau: "Avancé"
+  temps_lecture: "7 min"
+  ordre: 45
+

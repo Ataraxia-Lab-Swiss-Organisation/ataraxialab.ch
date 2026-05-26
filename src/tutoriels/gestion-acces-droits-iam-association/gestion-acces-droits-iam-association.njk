@@ -1,0 +1,60 @@
+---
+layout: layouts/base.njk
+title: "Qui a accès à quoi ? La gestion des identités et des droits dans votre association"
+description: "Un accès mal géré est l'une des premières causes de violations de données. Ce tutoriel explique comment structurer les droits d'accès dans une petite association suisse."
+permalink: /tutoriels/gestion-acces-droits-iam-association/
+type: tutoriel
+datePublished: "2026-05-26"
+categorie: "Sécurité"
+---
+
+<div class="page-hero">
+  <div class="article-meta">
+    <span class="tutoriel-categorie">Sécurité</span>
+    <span class="tutoriel-niveau">Intermédiaire</span>
+  </div>
+  <div class="article-date">26 mai 2026 · 5 min de lecture</div>
+  <h1 class="page-title">Qui a accès à quoi ? La gestion des identités et des droits dans votre association</h1>
+  <p class="page-subtitle">En 2025, 74 % des violations de données impliquent un élément humain (Verizon DBIR). Parmi elles, une large part concerne des accès non révoqués — anciens membres du comité, bénévoles partis, comptes partagés dont personne ne connaît plus le mot de passe.</p>
+</div>
+
+<div class="article-body">
+  <h2>Le principe fondamental : moindre privilège</h2>
+  <p>Chaque personne ne devrait avoir accès qu'aux ressources strictement nécessaires à ses fonctions. Le trésorier n'a pas besoin des photos des événements. L'organisateur d'événements n'a pas besoin de voir la comptabilité. Ce principe réduit drastiquement la surface d'attaque en cas de compromission d'un compte.</p>
+
+  <h2>Cartographie des accès pour une association type</h2>
+  <table>
+    <thead><tr><th>Ressource</th><th>Président</th><th>Trésorier</th><th>Secrétaire</th><th>Bénévole actif</th></tr></thead>
+    <tbody>
+      <tr><td>Site web (admin)</td><td>✅</td><td>✗</td><td>✅</td><td>✗</td></tr>
+      <tr><td>Comptabilité</td><td>✅</td><td>✅</td><td>✗</td><td>✗</td></tr>
+      <tr><td>Base de données membres</td><td>✅</td><td>✅</td><td>✅</td><td>✗</td></tr>
+      <tr><td>Réseaux sociaux</td><td>✅</td><td>✗</td><td>✅</td><td>Sur demande</td></tr>
+      <tr><td>Hébergeur (Infomaniak)</td><td>✅</td><td>✗</td><td>✗</td><td>✗</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Les moments critiques</h2>
+  <p>Trois moments nécessitent une revue systématique des accès :</p>
+  <ol>
+    <li><strong>Arrivée</strong> d'un nouveau membre du comité : attribution des droits nécessaires</li>
+    <li><strong>Changement de rôle</strong> : ajustement des droits</li>
+    <li><strong>Départ</strong> : révocation immédiate de tous les accès — créez une <em>checklist de départ</em></li>
+  </ol>
+
+  <h2>Conformité LPD</h2>
+  <p>L'article 8 LPD impose des mesures techniques et organisationnelles appropriées pour protéger les données personnelles. Une politique d'accès documentée est précisément le type de mesure organisationnelle que le PFPDT s'attend à trouver.</p>
+
+  <h2>Exercice pratique</h2>
+  <p>✅ <strong>À faire maintenant :</strong> dressez en 20 minutes la liste de tous les accès actifs dans votre association. À côté de chaque accès, notez qui l'utilise et s'il est encore nécessaire. Révoquez immédiatement les accès inutiles.</p>
+</div>
+
+<div class="article-cta">
+  <h2>Audit de gestion des accès</h2>
+  <p>Ataraxia Lab vous aide à cartographier et à sécuriser les accès numériques de votre association.</p>
+  <a href="/contact/" class="btn">Nous contacter →</a>
+</div>
+
+<nav class="article-nav">
+  <a href="/tutoriels/">← Retour aux tutoriels</a>
+</nav>

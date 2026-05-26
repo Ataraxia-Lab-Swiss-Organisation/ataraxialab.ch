@@ -1,0 +1,59 @@
+---
+layout: layouts/base.njk
+title: "Authentification à deux facteurs — le geste le plus efficace pour vos comptes"
+description: "La 2FA bloque 99 % des attaques automatisées. Ce tutoriel explique comment l'activer sur tous les comptes critiques de votre association, étape par étape."
+permalink: /tutoriels/authentification-deux-facteurs-2fa-associations/
+type: tutoriel
+datePublished: "2026-05-26"
+categorie: "Sécurité"
+---
+
+<div class="page-hero">
+  <div class="article-meta">
+    <span class="tutoriel-categorie">Sécurité</span>
+    <span class="tutoriel-niveau">Débutant</span>
+  </div>
+  <div class="article-date">26 mai 2026 · 5 min de lecture</div>
+  <h1 class="page-title">Authentification à deux facteurs — le geste le plus efficace pour vos comptes</h1>
+  <p class="page-subtitle">Google a publié en 2019 une étude sur l'efficacité des méthodes d'authentification. Résultat : la 2FA bloque 100 % des bots automatisés et 99 % des attaques de phishing en masse. C'est le meilleur ratio effort/protection qui existe.</p>
+</div>
+
+<div class="article-body">
+  <h2>Le principe</h2>
+  <p>La 2FA ajoute un second facteur d'identification après le mot de passe. Même si votre mot de passe est volé, l'attaquant ne peut pas accéder à votre compte sans ce second facteur.</p>
+  <ul>
+    <li><strong>Ce que vous savez</strong> : mot de passe (facteur 1)</li>
+    <li><strong>Ce que vous possédez</strong> : code temporaire sur votre téléphone (facteur 2)</li>
+  </ul>
+
+  <h2>Les méthodes, du meilleur au moins bon</h2>
+  <p><strong>Application d'authentification (Aegis, FreeOTP)</strong> — recommandée. Génère un code à 6 chiffres renouvelé toutes les 30 secondes. Aegis est open source et stocke les codes chiffrés sur votre téléphone.</p>
+  <p><strong>Clé physique (YubiKey, Nitrokey)</strong> — la plus sûre, résiste à tous les types de phishing. Recommandée pour les accès critiques. Prix : 30–70 CHF.</p>
+  <p><strong>SMS</strong> — acceptable, mais vulnérable au SIM swapping. À n'utiliser que si aucune autre option n'est disponible.</p>
+
+  <h2>Quels comptes protéger en priorité</h2>
+  <ol>
+    <li>Email associatif (Infomaniak, Proton) — <strong>priorité absolue</strong></li>
+    <li>Compte bancaire en ligne</li>
+    <li>Hébergeur web (Infomaniak Manager)</li>
+    <li>Gestionnaire de mots de passe (Bitwarden)</li>
+    <li>Réseaux sociaux de l'association</li>
+    <li>kDrive / stockage partagé</li>
+  </ol>
+
+  <h2>Le problème de la transition</h2>
+  <p>Lorsqu'un membre du comité qui détient la 2FA quitte l'association, l'accès aux comptes peut être perdu si vous n'avez pas prévu de procédure. Pour chaque compte 2FA activé, générez et imprimez les <strong>codes de secours</strong>. Stockez-les dans un endroit physique sécurisé, distinct du téléphone.</p>
+
+  <h2>Exercice pratique</h2>
+  <p>✅ <strong>À faire maintenant :</strong> installez Aegis (Android) ou Raivo (iOS) sur votre téléphone. Activez la 2FA sur votre compte email associatif. Imprimez les codes de secours. Ce tutoriel vous aura pris 15 minutes.</p>
+</div>
+
+<div class="article-cta">
+  <h2>Besoin d'aide pour sécuriser vos comptes ?</h2>
+  <p>Ataraxia Lab accompagne les associations dans la mise en place des bonnes pratiques de sécurité numérique.</p>
+  <a href="/contact/" class="btn">Nous contacter →</a>
+</div>
+
+<nav class="article-nav">
+  <a href="/tutoriels/">← Retour aux tutoriels</a>
+</nav>

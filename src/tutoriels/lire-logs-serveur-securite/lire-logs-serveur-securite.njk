@@ -1,0 +1,59 @@
+---
+layout: layouts/base.njk
+title: "Lire les logs de votre serveur — comprendre ce qui se passe vraiment"
+description: "Vos logs serveur racontent une histoire. Attaques automatisées, erreurs cachées, comportements suspects — ce tutoriel vous apprend à les lire sans être ingénieur."
+permalink: /tutoriels/lire-logs-serveur-securite/
+type: tutoriel
+datePublished: "2026-05-26"
+categorie: "Sécurité"
+---
+
+<div class="page-hero">
+  <div class="article-meta">
+    <span class="tutoriel-categorie">Sécurité</span>
+    <span class="tutoriel-niveau">Avancé</span>
+  </div>
+  <div class="article-date">26 mai 2026 · 6 min de lecture</div>
+  <h1 class="page-title">Lire les logs de votre serveur — comprendre ce qui se passe vraiment</h1>
+  <p class="page-subtitle">Votre serveur web tient un journal précis de tout ce qui s'y passe. Chaque requête, chaque erreur, chaque tentative d'intrusion. La grande majorité des administrateurs ne les lisent jamais — jusqu'à ce qu'il soit trop tard.</p>
+</div>
+
+<div class="article-body">
+  <h2>Les deux types de logs essentiels</h2>
+  <p><strong>access.log</strong> : l'historique complet de toutes les requêtes HTTP. Pour chaque ligne : adresse IP, date et heure, URL demandée, code de réponse, navigateur utilisé.</p>
+  <p><strong>error.log</strong> : les erreurs serveur (codes 4xx, 5xx), les tentatives bloquées, les problèmes de configuration. C'est votre premier indicateur de problèmes.</p>
+
+  <h2>Anatomie d'une ligne de log</h2>
+  <pre><code>185.220.101.42 - - [25/May/2026:03:15:22] "GET /wp-admin/setup-config.php HTTP/1.1" 403 0 "-" "python-requests/2.28.0"</code></pre>
+  <p>Décodage : IP connue du réseau Tor · 3h15 du matin (horaire typique de scan) · tentative d'accès à un fichier d'installation WP inexistant · 403 = accès refusé (votre .htaccess fonctionne) · <code>python-requests</code> = bot automatisé, pas un humain.</p>
+
+  <h2>Ce que vous devez surveiller</h2>
+  <ul>
+    <li><strong>Codes 401/403 répétés depuis la même IP</strong> : tentatives de force brute ou scan</li>
+    <li><strong>404 en masse vers <code>/wp-admin/</code>, <code>/admin/</code>, <code>/phpmyadmin/</code></strong> : scan automatisé</li>
+    <li><strong>User-agents suspects</strong> : <code>python-requests</code>, <code>masscan</code>, <code>sqlmap</code></li>
+    <li><strong>Pics de trafic à des heures atypiques</strong> : signes possibles de DDoS</li>
+  </ul>
+
+  <h2>Commandes pratiques en SSH</h2>
+  <p>Trouver toutes les tentatives d'accès bloquées à wp-admin :</p>
+  <pre><code>grep "wp-admin" access.log | grep " 403 " | awk '{print $1}' | sort | uniq -c | sort -rn</code></pre>
+  <p>Voir les 50 dernières lignes en temps réel :</p>
+  <pre><code>tail -f -n 50 access.log</code></pre>
+
+  <h2>Cadre légal</h2>
+  <p>Les logs contiennent des adresses IP — c'est-à-dire des données personnelles selon la LPD. Mentionnez leur collecte dans votre politique de confidentialité et définissez une durée de conservation (généralement 30 à 90 jours). Au-delà, suppression ou anonymisation.</p>
+
+  <h2>Exercice pratique</h2>
+  <p>✅ <strong>À faire maintenant :</strong> connectez-vous en SSH à votre serveur. Exécutez <code>tail -n 100 access.log</code> pour voir les 100 dernières lignes. Identifiez trois patterns différents : un visiteur humain, un robot légitime (Googlebot), et une tentative automatisée.</p>
+</div>
+
+<div class="article-cta">
+  <h2>Audit de sécurité de votre site</h2>
+  <p>Ataraxia Lab propose des audits de sécurité pour les sites web d'associations — analyse des logs, détection de vulnérabilités, recommandations concrètes.</p>
+  <a href="/contact/" class="btn">Nous contacter →</a>
+</div>
+
+<nav class="article-nav">
+  <a href="/tutoriels/">← Retour aux tutoriels</a>
+</nav>

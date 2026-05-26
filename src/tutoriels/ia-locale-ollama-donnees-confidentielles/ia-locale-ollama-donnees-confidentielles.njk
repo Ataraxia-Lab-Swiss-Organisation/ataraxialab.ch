@@ -1,0 +1,66 @@
+---
+layout: layouts/base.njk
+title: "IA locale avec Ollama — traiter vos données sans les envoyer à l'extérieur"
+description: "Avec Ollama, vous exécutez un modèle de langage sur votre propre ordinateur. Vos données ne quittent jamais votre machine. Ce tutoriel explique si c'est pour vous."
+permalink: /tutoriels/ia-locale-ollama-donnees-confidentielles/
+type: tutoriel
+datePublished: "2026-05-26"
+categorie: "IA & Éthique"
+---
+
+<div class="page-hero">
+  <div class="article-meta">
+    <span class="tutoriel-categorie">IA &amp; Éthique</span>
+    <span class="tutoriel-niveau">Intermédiaire</span>
+  </div>
+  <div class="article-date">26 mai 2026 · 6 min de lecture</div>
+  <h1 class="page-title">IA locale avec Ollama — traiter vos données sans les envoyer à l'extérieur</h1>
+  <p class="page-subtitle">Chaque fois que vous posez une question à ChatGPT avec des données internes de votre association, vous envoyez ces données vers des serveurs américains. Ollama est la réponse : un outil gratuit qui exécute des modèles IA directement sur votre ordinateur.</p>
+</div>
+
+<div class="article-body">
+  <h2>Comment ça fonctionne</h2>
+  <p>Ollama télécharge un modèle de langage (Llama, Mistral, Gemma, Phi) localement et l'exécute via une interface en ligne de commande ou des interfaces graphiques comme Open WebUI. La qualité est inférieure à GPT-4 ou Claude Sonnet — mais pour les usages internes d'une association, c'est souvent suffisant.</p>
+
+  <h2>Ce que vous pouvez faire concrètement</h2>
+  <ul>
+    <li>Analyser un document interne (statuts, règlement) pour en extraire des points clés</li>
+    <li>Générer un résumé de procès-verbal à partir de notes brutes</li>
+    <li>Reformuler une communication interne</li>
+    <li>Répondre à des questions sur vos documents (mode RAG avec PrivateGPT)</li>
+    <li>Classifier des emails entrants</li>
+  </ul>
+
+  <h2>Configuration minimale réelle</h2>
+  <table>
+    <thead><tr><th>RAM disponible</th><th>Modèle recommandé</th><th>Qualité attendue</th></tr></thead>
+    <tbody>
+      <tr><td>8 Go</td><td>Phi-3 Mini, Gemma 2B</td><td>Basique — lent mais fonctionnel</td></tr>
+      <tr><td>16 Go</td><td>Mistral 7B, Llama 3.1 8B</td><td>Acceptable pour la plupart des usages</td></tr>
+      <tr><td>32 Go + GPU</td><td>Llama 3.1 70B</td><td>Proche des services cloud</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Installation en 3 étapes</h2>
+  <ol>
+    <li>Téléchargez Ollama sur <a href="https://ollama.com" target="_blank" rel="noopener noreferrer">ollama.com</a> (Windows, macOS, Linux)</li>
+    <li>Dans un terminal : <code>ollama pull mistral</code> (télécharge Mistral 7B, ~4 Go)</li>
+    <li>Lancez : <code>ollama run mistral</code> et posez vos questions</li>
+  </ol>
+
+  <h2>La limite qu'il faut connaître</h2>
+  <p>Les modèles locaux n'ont pas accès à Internet et ne connaissent pas les événements récents. Pour des tâches complexes avec des informations à jour, un service cloud hébergé en Suisse (Infomaniak IA) reste préférable.</p>
+
+  <h2>Exercice pratique</h2>
+  <p>✅ <strong>À faire maintenant :</strong> installez Ollama et le modèle Mistral. Copiez-collez le texte d'un article de vos statuts et demandez-lui : «Explique cet article en trois phrases simples.» Évaluez la qualité — vous saurez immédiatement si cet outil correspond à vos besoins.</p>
+</div>
+
+<div class="article-cta">
+  <h2>Stratégie IA pour votre association</h2>
+  <p>Ataraxia Lab vous accompagne dans le choix et le déploiement d'outils IA conformes à la LPD et aux valeurs de votre association.</p>
+  <a href="/contact/" class="btn">Nous contacter →</a>
+</div>
+
+<nav class="article-nav">
+  <a href="/tutoriels/">← Retour aux tutoriels</a>
+</nav>
