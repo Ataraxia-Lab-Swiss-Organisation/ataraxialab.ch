@@ -1,60 +1,83 @@
 ---
 layout: layouts/base.njk
-title: "Qui a accès à quoi ? La gestion des identités et des droits dans votre association"
-description: "Un accès mal géré est l'une des premières causes de violations de données. Ce tutoriel explique comment structurer les droits d'accès dans une petite association suisse."
+title: "Qui a acc&egrave;s &agrave; quoi ? La gestion des identit&eacute;s et des droits dans votre association"
+description: "Un acc&egrave;s mal g&eacute;r&eacute; est l'une des premi&egrave;res causes de violations de donn&eacute;es. Ce tutoriel explique comment structurer les droits d'acc&egrave;s dans une petite association suisse."
 permalink: /tutoriels/gestion-acces-droits-iam-association/
 type: tutoriel
 datePublished: "2026-05-26"
-categorie: "Sécurité"
+categorie: "S&eacute;curit&eacute;"
 ---
 
 <div class="page-hero">
   <div class="article-meta">
-    <span class="tutoriel-categorie">Sécurité</span>
-    <span class="tutoriel-niveau">Intermédiaire</span>
+    <span class="tutoriel-categorie">S&eacute;curit&eacute;</span>
+    <span class="tutoriel-niveau">Interm&eacute;diaire</span>
   </div>
-  <div class="article-date">26 mai 2026 · 5 min de lecture</div>
-  <h1 class="page-title">Qui a accès à quoi ? La gestion des identités et des droits dans votre association</h1>
-  <p class="page-subtitle">En 2025, 74 % des violations de données impliquent un élément humain (Verizon DBIR). Parmi elles, une large part concerne des accès non révoqués — anciens membres du comité, bénévoles partis, comptes partagés dont personne ne connaît plus le mot de passe.</p>
+  <div class="article-date">26 mai 2026 &middot; 7 min de lecture</div>
+  <h1 class="page-title">Qui a acc&egrave;s &agrave; quoi ? La gestion des identit&eacute;s et des droits dans votre association</h1>
+  <p class="page-subtitle">En 2025, 74 % des violations de donn&eacute;es impliquent un &eacute;l&eacute;ment humain (Verizon DBIR). Parmi elles, une large part concerne des acc&egrave;s non r&eacute;voqu&eacute;s -- anciens membres du comit&eacute;, b&eacute;n&eacute;voles partis, comptes partag&eacute;s dont personne ne conna&icirc;t plus le mot de passe.</p>
 </div>
 
 <div class="article-body">
-  <h2>Le principe fondamental : moindre privilège</h2>
-  <p>Chaque personne ne devrait avoir accès qu'aux ressources strictement nécessaires à ses fonctions. Le trésorier n'a pas besoin des photos des événements. L'organisateur d'événements n'a pas besoin de voir la comptabilité. Ce principe réduit drastiquement la surface d'attaque en cas de compromission d'un compte.</p>
+  <h2>Le principe fondamental : moindre privil&egrave;ge</h2>
+  <p>Chaque personne ne devrait avoir acc&egrave;s qu'aux ressources strictement n&eacute;cessaires &agrave; ses fonctions. Le tr&eacute;sorier n'a pas besoin des photos des &eacute;v&eacute;nements. L'organisateur d'&eacute;v&eacute;nements n'a pas besoin de voir la comptabilit&eacute;. Ce principe -- appel&eacute; <em>principe du moindre privil&egrave;ge</em> -- r&eacute;duit drastiquement la surface d'attaque en cas de compromission d'un compte.</p>
+  <p>Pour une petite association, cela se traduit concr&egrave;tement : pas de mot de passe partag&eacute; entre plusieurs membres, pas d'acc&egrave;s administrateur par d&eacute;faut, et une liste &agrave; jour de qui a acc&egrave;s &agrave; quoi.</p>
 
-  <h2>Cartographie des accès pour une association type</h2>
+  <h2>Cartographie des acc&egrave;s pour une association type</h2>
+  <p>Voici une cartographie typique pour une association &agrave; deux membres de comit&eacute; et quelques b&eacute;n&eacute;voles actifs :</p>
   <table>
-    <thead><tr><th>Ressource</th><th>Président</th><th>Trésorier</th><th>Secrétaire</th><th>Bénévole actif</th></tr></thead>
+    <thead><tr><th>Ressource</th><th>Pr&eacute;sident</th><th>Tr&eacute;sorier</th><th>Secr&eacute;taire</th><th>B&eacute;n&eacute;vole actif</th></tr></thead>
     <tbody>
-      <tr><td>Site web (admin)</td><td>✅</td><td>✗</td><td>✅</td><td>✗</td></tr>
-      <tr><td>Comptabilité</td><td>✅</td><td>✅</td><td>✗</td><td>✗</td></tr>
-      <tr><td>Base de données membres</td><td>✅</td><td>✅</td><td>✅</td><td>✗</td></tr>
-      <tr><td>Réseaux sociaux</td><td>✅</td><td>✗</td><td>✅</td><td>Sur demande</td></tr>
-      <tr><td>Hébergeur (Infomaniak)</td><td>✅</td><td>✗</td><td>✗</td><td>✗</td></tr>
+      <tr><td>Site web (admin)</td><td>&#x2705;</td><td>&#10007;</td><td>&#x2705;</td><td>&#10007;</td></tr>
+      <tr><td>Comptabilit&eacute;</td><td>&#x2705;</td><td>&#x2705;</td><td>&#10007;</td><td>&#10007;</td></tr>
+      <tr><td>Base de donn&eacute;es membres</td><td>&#x2705;</td><td>&#x2705;</td><td>&#x2705;</td><td>&#10007;</td></tr>
+      <tr><td>R&eacute;seaux sociaux</td><td>&#x2705;</td><td>&#10007;</td><td>&#x2705;</td><td>Sur demande</td></tr>
+      <tr><td>H&eacute;bergeur (ex. Infomaniak)</td><td>&#x2705;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
+      <tr><td>Gestionnaire de mots de passe</td><td>&#x2705;</td><td>&#x2705;</td><td>&#x2705;</td><td>&#10007;</td></tr>
+      <tr><td>Sauvegarde cloud</td><td>&#x2705;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
     </tbody>
   </table>
 
-  <h2>Les moments critiques</h2>
-  <p>Trois moments nécessitent une revue systématique des accès :</p>
+  <h2>Les moments critiques : quand revoir les acc&egrave;s</h2>
+  <p>Trois &eacute;v&eacute;nements d&eacute;clenchent obligatoirement une revue des droits :</p>
   <ol>
-    <li><strong>Arrivée</strong> d'un nouveau membre du comité : attribution des droits nécessaires</li>
-    <li><strong>Changement de rôle</strong> : ajustement des droits</li>
-    <li><strong>Départ</strong> : révocation immédiate de tous les accès — créez une <em>checklist de départ</em></li>
+    <li><strong>Arriv&eacute;e d'un nouveau membre du comit&eacute; :</strong> attribuez uniquement les droits n&eacute;cessaires &agrave; son r&ocirc;le -- ni plus, ni moins.</li>
+    <li><strong>Changement de r&ocirc;le :</strong> un tr&eacute;sorier qui devient pr&eacute;sident doit recevoir de nouveaux droits et perdre certains des anciens. Ne jamais cumuler sans audit.</li>
+    <li><strong>D&eacute;part :</strong> r&eacute;vocation imm&eacute;diate de tous les acc&egrave;s, sans exception. Cr&eacute;ez une <em>checklist de d&eacute;part</em> que vous cochez syst&eacute;matiquement.</li>
   </ol>
+  <p>Un d&eacute;part non g&eacute;r&eacute; est la principale cause d'acc&egrave;s orphelins. Un ancien b&eacute;n&eacute;vole qui conserve l'acc&egrave;s aux r&eacute;seaux sociaux de l'association pendant des mois repr&eacute;sente un risque r&eacute;el -- m&ecirc;me sans intention malveillante.</p>
 
-  <h2>Conformité LPD</h2>
-  <p>L'article 8 LPD impose des mesures techniques et organisationnelles appropriées pour protéger les données personnelles. Une politique d'accès documentée est précisément le type de mesure organisationnelle que le PFPDT s'attend à trouver.</p>
+  <h2>Outils recommand&eacute;s pour les petites associations suisses</h2>
+  <p>Inutile de d&eacute;ployer une infrastructure complexe. Ces outils couvrent l'essentiel :</p>
+  <ul>
+    <li><strong>Gestionnaire de mots de passe :</strong> <a href="https://bitwarden.com" rel="noopener noreferrer" target="_blank">Bitwarden</a> (open source, version gratuite suffisante) ou <a href="https://www.dashlane.com" rel="noopener noreferrer" target="_blank">Dashlane</a>. Permet de partager des identifiants sans r&eacute;v&eacute;ler le mot de passe en clair, et de r&eacute;voquer l'acc&egrave;s d'un membre en un clic.</li>
+    <li><strong>Comptes nominatifs :</strong> chaque membre du comit&eacute; dispose de son propre compte sur chaque service -- jamais de compte g&eacute;n&eacute;rique &laquo; association@&#8230; &raquo; partag&eacute; pour les acc&egrave;s sensibles.</li>
+    <li><strong>Authentification &agrave; deux facteurs (2FA) :</strong> activez-la sur tous les comptes critiques -- h&eacute;bergeur, messagerie, r&eacute;seaux sociaux. Une application comme <a href="https://authy.com" rel="noopener noreferrer" target="_blank">Authy</a> ou Google Authenticator suffit.</li>
+    <li><strong>kSuite Infomaniak :</strong> si votre association h&eacute;berge chez Infomaniak, kSuite permet de cr&eacute;er des comptes utilisateurs distincts avec des droits granulaires sur le kDrive et les services associ&eacute;s.</li>
+  </ul>
 
-  <h2>Exercice pratique</h2>
-  <p>✅ <strong>À faire maintenant :</strong> dressez en 20 minutes la liste de tous les accès actifs dans votre association. À côté de chaque accès, notez qui l'utilise et s'il est encore nécessaire. Révoquez immédiatement les accès inutiles.</p>
+  <h2>Conformit&eacute; LPD : ce que la loi exige</h2>
+  <p>L'article 8 de la Loi f&eacute;d&eacute;rale sur la protection des donn&eacute;es (LPD) impose des mesures techniques et organisationnelles appropri&eacute;es pour prot&eacute;ger les donn&eacute;es personnelles trait&eacute;es par votre association -- registre des membres, courriels, formulaires de contact.</p>
+  <p>Une politique d'acc&egrave;s document&eacute;e est pr&eacute;cis&eacute;ment le type de mesure organisationnelle que le Pr&eacute;pos&eacute; f&eacute;d&eacute;ral &agrave; la protection des donn&eacute;es (PFPDT) s'attend &agrave; trouver lors d'un contr&ocirc;le. Elle n'a pas besoin d'&ecirc;tre complexe : un tableau listant qui a acc&egrave;s &agrave; quoi, sign&eacute; par le comit&eacute;, suffit pour les petites structures.</p>
+  <p>En cas de violation de donn&eacute;es -- fuite du registre des membres, acc&egrave;s non autoris&eacute; &agrave; la messagerie -- l'association doit pouvoir d&eacute;montrer qu'elle avait mis en place des mesures raisonnables. L'absence de toute politique d'acc&egrave;s est un facteur aggravant.</p>
+
+  <h2>Exercice pratique : l'audit de 20 minutes</h2>
+  <p>&#x2705; <strong>&Agrave; faire maintenant :</strong> ouvrez un tableur et dressez la liste de tous les acc&egrave;s actifs dans votre association. Pour chaque ligne, notez :</p>
+  <ul>
+    <li>Le service ou la ressource concern&eacute;e</li>
+    <li>Le nom de la personne qui y a acc&egrave;s</li>
+    <li>Son r&ocirc;le actuel dans l'association</li>
+    <li>Si cet acc&egrave;s est encore n&eacute;cessaire (oui / non / &agrave; v&eacute;rifier)</li>
+  </ul>
+  <p>R&eacute;voquez imm&eacute;diatement les acc&egrave;s marqu&eacute;s &laquo; non &raquo;. Pour les &laquo; &agrave; v&eacute;rifier &raquo;, fixez une &eacute;ch&eacute;ance de 48 heures. Cet exercice prend 20 minutes et peut &eacute;viter une violation de donn&eacute;es co&ucirc;teuse.</p>
 </div>
 
 <div class="article-cta">
-  <h2>Audit de gestion des accès</h2>
-  <p>Ataraxia Lab vous aide à cartographier et à sécuriser les accès numériques de votre association.</p>
-  <a href="/contact/" class="btn">Nous contacter →</a>
+  <h2>Audit de gestion des acc&egrave;s</h2>
+  <p>Ataraxia Lab vous aide &agrave; cartographier et &agrave; s&eacute;curiser les acc&egrave;s num&eacute;riques de votre association. Une session de travail suffit pour &eacute;tablir une politique conforme LPD.</p>
+  <a href="/contact/" class="btn">Nous contacter &#8594;</a>
 </div>
 
 <nav class="article-nav">
-  <a href="/tutoriels/">← Retour aux tutoriels</a>
+  <a href="/tutoriels/">&#8592; Retour aux tutoriels</a>
 </nav>
