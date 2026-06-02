@@ -1,5 +1,5 @@
 # -----------------------------------------------
-# Ataraxia Lab — .htaccess — 31.05.2026
+# Ataraxia Lab — .htaccess — 02.06.2026
 # -----------------------------------------------
 
 # Redirection HTTPS
@@ -25,9 +25,9 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   # Permissions navigateur — désactive les fonctions non utilisées
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
 
-  # Content Security Policy — 31.05.2026
-  # Ajout IK Newsletter : webform.statslive.info, newsletter.infomaniak.com + Altcha worker/frame
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-MlBsOVMYfpbOVe8PbB3pEcz7tgfvRJ0Cc7bIGE8308Y=' 'sha256-HmIvnGAerCvcfrt3E3r0fjJQf5HknuqVlpFIzB5wZkc=' 'sha256-QcpggXZLv/c2Kg5G2wv2/rrN6rl/dm0sUUPTXHFMfIQ=' https://webform.statslive.info https://newsletter.infomaniak.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://newsletter.infomaniak.com; form-action 'self' https://formspree.io https://newsletter.infomaniak.com; connect-src 'self' https://formspree.io https://newsletter.infomaniak.com; worker-src 'self' blob: https://newsletter.infomaniak.com; frame-src 'self' https://newsletter.infomaniak.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'"
+  # Content Security Policy — 02.06.2026
+  # Ajout IK Newsletter + Matomo cookieless
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-MlBsOVMYfpbOVe8PbB3pEcz7tgfvRJ0Cc7bIGE8308Y=' 'sha256-HmIvnGAerCvcfrt3E3r0fjJQf5HknuqVlpFIzB5wZkc=' 'sha256-QcpggXZLv/c2Kg5G2wv2/rrN6rl/dm0sUUPTXHFMfIQ=' 'sha256-QSwF/cYvzp0+kdmrFRFZzn8azPbcmAwQh714opmuVcE=' https://webform.statslive.info https://newsletter.infomaniak.com https://stats.ataraxialab.ch; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://newsletter.infomaniak.com https://stats.ataraxialab.ch; form-action 'self' https://formspree.io https://newsletter.infomaniak.com; connect-src 'self' https://formspree.io https://newsletter.infomaniak.com https://stats.ataraxialab.ch; worker-src 'self' blob: https://newsletter.infomaniak.com; frame-src 'self' https://newsletter.infomaniak.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'"
 
 </IfModule>
 
