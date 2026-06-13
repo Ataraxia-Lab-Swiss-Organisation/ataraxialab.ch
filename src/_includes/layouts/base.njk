@@ -140,6 +140,20 @@
   </header>
   <main id="main-content">
     {{ content | safe }}
+
+    {% if type == 'tutoriel' %}
+    <section class="articles-lies">
+      <h2>À lire aussi</h2>
+      <ul class="tutoriels-grille">
+        {% for art in tutoriels | articlesLies(categorie, page.fileSlug) %}
+        <li class="tutoriel-carte">
+          <span class="tutoriel-categorie">{{ art.categorie }}</span>
+          <a class="tutoriel-titre tutoriel-lien" href="/tutoriels/{{ art.slug }}/">{{ art.titre }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
   </main>
   <footer>
     <span>© 2026 Ataraxia Lab — Association à but non lucratif — CHE-425.759.729 — 2400 Le Locle — <span id="email-footer"></span> — <a href="/mentions-legales/">Mentions légales</a> · <a href="/confidentialite/">Confidentialité</a> · <a href="/charte-ethique/">Charte éthique IA</a> · <a href="/documents/statuts-ataraxia-lab.pdf">Statuts</a></span>
