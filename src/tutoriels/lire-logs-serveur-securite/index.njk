@@ -13,7 +13,7 @@ categorie: "Sécurité"
     <span class="tutoriel-categorie">Sécurité</span>
     <span class="tutoriel-niveau">Avancé</span>
   </div>
-  <div class="article-date">26 mai 2026 · 6 min de lecture</div>
+  <div class="article-date">26 mai 2026 · 9 min de lecture</div>
   <h1 class="page-title">Lire les logs de votre serveur — comprendre ce qui se passe vraiment</h1>
   <p class="page-subtitle">Votre serveur web tient un journal précis de tout ce qui s'y passe. Chaque requête, chaque erreur, chaque tentative d'intrusion. La grande majorité des administrateurs ne les lisent jamais — jusqu'à ce qu'il soit trop tard.</p>
 </div>
@@ -26,6 +26,20 @@ categorie: "Sécurité"
   <h2>Anatomie d'une ligne de log</h2>
   <pre><code>185.220.101.42 - - [25/May/2026:03:15:22] "GET /wp-admin/setup-config.php HTTP/1.1" 403 0 "-" "python-requests/2.28.0"</code></pre>
   <p>Décodage : IP connue du réseau Tor · 3h15 du matin (horaire typique de scan) · tentative d'accès à un fichier d'installation WP inexistant · 403 = accès refusé (votre .htaccess fonctionne) · <code>python-requests</code> = bot automatisé, pas un humain.</p>
+
+  <h2>Les codes HTTP à connaître</h2>
+  <p>Chaque ligne de log contient un code à trois chiffres. Voici ceux qui comptent vraiment :</p>
+  <table>
+    <thead><tr><th>Code</th><th>Signification</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td>200</td><td>Succès — page servie normalement</td><td>Rien à faire</td></tr>
+      <tr><td>301 / 302</td><td>Redirection permanente ou temporaire</td><td>Vérifier que la cible est correcte</td></tr>
+      <tr><td>403</td><td>Accès refusé par le serveur</td><td>Votre .htaccess fonctionne — normal pour les scans</td></tr>
+      <tr><td>404</td><td>Page introuvable</td><td>En masse vers /wp-admin → scan automatisé</td></tr>
+      <tr><td>500</td><td>Erreur interne du serveur</td><td>À investiguer immédiatement dans error.log</td></tr>
+      <tr><td>503</td><td>Service indisponible</td><td>Surcharge ou maintenance — surveiller la durée</td></tr>
+    </tbody>
+  </table>
 
   <h2>Ce que vous devez surveiller</h2>
   <ul>
@@ -40,6 +54,22 @@ categorie: "Sécurité"
   <pre><code>grep "wp-admin" access.log | grep " 403 " | awk '{print $1}' | sort | uniq -c | sort -rn</code></pre>
   <p>Voir les 50 dernières lignes en temps réel :</p>
   <pre><code>tail -f -n 50 access.log</code></pre>
+
+  <h2>Outils d'analyse accessibles</h2>
+  <p>Lire les logs à la main est utile ponctuellement, mais des outils automatisent l'analyse et produisent des rapports visuels :</p>
+  <ul>
+    <li><strong>GoAccess</strong> : outil open source en ligne de commande ou interface web. Analyse en temps réel, graphiques, top URLs, top IPs. Idéal pour une analyse rapide sans installation lourde.</li>
+    <li><strong>AWStats</strong> : souvent préinstallé chez les hébergeurs mutualisés comme Infomaniak. Accessible depuis le panneau de contrôle sans configuration supplémentaire.</li>
+    <li><strong>Fail2ban</strong> : pas un outil d'analyse mais de réaction — il lit vos logs et bannit automatiquement les IPs qui déclenchent trop d'erreurs 401/403. Recommandé sur tout serveur exposé.</li>
+  </ul>
+
+  <h2>Fréquence de consultation recommandée</h2>
+  <p>Il n'est pas nécessaire de lire les logs chaque jour. Une approche pragmatique pour une association ou une petite structure :</p>
+  <ul>
+    <li><strong>Hebdomadaire :</strong> vérification rapide des codes 500 dans error.log — cinq minutes suffisent.</li>
+    <li><strong>Mensuelle :</strong> analyse des tendances via AWStats ou GoAccess — qui visite, quelles pages, quels bots.</li>
+    <li><strong>En cas d'incident :</strong> consultation immédiate des logs des 24-48 heures précédentes pour reconstituer ce qui s'est passé.</li>
+  </ul>
 
   <h2>Cadre légal</h2>
   <p>Les logs contiennent des adresses IP — c'est-à-dire des données personnelles selon la LPD. Mentionnez leur collecte dans votre politique de confidentialité et définissez une durée de conservation (généralement 30 à 90 jours). Au-delà, suppression ou anonymisation.</p>

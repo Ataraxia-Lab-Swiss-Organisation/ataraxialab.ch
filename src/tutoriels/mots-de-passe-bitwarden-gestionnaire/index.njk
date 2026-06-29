@@ -13,7 +13,7 @@ categorie: "Sécurité"
     <span class="tutoriel-categorie">Sécurité</span>
     <span class="tutoriel-niveau">Débutant</span>
   </div>
-  <div class="article-date">26 mai 2026 · 5 min de lecture</div>
+  <div class="article-date">26 mai 2026 · 8 min de lecture</div>
   <h1 class="page-title">Mots de passe : finissons-en avec les mauvaises habitudes</h1>
   <p class="page-subtitle">En 2025, «123456» reste le mot de passe le plus volé au monde. Pas parce que les gens sont stupides — mais parce que la mémoire humaine a des limites objectives. La solution n'est pas dans la volonté, elle est dans le système.</p>
 </div>
@@ -22,8 +22,25 @@ categorie: "Sécurité"
   <h2>Pourquoi les bons conseils ne fonctionnent pas</h2>
   <p>«Utilisez un mot de passe différent pour chaque service» est un conseil parfaitement correct et parfaitement inapplicable sans outil adapté. Une personne active gère en moyenne 90 comptes en ligne (NordPass, 2024). Personne ne peut mémoriser 90 mots de passe complexes et uniques.</p>
 
+  <h2>Les attaques les plus courantes</h2>
+  <p>Connaître les méthodes des attaquants aide à comprendre pourquoi la réutilisation d'un mot de passe est si dangereuse :</p>
+  <ul>
+    <li><strong>Brute force :</strong> l'attaquant essaie des millions de combinaisons par seconde à l'aide d'un script. Un mot de passe de 8 caractères entièrement aléatoires peut être craqué en quelques heures sur du matériel standard. À 16 caractères, le même attaquant capitulerait avant la fin de sa vie.</li>
+    <li><strong>Credential stuffing :</strong> des bases de données de mots de passe volés lors de fuites (LinkedIn 2012, Adobe 2013, des dizaines d'autres) circulent librement sur le dark web. L'attaquant teste ces couples email/mot de passe sur d'autres services. Si vous avez réutilisé le même mot de passe, votre compte est compromis sans que votre service actuel ait été piraté.</li>
+    <li><strong>Phishing :</strong> vous recevez un email imitant votre banque ou votre hébergeur, vous saisissez vos identifiants sur une fausse page. Un gestionnaire de mots de passe protège contre ça : il ne proposera pas de remplissage automatique sur un domaine qu'il ne reconnaît pas.</li>
+  </ul>
+
   <h2>Le gestionnaire de mots de passe</h2>
   <p><a href="https://bitwarden.com" target="_blank" rel="noopener noreferrer">Bitwarden</a> est gratuit, open source, audité indépendamment. L'offre Teams est gratuite pour les associations et permet de partager des accès sécurisés entre membres du comité.</p>
+
+  <h2>Ce que Bitwarden protège vraiment</h2>
+  <p>Un gestionnaire de mots de passe ne fait pas que stocker des identifiants. Il change structurellement votre exposition aux risques :</p>
+  <ul>
+    <li><strong>Unicité :</strong> chaque compte obtient un mot de passe généré aléatoirement, jamais réutilisé. Une fuite chez un service ne compromet aucun autre.</li>
+    <li><strong>Complexité :</strong> un mot de passe de 20 caractères mélangés est généré et mémorisé automatiquement. Vous n'avez pas à le retenir.</li>
+    <li><strong>Anti-phishing passif :</strong> Bitwarden ne propose le remplissage automatique que sur le domaine exact enregistré. Une fausse page de login ne déclenchera pas l'auto-complétion.</li>
+    <li><strong>Partage sécurisé :</strong> fini les mots de passe envoyés par WhatsApp ou SMS. Bitwarden chiffre les identifiants partagés et permet de révoquer un accès sans changer le mot de passe.</li>
+  </ul>
 
   <h2>Installation en 10 minutes</h2>
   <ol>
@@ -34,8 +51,14 @@ categorie: "Sécurité"
     <li>Commencez à migrer vos comptes, un par un, en générant de nouveaux mots de passe forts</li>
   </ol>
 
-  <h2>Pour l'association</h2>
-  <p>Bitwarden Teams permet de partager des identifiants communs (accès au site, compte email, réseaux sociaux) sans les communiquer en clair par WhatsApp. Chaque membre du comité accède via son propre compte sécurisé. Quand un membre quitte le comité, vous révoquez son accès en un clic.</p>
+  <h2>Politique de mots de passe pour une association</h2>
+  <p>Si vous gérez une association avec plusieurs membres ayant accès à des outils numériques communs (site web, réseaux sociaux, compte email, outils de gestion), quelques règles simples évitent la majorité des incidents :</p>
+  <ul>
+    <li><strong>Un compte par personne, jamais de compte partagé.</strong> Si un membre quitte le comité, vous pouvez révoquer son accès sans changer tous les mots de passe.</li>
+    <li><strong>Mots de passe générés, jamais inventés.</strong> «Ataraxia2026!» est prévisible. Un mot de passe comme «xK9#mP2$vL7@nQ4w» ne l'est pas.</li>
+    <li><strong>2FA activée sur tous les comptes critiques</strong> : email principal, hébergeur, réseaux sociaux, outils bancaires.</li>
+    <li><strong>Audit annuel des accès.</strong> Qui a accès à quoi ? Les anciens membres ont-ils été révoqués ? Un tour de table au moment de l'AG suffit.</li>
+  </ul>
 
   <h2>Exercice pratique</h2>
   <p>✅ <strong>À faire maintenant :</strong> vérifiez sur <a href="https://haveibeenpwned.com" target="_blank" rel="noopener noreferrer">haveibeenpwned.com</a> si votre adresse email a été compromise dans une fuite de données. Si oui — et c'est probable — installez Bitwarden et changez immédiatement les mots de passe concernés.</p>
