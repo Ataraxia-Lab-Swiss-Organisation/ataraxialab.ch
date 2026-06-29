@@ -1,0 +1,30 @@
+# Ataraxia Lab
+
+> Ataraxia Lab est une association suisse à but non lucratif fondée en 2026 à Le Locle (NE), dédiée au numérique éthique, à l'intelligence artificielle responsable et à la souveraineté numérique en Suisse romande. IDE : CHE-425.759.729.
+
+Ataraxia Lab (CHE-425.759.729) réunit des passionné·e·s du numérique pour construire ensemble une technologie éthique, ouverte et responsable. L'association publie des tutoriels pratiques accessibles à tous, sans prérequis technique. Langue : français (Suisse romande). Droit applicable : droit suisse (CC, LPD, LIFD).
+
+## Pages principales
+
+- [Accueil](https://ataraxialab.ch/): Association numérique éthique à Le Locle
+- [Tutoriels](https://ataraxialab.ch/tutoriels/): 45 guides pratiques gratuits sur LPD, sécurité, IA, souveraineté numérique
+- [À propos](https://ataraxialab.ch/a-propos/): Mission, valeurs, équipe
+- [Activités](https://ataraxialab.ch/activites/): Ateliers, formations, projets
+- [Rejoindre](https://ataraxialab.ch/rejoindre/): Devenir membre ou bénévole
+- [Contact](https://ataraxialab.ch/contact/): contact@ataraxialab.ch
+- [Charte éthique IA](https://ataraxialab.ch/charte-ethique/): Cadre déontologique IA de l’association
+- [Politique de confidentialité](https://ataraxialab.ch/confidentialite/): Traitement des données (nLPD / RGPD)
+- [Sitemap](https://ataraxialab.ch/sitemap.xml): Index complet des 55 URLs
+
+## Optional
+
+- [LPD : votre site est-il conforme ?](https://ataraxialab.ch/tutoriels/site-web-conforme-lpd/)
+- [Mentions légales en Suisse — ce qui est obligatoire](https://ataraxialab.ch/tutoriels/mentions-legales-suisse-obligatoire/)
+- [Google Fonts et LPD](https://ataraxialab.ch/tutoriels/google-fonts-lpd-conformite/)
+- [Association et LPD — vos obligations concrètes](https://ataraxialab.ch/tutoriels/association-lpd-obligations/)
+- [L’IA générative en 2026 : ce que c’est vraiment](https://ataraxialab.ch/tutoriels/ia-generative-2026-ce-que-cest-vraiment/)
+- [Mots de passe : finissons-en avec les mauvaises habitudes](https://ataraxialab.ch/tutoriels/mots-de-passe-bitwarden-gestionnaire/)
+- [Infomaniak, Proton, Tresorit : l’écosystème numérique suisse](https://ataraxialab.ch/tutoriels/ecosysteme-numerique-suisse-infomaniak-proton-tresorit/)
+- [IA locale avec Ollama — traiter vos données sans les envoyer à l’extérieur](https://ataraxialab.ch/tutoriels/ia-locale-ollama-donnees-confidentielles/)
+- [Sauvegarder ses données : la règle 3-2-1](https://ataraxialab.ch/tutoriels/sauvegarde-donnees-regle-321-suisse/)
+- [Lire les logs de votre serveur](https://ataraxialab.ch/tutoriels/lire-logs-serveur-securite/)
