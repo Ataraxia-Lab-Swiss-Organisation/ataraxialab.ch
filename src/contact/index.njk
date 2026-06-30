@@ -44,10 +44,25 @@ description: Contactez Ataraxia Lab pour toute question, projet ou collaboration
       <label for="devis-type">Type de prestation</label>
       <select id="devis-type" name="devis-type" required>
         <option value="">— Choisir —</option>
-        <option value="audit-lpd">Audit de conformité LPD</option>
-        <option value="site-vitrine">Création de site vitrine</option>
-        <option value="conseil">Conseil et accompagnement</option>
-        <option value="atelier">Atelier / formation</option>
+        <optgroup label="Conformité &amp; droit numérique">
+          <option value="audit-lpd">Audit de conformité LPD / site web</option>
+          <option value="conformite-nlpd">Mise en conformité nLPD complète</option>
+          <option value="documents-legaux">Rédaction de documents légaux (CGU/CGV, politique confidentialité)</option>
+        </optgroup>
+        <optgroup label="Création web">
+          <option value="site-vitrine">Site vitrine statique</option>
+          <option value="site-dynamique">Site dynamique PHP / MySQL</option>
+          <option value="migration-hebergeur">Migration vers hébergeur suisse</option>
+        </optgroup>
+        <optgroup label="SEO &amp; visibilité">
+          <option value="audit-seo">Audit SEO technique</option>
+          <option value="accompagnement-seo">Accompagnement SEO mensuel</option>
+        </optgroup>
+        <optgroup label="Conseil &amp; formations">
+          <option value="conseil">Conseil et accompagnement (tarif horaire)</option>
+          <option value="atelier">Atelier / formation sur mesure</option>
+          <option value="association">Accompagnement fondation d'association</option>
+        </optgroup>
         <option value="autre">Autre</option>
       </select>
     </div>
