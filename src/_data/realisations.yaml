@@ -24,3 +24,17 @@
     - "SEO"
     - "Accessibilité"
   ordre: 2
+
+
+- titre: "Outil d'analyse SEO multi-moteurs"
+  type: "Application web SaaS"
+  statut: "en-cours"
+  url: "https://seo.ataraxialab.ch"
+  accroche: "Plateforme d'analyse SEO fondée sur les règles du livre Précieux du SEO — analyse technique, conformité, cohérence de contenu et scoring multi-moteurs. Développée en PHP/MySQL sur infrastructure Infomaniak mutualisée."
+  tags:
+    - "PHP / MySQL"
+    - "SEO"
+    - "SaaS"
+    - "LPD"
+    - "Infomaniak"
+  ordre: 3
