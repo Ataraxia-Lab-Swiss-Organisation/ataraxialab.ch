@@ -26,6 +26,7 @@ permalink: /realisations/
       <li class="realisation-tag">{{ tag }}</li>
       {% endfor %}
     </ul>
+    {% if item.statut == "en-ligne" %}
     <a
       href="{{ item.url }}"
       class="realisation-lien"
@@ -34,6 +35,9 @@ permalink: /realisations/
       referrerpolicy="no-referrer"
       aria-label="Voir le projet {{ item.titre }} (nouvelle fenêtre)"
     >Voir le projet →</a>
+    {% elif item.statut == "coming-soon" %}
+    <span class="realisation-coming-soon">Annonce à venir</span>
+    {% endif %}
   </article>
   {% endfor %}
 </section>

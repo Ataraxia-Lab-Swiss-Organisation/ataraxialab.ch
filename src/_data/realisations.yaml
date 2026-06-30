@@ -26,15 +26,13 @@
   ordre: 2
 
 
-- titre: "Outil d'analyse SEO multi-moteurs"
-  type: "Application web SaaS"
-  statut: "en-cours"
-  url: "https://seo.ataraxialab.ch"
-  accroche: "Plateforme d'analyse SEO fondée sur les règles du livre Précieux du SEO — analyse technique, conformité, cohérence de contenu et scoring multi-moteurs. Développée en PHP/MySQL sur infrastructure Infomaniak mutualisée."
+- titre: "Outil numérique — bientôt disponible"
+  type: "Projet en développement"
+  statut: "coming-soon"
+  url: ""
+  accroche: "Un nouvel outil numérique est en cours de développement au sein de l'association. Il sera annoncé dès sa mise en service. Restez connectés."
   tags:
-    - "PHP / MySQL"
-    - "SEO"
-    - "SaaS"
-    - "LPD"
-    - "Infomaniak"
+    - "Développement"
+    - "Numérique éthique"
+    - "À venir"
   ordre: 3
