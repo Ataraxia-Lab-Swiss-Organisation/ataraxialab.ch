@@ -68,14 +68,21 @@ function checkToken(string $expectedToken): void
  */
 function fetchScores(string $url, string $strategy, string $apiKey): ?array
 {
-    $query = http_build_query([
+    // http_build_query() encode un tableau en category[0]=...&category[1]=...,
+    // format non reconnu par l'API Google qui attend category=x&category=y répété.
+    // On construit donc la query manuellement pour ce paramètre.
+    $baseParams = http_build_query([
         'url'      => $url,
         'strategy' => $strategy,
         'key'      => $apiKey,
-        'category' => ['performance', 'accessibility', 'best-practices', 'seo'],
     ]);
 
-    $endpoint = API_ENDPOINT . '?' . $query;
+    $categoryParams = implode('&', array_map(
+        static fn(string $cat): string => 'category=' . urlencode($cat),
+        ['performance', 'accessibility', 'best-practices', 'seo']
+    ));
+
+    $endpoint = API_ENDPOINT . '?' . $baseParams . '&' . $categoryParams;
 
     $ch = curl_init($endpoint);
     curl_setopt_array($ch, [
