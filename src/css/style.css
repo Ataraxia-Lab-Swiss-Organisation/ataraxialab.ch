@@ -896,3 +896,55 @@ select:focus {
 .articles-lies .tutoriel-carte {
   gap: 0.5rem;
 }
+/* ─── Tableau pages légales (conformité, sous-traitants) — 01.07.2026 ── */
+.table-legal {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 1.5rem 0;
+}
+
+.table-legal th {
+  text-align: left;
+  font-weight: 700;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid #e5e5e5;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #555;
+  background-color: #fafafa;
+}
+
+.table-legal td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #e5e5e5;
+  vertical-align: top;
+}
+
+.table-legal tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 600px) {
+  .table-legal {
+    font-size: 0.8rem;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ─── Badge coming-soon réalisations — 01.07.2026 ── */
+.realisation-coming-soon {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gris);
+  border: 1px solid var(--gris);
+  border-radius: 2px;
+  padding: 0.1em 0.5em;
+  margin-top: auto;
+}
