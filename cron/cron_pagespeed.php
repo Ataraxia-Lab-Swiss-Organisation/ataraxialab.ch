@@ -86,7 +86,6 @@ function fetchScores(string $url, string $strategy, string $apiKey): ?array
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $curlError = curl_error($ch);
-    curl_close($ch);
 
     if ($response === false) {
         error_log("[cron_pagespeed] Erreur cURL ({$strategy}) : {$curlError}");
