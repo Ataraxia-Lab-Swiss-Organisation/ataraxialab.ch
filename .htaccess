@@ -10,8 +10,6 @@ RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # Exposition scores PageSpeed Insights — D-1, 30.06.2026
 RewriteRule ^performance\.json$ cron-data/performance.json [L]
-# Exposition debug contact-handler — TEMPORAIRE, à retirer après stabilisation D-2 (principal.md §8)
-RewriteRule ^contact-debug\.json$ cron-data/contact-debug.json [L]
 # Headers de sécurité
 <IfModule mod_headers.c>
   # HSTS — force HTTPS pendant 1 an
