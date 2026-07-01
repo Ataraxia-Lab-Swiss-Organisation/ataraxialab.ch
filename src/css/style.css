@@ -948,3 +948,40 @@ select:focus {
   padding: 0.1em 0.5em;
   margin-top: auto;
 }
+
+/* ─── Champ anti-spam (honeypot) — 01.07.2026 — D-2 ── */
+.champ-piege {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ─── Bandeaux confirmation/erreur formulaires — 01.07.2026 — D-2 ── */
+/* Affichage en CSS pur via :target — zéro JS, robuste sans JavaScript */
+.bandeau-confirmation,
+.bandeau-erreur {
+  display: none;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.bandeau-confirmation:target,
+.bandeau-erreur:target {
+  display: block;
+}
+
+.bandeau-confirmation {
+  background-color: rgba(80, 150, 90, 0.1);
+  border: 1px solid #4a8f5a;
+  color: #2f5c38;
+}
+
+.bandeau-erreur {
+  background-color: rgba(181, 60, 58, 0.08);
+  border: 1px solid #b53c3a;
+  color: #7a2a28;
+}

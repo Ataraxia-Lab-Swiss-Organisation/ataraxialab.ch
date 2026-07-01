@@ -9,9 +9,17 @@ description: Contactez Ataraxia Lab pour toute question, projet ou collaboration
   <p>Une question, une idée, un projet, une envie de rejoindre l'aventure ? Nous sommes à l'écoute.</p>
 </section>
 
+<div id="merci" class="bandeau-confirmation">✅ Message envoyé, merci ! Nous vous répondons sous 48 heures.</div>
+<div id="erreur" class="bandeau-erreur">⚠️ Une erreur est survenue lors de l'envoi. Merci de réessayer, ou de nous écrire directement à <a href="mailto:contact@ataraxialab.ch">contact@ataraxialab.ch</a>.</div>
+
 <section>
   <h2>Formulaire de contact</h2>
-  <form action="https://formspree.io/f/xvzdeybn" method="POST">
+  <form action="/api/contact-handler.php" method="POST">
+    <input type="hidden" name="form-type" value="contact">
+    <div class="champ champ-piege" aria-hidden="true">
+      <label for="site-web">Site web</label>
+      <input type="text" id="site-web" name="site-web" tabindex="-1" autocomplete="off">
+    </div>
     <div class="champ">
       <label for="nom">Nom</label>
       <input type="text" id="nom" name="nom" required>
@@ -24,6 +32,7 @@ description: Contactez Ataraxia Lab pour toute question, projet ou collaboration
       <label for="message">Message</label>
       <textarea id="message" name="message" rows="6" required></textarea>
     </div>
+    <p class="note-confidentialite note-confidentialite--bottom">Vos données sont utilisées uniquement pour répondre à votre message et ne sont jamais transmises à des tiers. <a href="/confidentialite/">Politique de confidentialité →</a></p>
     <button type="submit" class="btn">Envoyer</button>
   </form>
 </section>
@@ -31,7 +40,12 @@ description: Contactez Ataraxia Lab pour toute question, projet ou collaboration
 <section>
   <h2>Demande de devis</h2>
   <p>Vous souhaitez un audit LPD, un site vitrine, un atelier ou un accompagnement ? Décrivez-nous votre projet — nous vous répondons sous 48 heures avec un devis gratuit et sans engagement.</p>
-  <form action="https://formspree.io/f/xvzdeybn" method="POST">
+  <form action="/api/contact-handler.php" method="POST">
+    <input type="hidden" name="form-type" value="devis">
+    <div class="champ champ-piege" aria-hidden="true">
+      <label for="devis-site-web">Site web</label>
+      <input type="text" id="devis-site-web" name="site-web" tabindex="-1" autocomplete="off">
+    </div>
     <div class="champ">
       <label for="devis-nom">Nom / Organisation</label>
       <input type="text" id="devis-nom" name="devis-nom" required>
