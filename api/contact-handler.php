@@ -13,13 +13,6 @@
  *
  * Secrets : identifiants SMTP lus depuis un fichier hors-repo — JAMAIS en
  * dur (RÈGLES ABSOLUES DE SÉCURITÉ, instructions de projet §4).
- *
- * DEBUG TEMPORAIRE (à retirer une fois D-2 stabilisé en prod — voir
- * principal.md §8) : la dernière erreur rencontrée est écrite dans
- * cron-data/contact-debug.json, exposée en lecture publique via
- * /contact-debug.json (.htaccess). Aucune donnée personnelle du formulaire
- * n'y est jamais écrite — uniquement un code d'étape technique interne.
- * Sert à diagnostiquer sans dépendre de l'interface de logs IK Manager.
  */
 
 declare(strict_types=1);
@@ -28,33 +21,15 @@ require __DIR__ . '/lib/SmtpMailer.php';
 
 use Ataraxia\Mail\SmtpMailer;
 
-const SECRET_PATH   = __DIR__ . '/../secrets/smtp_credentials.php';
-const THROTTLE_DIR  = __DIR__ . '/../cron-data/contact-throttle';
-const THROTTLE_MAX  = 15; // soumissions / IP / jour — filet anti-flood, pas la défense principale
-const RECIPIENT     = 'contact@ataraxialab.ch';
-const SMTP_HOST     = 'mail.infomaniak.com';
-const SMTP_PORT     = 587;
-const DEBUG_LOG_PATH = __DIR__ . '/../cron-data/contact-debug.json';
+const SECRET_PATH  = __DIR__ . '/../secrets/smtp_credentials.php';
+const THROTTLE_DIR = __DIR__ . '/../cron-data/contact-throttle';
+const THROTTLE_MAX = 15; // soumissions / IP / jour — filet anti-flood, pas la défense principale
+const RECIPIENT    = 'contact@ataraxialab.ch';
+const SMTP_HOST    = 'mail.infomaniak.com';
+const SMTP_PORT    = 587;
 
 const REDIRECT_OK  = '/contact/?envoye=1#merci';
 const REDIRECT_ERR = '/contact/?erreur=1#erreur';
-
-function debugLog(string $stage, string $detail = ''): void
-{
-    $dir = dirname(DEBUG_LOG_PATH);
-    if (!is_dir($dir)) {
-        @mkdir($dir, 0755, true);
-    }
-    $payload = [
-        'timestamp' => gmdate('c'),
-        'stage'     => $stage,
-        'detail'    => $detail,
-    ];
-    @file_put_contents(
-        DEBUG_LOG_PATH,
-        json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n"
-    );
-}
 
 function redirectTo(string $to): void
 {
@@ -66,13 +41,11 @@ function loadSecrets(): array
 {
     if (!file_exists(SECRET_PATH)) {
         error_log('[contact-handler] secret_file_missing');
-        debugLog('secret_file_missing');
         redirectTo(REDIRECT_ERR);
     }
     $secrets = require SECRET_PATH;
     if (!is_array($secrets) || empty($secrets['smtp_user']) || empty($secrets['smtp_pass'])) {
         error_log('[contact-handler] secret_file_invalid');
-        debugLog('secret_file_invalid');
         redirectTo(REDIRECT_ERR);
     }
     return $secrets;
@@ -93,7 +66,6 @@ function checkThrottle(string $ipHash): void
     $count = file_exists($file) ? (int) file_get_contents($file) : 0;
     if ($count >= THROTTLE_MAX) {
         error_log('[contact-handler] throttle_depasse');
-        debugLog('throttle_depasse');
         redirectTo(REDIRECT_ERR);
     }
     file_put_contents($file, (string) ($count + 1));
@@ -146,7 +118,6 @@ if ($type === 'devis') {
     $projet     = field('devis-projet', 5000);
 
     if ($nom === '' || $email === '' || $projet === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        debugLog('validation_echouee', 'devis');
         redirectTo(REDIRECT_ERR);
     }
 
@@ -162,7 +133,6 @@ if ($type === 'devis') {
     $message = field('message', 5000);
 
     if ($nom === '' || $email === '' || $message === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        debugLog('validation_echouee', 'contact');
         redirectTo(REDIRECT_ERR);
     }
 
@@ -184,9 +154,7 @@ try {
     );
 } catch (\Throwable $e) {
     error_log('[contact-handler] envoi_echoue: ' . $e->getMessage());
-    debugLog('envoi_echoue', $e->getMessage());
     redirectTo(REDIRECT_ERR);
 }
 
-debugLog('ok', $type);
 redirectTo(REDIRECT_OK);
