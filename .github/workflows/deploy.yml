@@ -1,0 +1,79 @@
+name: Deploy ataraxialab.ch
+
+# Build + déploiement FTP automatique vers Infomaniak à chaque push sur main.
+# Le déploiement n'a lieu QUE si le build Eleventy réussit (0 erreur) — le build
+# lui-même sert de garde-fou : un échec bloque nativement l'étape de déploiement.
+# Voir sites/ataraxialab.md (RAG) pour le contexte et technique/helper_git_repos.md
+# pour le workflow manuel équivalent (git pull → npx eleventy → FileZilla).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site (Eleventy)
+        run: npx @11ty/eleventy
+
+      - name: Smoke test — build output
+        run: |
+          set -e
+          test -f _site/index.html
+          test -f _site/confidentialite/index.html
+          test -f _site/conditions/index.html
+          test -f _site/contact/index.html
+          grep -q "ataraxialab.ch" _site/index.html
+          echo "Smoke test OK — $(find _site -name '*.html' | wc -l) pages HTML générées"
+
+      - name: Deploy _site/ (front statique)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.IK_FTP_SERVER }}
+          username: ${{ secrets.IK_FTP_USERNAME }}
+          password: ${{ secrets.IK_FTP_PASSWORD }}
+          local-dir: ./_site/
+          server-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/api/**
+            **/cron/**
+
+      - name: Deploy api/ (handlers formulaires PHP)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.IK_FTP_SERVER }}
+          username: ${{ secrets.IK_FTP_USERNAME }}
+          password: ${{ secrets.IK_FTP_PASSWORD }}
+          local-dir: ./api/
+          server-dir: ./api/
+          exclude: |
+            **/.git*
+            **/.git*/**
+
+      - name: Deploy cron/ (tâches planifiées PHP)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.IK_FTP_SERVER }}
+          username: ${{ secrets.IK_FTP_USERNAME }}
+          password: ${{ secrets.IK_FTP_PASSWORD }}
+          local-dir: ./cron/
+          server-dir: ./cron/
+          exclude: |
+            **/.git*
+            **/.git*/**
