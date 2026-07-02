@@ -6,7 +6,7 @@ description: Politique de protection des données d'Ataraxia Lab — conforméme
 
 <section>
   <h1>Politique de protection des données</h1>
-  <p><em>Version 2 — 29 juin 2026 — Ataraxia Lab</em></p>
+  <p><em>Version 3 — 2 juillet 2026 — Ataraxia Lab</em></p>
 
   <h2>1. Responsable du traitement</h2>
   <p>
@@ -32,14 +32,16 @@ description: Politique de protection des données d'Ataraxia Lab — conforméme
     <li><strong>Transfert hors Suisse/UE :</strong> aucun</li>
   </ul>
 
-  <h3>3.2 Formulaire de contact — Formspree</h3>
-  <p>Le formulaire de contact de ce site est traité par <strong>Formspree, Inc.</strong> (États-Unis). Lorsque vous soumettez une demande, les données que vous saisissez (nom, email, message) sont transmises à Formspree pour acheminement.</p>
+  <h3>3.2 Formulaire de contact et de devis — SMTP natif Infomaniak</h3>
+  <p>Le formulaire de contact et le formulaire de devis de ce site sont traités directement par notre propre infrastructure, via un envoi SMTP authentifié (<code>mail.infomaniak.com</code>, boîte <code>contact@ataraxialab.ch</code>). Aucune donnée n'est transmise à un prestataire tiers de formulaire.</p>
   <ul>
-    <li><strong>Finalité :</strong> répondre à votre demande de contact</li>
+    <li><strong>Finalité :</strong> répondre à votre demande de contact ou de devis</li>
     <li><strong>Base légale (nLPD) :</strong> exécution d'une relation précontractuelle / intérêt légitime</li>
     <li><strong>Base légale (RGPD) :</strong> art. 6 al. 1 lit. b (relation précontractuelle)</li>
-    <li><strong>Durée de conservation :</strong> 60 jours chez Formspree, puis suppression ; archivage interne selon besoin de suivi</li>
-    <li><strong>Transfert hors Suisse :</strong> Formspree est établi aux États-Unis. Le transfert s'effectue sur la base des Clauses Contractuelles Types (CCT) de la Commission européenne, acceptées dans les conditions d'utilisation de Formspree.</li>
+    <li><strong>Durée de conservation :</strong> les messages sont conservés dans la boîte contact@ataraxialab.ch pendant 12 mois, puis supprimés. En cas de suite contractuelle, les données sont conservées conformément à la durée légale applicable aux pièces comptables (10 ans, art. 958f CO)</li>
+    <li><strong>Localisation :</strong> serveur Infomaniak, Suisse</li>
+    <li><strong>Transfert hors Suisse/UE :</strong> aucun</li>
+    <li><strong>Protections techniques :</strong> détection anti-spam (honeypot), limitation de fréquence par adresse IP hachée (jamais en clair), filtrage anti-injection d'en-têtes</li>
   </ul>
 
   <h3>3.3 Formulaire d'adhésion</h3>
@@ -79,9 +81,8 @@ description: Politique de protection des données d'Ataraxia Lab — conforméme
   <table class="table-legal">
     <thead><tr><th>Sous-traitant</th><th>Rôle</th><th>Pays</th></tr></thead>
     <tbody>
-      <tr><td>Infomaniak Network SA</td><td>Hébergement web, email, stockage</td><td>Suisse 🇨🇭</td></tr>
+      <tr><td>Infomaniak Network SA</td><td>Hébergement web, email (dont formulaires contact/devis), stockage</td><td>Suisse 🇨🇭</td></tr>
       <tr><td>Matomo (auto-hébergé)</td><td>Statistiques anonymes</td><td>Suisse 🇨🇭</td></tr>
-      <tr><td>Formspree, Inc.</td><td>Formulaire de contact</td><td>États-Unis 🇺🇸 (CCT)</td></tr>
     </tbody>
   </table>
 
@@ -93,5 +94,4 @@ description: Politique de protection des données d'Ataraxia Lab — conforméme
   <p>Vous avez également le droit de déposer une réclamation auprès du <strong>Préposé fédéral à la protection des données et à la transparence (PFPDT)</strong> : <a href="https://www.edoeb.admin.ch" target="_blank" rel="noopener">www.edoeb.admin.ch</a></p>
 
 </section>
-
 
