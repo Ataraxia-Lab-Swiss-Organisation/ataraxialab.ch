@@ -5,6 +5,10 @@ name: Deploy ataraxialab.ch
 # lui-même sert de garde-fou : un échec bloque nativement l'étape de déploiement.
 # Voir sites/ataraxialab.md (RAG) pour le contexte et technique/helper_git_repos.md
 # pour le workflow manuel équivalent (git pull → npx eleventy → FileZilla).
+#
+# Secrets utilisés (repo Settings → Secrets and variables → Actions) :
+#   FTP_HOST, FTP_USER, FTP_PASSWORD — compte FTP dédié gy877v_ghactions,
+#   restreint à /sites/ataraxialab.ch (pas d'accès aux autres sites du compte IK).
 
 on:
   push:
@@ -43,9 +47,9 @@ jobs:
       - name: Deploy _site/ (front statique)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.IK_FTP_SERVER }}
-          username: ${{ secrets.IK_FTP_USERNAME }}
-          password: ${{ secrets.IK_FTP_PASSWORD }}
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./_site/
           server-dir: ./
           exclude: |
@@ -57,9 +61,9 @@ jobs:
       - name: Deploy api/ (handlers formulaires PHP)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.IK_FTP_SERVER }}
-          username: ${{ secrets.IK_FTP_USERNAME }}
-          password: ${{ secrets.IK_FTP_PASSWORD }}
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./api/
           server-dir: ./api/
           exclude: |
@@ -69,9 +73,9 @@ jobs:
       - name: Deploy cron/ (tâches planifiées PHP)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.IK_FTP_SERVER }}
-          username: ${{ secrets.IK_FTP_USERNAME }}
-          password: ${{ secrets.IK_FTP_PASSWORD }}
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./cron/
           server-dir: ./cron/
           exclude: |
