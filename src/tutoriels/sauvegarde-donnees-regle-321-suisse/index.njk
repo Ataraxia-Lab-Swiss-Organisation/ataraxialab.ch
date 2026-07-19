@@ -13,12 +13,16 @@ categorie: "Souveraineté numérique"
     <span class="tutoriel-categorie">Souveraineté numérique</span>
     <span class="tutoriel-niveau">Débutant</span>
   </div>
-  <div class="article-date">23 mai 2026 · 3 min de lecture</div>
+  <div class="article-date">23 mai 2026 · 6 min de lecture</div>
   <h1 class="page-title">Sauvegarder ses données : la règle 3-2-1 expliquée sans jargon</h1>
   <p class="page-subtitle">Trois copies, deux supports, un emplacement distant. Cette règle simple protège vos données contre n'importe quelle catastrophe — et se met en place en 15 minutes.</p>
 </div>
 
 <div class="article-body">
+
+  <h2>Pourquoi la sauvegarde n'est pas optionnelle</h2>
+  <p>La plupart des gens découvrent l'importance des sauvegardes le jour où il est trop tard. Un disque dur tombe en panne sans prévenir. Un ransomware chiffre tous les fichiers du réseau en quelques minutes. Un téléphone disparaît dans une fontaine. Ces scénarios ont tous un point commun : ils sont fréquents, et ils sont évitables.</p>
+  <p>Pour une association, la perte de données est d'autant plus grave qu'elle peut entraîner des obligations légales — la LPD impose de protéger les données personnelles des membres contre la perte et la destruction, au même titre que contre l'accès non autorisé. Une sauvegarde solide n'est donc pas seulement une bonne pratique informatique, c'est une obligation de conformité. Nous l'avons détaillé dans notre article sur les <a href="/tutoriels/association-lpd-obligations/">obligations LPD des associations</a>.</p>
 
   <h2>La règle 3-2-1</h2>
   <ul>
@@ -26,36 +30,47 @@ categorie: "Souveraineté numérique"
     <li><strong>2 types de supports</strong> différents — par exemple disque dur externe et cloud.</li>
     <li><strong>1 copie hors site</strong> — ailleurs que chez vous ou au bureau.</li>
   </ul>
+  <p>Cette règle est simple à retenir et couvre les scénarios les plus courants : panne matérielle (le disque local est mort, la copie cloud prend le relais), sinistre physique (incendie ou vol, la copie hors site survit), et erreur humaine (vous avez supprimé le mauvais dossier, la sauvegarde de la veille le contient encore).</p>
 
-  <h2>Exemple : particulier</h2>
+  <h2>Exemple concret : particulier</h2>
   <ul>
     <li><strong>Copie 1 :</strong> vos fichiers sur l'ordinateur.</li>
     <li><strong>Copie 2 :</strong> disque externe SSD (environ 100 CHF) branché chaque vendredi via Time Machine (Mac) ou Veeam Agent gratuit (Windows).</li>
     <li><strong>Copie 3 :</strong> abonnement Swiss Backup (Infomaniak, dès 5 CHF/mois) qui chiffre vos données avant envoi.</li>
   </ul>
+  <p>Temps de mise en place : 20 minutes. Coût annuel : environ 60 CHF. Ce que vous protégez : des années de photos, documents, contacts.</p>
 
-  <h2>Exemple : association</h2>
+  <h2>Exemple concret : association</h2>
   <ul>
-    <li><strong>Copie 1 :</strong> documents sur le NAS partagé du bureau.</li>
-    <li><strong>Copie 2 :</strong> un second NAS synchronisé dans une autre pièce ou chez le président.</li>
+    <li><strong>Copie 1 :</strong> documents sur le NAS partagé du bureau ou sur le cloud de l'association (kDrive Infomaniak, hébergé en Suisse).</li>
+    <li><strong>Copie 2 :</strong> un second NAS synchronisé dans une autre pièce ou chez le président, ou une sauvegarde hebdomadaire sur disque externe conservé hors des locaux.</li>
     <li><strong>Copie 3 :</strong> sauvegarde cloud hébergée en Suisse — Swiss Backup ou Proton Drive.</li>
   </ul>
+  <p>Pour les associations, l'enjeu dépasse le simple confort : les données membres, les procès-verbaux, les comptabilités ont une valeur légale et une durée de conservation obligatoire. Les perdre peut signifier l'impossibilité de prouver des décisions ou des cotisations versées. Cette dimension s'intègre naturellement dans une <a href="/tutoriels/politique-securite-numerique-association/">politique de sécurité numérique d'association</a> plus large.</p>
 
-  <h2>Exemple : PME</h2>
+  <h2>Exemple concret : PME</h2>
   <ul>
     <li><strong>Copie 1 :</strong> serveur interne.</li>
     <li><strong>Copie 2 :</strong> sauvegarde sur bande ou disque tournant, stocké dans un coffre ignifugé.</li>
     <li><strong>Copie 3 :</strong> sauvegarde cloud redondante géographiquement sur deux datacenters suisses distincts.</li>
   </ul>
 
+  <h2>Choisir un cloud souverain</h2>
+  <p>Toutes les solutions cloud ne se valent pas du point de vue de la protection des données. Si votre sauvegarde contient des données personnelles de membres ou de clients, elle doit être hébergée dans des conditions conformes à la LPD. Un stockage sur des serveurs américains sans mécanisme de transfert adéquat constitue une violation potentielle de l'art. 16 LPD.</p>
+  <p>En Suisse, Swiss Backup (Infomaniak) et Proton Drive sont des options sérieuses : serveurs en Suisse, chiffrement des données, conformité au droit suisse. Elles s'inscrivent dans la démarche d'<a href="/tutoriels/ecosysteme-numerique-suisse-infomaniak-proton-tresorit/">écosystème numérique suisse</a> que nous recommandons aux associations.</p>
+
   <h2>Testez votre système</h2>
   <p>Une sauvegarde non testée n'existe pas. Tous les trois mois, restaurez un fichier au hasard et vérifiez son intégrité. C'est le seul moyen de savoir que votre sauvegarde fonctionne vraiment — avant d'en avoir besoin.</p>
+  <p>Le test est simple : choisissez un fichier datant d'il y a deux semaines dans votre système de sauvegarde, restaurez-le sur le bureau, ouvrez-le. S'il s'ouvre correctement, votre sauvegarde est fonctionnelle. S'il est corrompu ou introuvable, vous avez un problème à corriger maintenant, pas pendant une crise.</p>
+
+  <h2>Ce que la règle 3-2-1 ne couvre pas</h2>
+  <p>La règle 3-2-1 protège contre la perte de données, pas contre l'accès non autorisé. Pour ce second risque, il faut combiner sauvegarde et gestion des accès — qui peut restaurer quoi, et depuis quel poste. Ces questions relèvent de la <a href="/tutoriels/gouvernance-donnees-associations/">gouvernance des données</a>.</p>
 
 </div>
 
 <div class="article-cta">
   <h2>Envie d'aller plus loin ?</h2>
-  <p>Ataraxia Lab propose des ateliers pratiques sur l'usage éthique de l'IA. Accessibles à tous, sans prérequis technique.</p>
+  <p>Ataraxia Lab accompagne les associations dans la mise en place de pratiques numériques sûres et conformes. Audit, formation, procédures internes.</p>
   <a href="/contact/" class="btn">Nous contacter →</a>
 </div>
 
