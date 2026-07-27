@@ -1,14 +1,19 @@
 name: Deploy ataraxialab.ch
 
-# Build + déploiement FTP automatique vers Infomaniak à chaque push sur main.
-# Le déploiement n'a lieu QUE si le build Eleventy réussit (0 erreur) — le build
-# lui-même sert de garde-fou : un échec bloque nativement l'étape de déploiement.
-# Voir sites/ataraxialab.md (RAG) pour le contexte et technique/helper_git_repos.md
-# pour le workflow manuel équivalent (git pull → npx eleventy → FileZilla).
+# Build Eleventy + déploiement SSH/rsync vers Infomaniak à chaque push sur main.
+# Remplacement de FTP (SamKirkland) par rsync over SSH — différentiel, plus rapide.
 #
-# Secrets utilisés (repo Settings → Secrets and variables → Actions) :
-#   FTP_HOST, FTP_USER, FTP_PASSWORD — compte FTP dédié gy877v_ghactions,
-#   restreint à /sites/ataraxialab.ch (pas d'accès aux autres sites du compte IK).
+# Compte SSH : gy877v_ataraxialab (compte maître IK) — clé ed25519 sans passphrase.
+# Chemin distant : /home/clients/d70b8cc9ac817101013710f75218a5cd/sites/ataraxialab.ch/
+#
+# Secrets GitHub (repo Settings → Secrets → Actions) :
+#   SSH_HOST        — gy877v.ftp.infomaniak.com
+#   SSH_USER        — gy877v_ataraxialab
+#   SSH_PRIVATE_KEY — clé privée ed25519 (ghactions_ataraxialab)
+#
+# Fichiers hors CI (déploiement manuel FileZilla uniquement) :
+#   secrets/             — jamais versionné
+#   cron-data/           — runtime IK
 
 on:
   push:
@@ -18,6 +23,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -44,40 +50,41 @@ jobs:
           grep -q "ataraxialab.ch" _site/index.html
           echo "Smoke test OK — $(find _site -name '*.html' | wc -l) pages HTML générées"
 
-      - name: Deploy _site/ (front statique)
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./_site/
-          server-dir: ./
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/api/**
-            **/cron/**
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p 22 ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
 
-      - name: Deploy api/ (handlers formulaires PHP)
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./api/
-          server-dir: ./api/
-          exclude: |
-            **/.git*
-            **/.git*/**
+      - name: Deploy _site/ via rsync
+        run: |
+          rsync -az --delete \
+            --exclude='.git*' \
+            --exclude='api/' \
+            --exclude='cron/' \
+            --exclude='secrets/' \
+            --exclude='cron-data/' \
+            -e "ssh -i ~/.ssh/id_ed25519 -p 22 -o StrictHostKeyChecking=no" \
+            ./_site/ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/clients/d70b8cc9ac817101013710f75218a5cd/sites/ataraxialab.ch/
 
-      - name: Deploy cron/ (tâches planifiées PHP)
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./cron/
-          server-dir: ./cron/
-          exclude: |
-            **/.git*
-            **/.git*/**
+      - name: Deploy api/ via rsync
+        run: |
+          rsync -az \
+            --exclude='.git*' \
+            -e "ssh -i ~/.ssh/id_ed25519 -p 22 -o StrictHostKeyChecking=no" \
+            ./api/ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/clients/d70b8cc9ac817101013710f75218a5cd/sites/ataraxialab.ch/api/
+
+      - name: Deploy cron/ via rsync
+        run: |
+          rsync -az \
+            --exclude='.git*' \
+            -e "ssh -i ~/.ssh/id_ed25519 -p 22 -o StrictHostKeyChecking=no" \
+            ./cron/ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/clients/d70b8cc9ac817101013710f75218a5cd/sites/ataraxialab.ch/cron/
+
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -f ~/.ssh/id_ed25519
