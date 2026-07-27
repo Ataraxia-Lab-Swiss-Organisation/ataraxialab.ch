@@ -22,14 +22,10 @@ declare(strict_types=1);
 
 header('Content-Type: application/json; charset=utf-8');
 
-// --- Configuration ---------------------------------------------------
-
 const TARGET_URL    = 'https://ataraxialab.ch/';
 const OUTPUT_PATH   = __DIR__ . '/../cron-data/performance.json';
 const API_ENDPOINT  = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed';
 const SECRET_PATH   = __DIR__ . '/../secrets/pagespeed_api_key.php';
-
-// --- Lecture sécurisée des secrets ------------------------------------
 
 function loadSecrets(): array
 {
@@ -47,8 +43,6 @@ function loadSecrets(): array
     return $secrets;
 }
 
-// --- Vérification du token --
-
 function checkToken(string $expectedToken): void
 {
     $provided = $_GET['token'] ?? '';
@@ -58,8 +52,6 @@ function checkToken(string $expectedToken): void
         exit;
     }
 }
-
-// --- Extrait les scores des catégories Lighthouse ---------------------
 
 /**
  * @param array<string, mixed> $categories
@@ -80,8 +72,6 @@ function extractScores(array $categories): array
     ];
 }
 
-// --- Construit l'endpoint PageSpeed pour une stratégie donnée ---------
-
 function buildEndpoint(string $url, string $strategy, string $apiKey): string
 {
     $base = http_build_query(['url' => $url, 'strategy' => $strategy, 'key' => $apiKey]);
@@ -92,42 +82,17 @@ function buildEndpoint(string $url, string $strategy, string $apiKey): string
     return API_ENDPOINT . '?' . $base . '&' . $cats;
 }
 
-// --- Appel API PageSpeed Insights -------------------------------------
-
 /**
- * @return array{performance:int,accessibility:int,best_practices:int,seo:int}|null
- */
-function fetchScores(string $url, string $strategy, string $apiKey): ?array
-{
-    $endpoint = buildEndpoint($url, $strategy, $apiKey);
-    $ch = curl_init($endpoint);
-    curl_setopt_array($ch, [
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT        => 60,
-        CURLOPT_FAILONERROR    => false,
-    ]);
-    $response  = curl_exec($ch);
-    $httpCode  = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    $curlError = curl_error($ch);
-
-    $result = parsePageSpeedResponse($response, $httpCode, $curlError, $strategy);
-    return $result;
-}
-
-/**
- * Parse la réponse cURL de l'API PageSpeed.
- * Fonction séparée pour limiter fetchScores() à un seul return (S1142).
+ * Parse la réponse cURL de l'API PageSpeed (max 3 return — S1142).
+ * Les échecs cURL et HTTP sont regroupés dans une garde unique.
  *
  * @return array{performance:int,accessibility:int,best_practices:int,seo:int}|null
  */
 function parsePageSpeedResponse(mixed $response, int $httpCode, string $curlError, string $strategy): ?array
 {
-    if ($response === false) {
-        error_log("[cron_pagespeed] Erreur cURL ({$strategy}) : {$curlError}");
-        return null;
-    }
-    if ($httpCode !== 200) {
-        error_log("[cron_pagespeed] HTTP {$httpCode} ({$strategy}) : " . substr((string)$response, 0, 300));
+    if ($response === false || $httpCode !== 200) {
+        $detail = $response === false ? $curlError : substr((string)$response, 0, 300);
+        error_log("[cron_pagespeed] Erreur ({$strategy}) HTTP {$httpCode} : {$detail}");
         return null;
     }
     $data = json_decode((string)$response, true);
@@ -138,7 +103,24 @@ function parsePageSpeedResponse(mixed $response, int $httpCode, string $curlErro
     return extractScores($data['lighthouseResult']['categories']);
 }
 
-// --- Exécution ----------------------------------------------------------
+/**
+ * @return array{performance:int,accessibility:int,best_practices:int,seo:int}|null
+ */
+function fetchScores(string $url, string $strategy, string $apiKey): ?array
+{
+    $ch = curl_init(buildEndpoint($url, $strategy, $apiKey));
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT        => 60,
+        CURLOPT_FAILONERROR    => false,
+    ]);
+    return parsePageSpeedResponse(
+        curl_exec($ch),
+        curl_getinfo($ch, CURLINFO_HTTP_CODE),
+        curl_error($ch),
+        $strategy
+    );
+}
 
 $secrets = loadSecrets();
 checkToken($secrets['cron_token']);
