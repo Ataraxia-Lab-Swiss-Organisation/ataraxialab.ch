@@ -5,6 +5,12 @@ declare(strict_types=1);
 namespace Ataraxia\Mail;
 
 /**
+ * SmtpException — exception dédiée aux erreurs SMTP (S1 Sonar : éviter les
+ * exceptions génériques). Étend RuntimeException pour rester non vérifiée.
+ */
+class SmtpException extends \RuntimeException {}
+
+/**
  * SmtpMailer — client SMTP minimal (STARTTLS + AUTH LOGIN)
  *
  * Écrit pour l'hébergement mutualisé Infomaniak (mail() désactivé, pas de
@@ -35,7 +41,7 @@ final class SmtpMailer
     }
 
     /**
-     * @throws \RuntimeException en cas d'échec à n'importe quelle étape
+     * @throws SmtpException en cas d'échec à n'importe quelle étape
      */
     public function send(string $from, string $fromName, string $to, string $replyTo, string $subject, string $body): void
     {
@@ -43,10 +49,10 @@ final class SmtpMailer
         $this->assertSafeHeaderValue($subject);
 
         if (!filter_var($from, FILTER_VALIDATE_EMAIL) || !filter_var($to, FILTER_VALIDATE_EMAIL)) {
-            throw new \RuntimeException('adresse_email_invalide');
+            throw new SmtpException('adresse_email_invalide');
         }
         if ($replyTo !== '' && !filter_var($replyTo, FILTER_VALIDATE_EMAIL)) {
-            throw new \RuntimeException('reply_to_invalide');
+            throw new SmtpException('reply_to_invalide');
         }
 
         try {
@@ -54,8 +60,13 @@ final class SmtpMailer
             $this->command('EHLO ataraxialab.ch', [250]);
             $this->command('STARTTLS', [220]);
 
-            if (!stream_socket_enable_crypto($this->socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT)) {
-                throw new \RuntimeException('tls_echec');
+            // S4830 — forcer TLS 1.2+ uniquement (pas TLS 1.0/1.1)
+            $tlsMethod = STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT;
+            if (defined('STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT')) {
+                $tlsMethod |= STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT; // @phpstan-ignore-line
+            }
+            if (!stream_socket_enable_crypto($this->socket, true, $tlsMethod)) {
+                throw new SmtpException('tls_echec');
             }
 
             $this->command('EHLO ataraxialab.ch', [250]);
@@ -94,7 +105,7 @@ final class SmtpMailer
         $remote = "tcp://{$this->host}:{$this->port}";
         $socket = @stream_socket_client($remote, $errno, $errstr, $this->timeout);
         if ($socket === false) {
-            throw new \RuntimeException("connexion_smtp_echouee: {$errstr} ({$errno})");
+            throw new SmtpException("connexion_smtp_echouee: {$errstr} ({$errno})");
         }
         $this->socket = $socket;
         stream_set_timeout($this->socket, $this->timeout);
@@ -119,7 +130,7 @@ final class SmtpMailer
         }
         $code = (int) substr($response, 0, 3);
         if (!in_array($code, $expectedCodes, true)) {
-            throw new \RuntimeException("smtp_code_inattendu_{$code}: " . trim($response));
+            throw new SmtpException("smtp_code_inattendu_{$code}: " . trim($response));
         }
         return $response;
     }
@@ -129,7 +140,7 @@ final class SmtpMailer
         // Anti-injection d'en-têtes SMTP/mail (OWASP) : un CR/LF dans une valeur
         // destinée à un en-tête permettrait d'injecter des en-têtes/destinataires
         if (preg_match('/[\r\n]/', $value)) {
-            throw new \RuntimeException('injection_entete_detectee');
+            throw new SmtpException('injection_entete_detectee');
         }
     }
 

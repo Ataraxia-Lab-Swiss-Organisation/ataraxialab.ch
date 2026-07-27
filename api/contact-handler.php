@@ -17,7 +17,7 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/lib/SmtpMailer.php';
+require_once __DIR__ . '/lib/SmtpMailer.php';
 
 use Ataraxia\Mail\SmtpMailer;
 
@@ -43,7 +43,7 @@ function loadSecrets(): array
         error_log('[contact-handler] secret_file_missing');
         redirectTo(REDIRECT_ERR);
     }
-    $secrets = require SECRET_PATH;
+    $secrets = require_once SECRET_PATH;
     if (!is_array($secrets) || empty($secrets['smtp_user']) || empty($secrets['smtp_pass'])) {
         error_log('[contact-handler] secret_file_invalid');
         redirectTo(REDIRECT_ERR);

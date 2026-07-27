@@ -40,7 +40,7 @@ function loadSecrets(): array
         echo json_encode(['error' => 'secret_file_missing']);
         exit;
     }
-    $secrets = require SECRET_PATH;
+    $secrets = require_once SECRET_PATH;
     if (!is_array($secrets) || empty($secrets['api_key']) || empty($secrets['cron_token'])) {
         http_response_code(500);
         echo json_encode(['error' => 'secret_file_invalid']);
@@ -100,21 +100,31 @@ function fetchScores(string $url, string $strategy, string $apiKey): ?array
     }
 
     if ($httpCode !== 200) {
-        error_log("[cron_pagespeed] HTTP {$httpCode} ({$strategy}) : " . substr($response, 0, 300));
+        error_log("[cron_pagespeed] HTTP {$httpCode} ({$strategy}) : " . substr((string)$response, 0, 300));
         return null;
     }
 
-    $data = json_decode($response, true);
+    $data = json_decode((string)$response, true);
     if (!is_array($data) || !isset($data['lighthouseResult']['categories'])) {
         error_log("[cron_pagespeed] Réponse JSON inattendue ({$strategy})");
         return null;
     }
 
-    $categories = $data['lighthouseResult']['categories'];
+    return extractScores($data['lighthouseResult']['categories']);
+}
 
-    $scoreOf = static function (array $categories, string $key): int {
-        return isset($categories[$key]['score'])
-            ? (int) round($categories[$key]['score'] * 100)
+/**
+ * Extrait les scores des catégories Lighthouse.
+ * Fonction séparée pour respecter la limite de 3 return par fonction (S1142).
+ *
+ * @param array<string, mixed> $categories
+ * @return array{performance:int,accessibility:int,best_practices:int,seo:int}
+ */
+function extractScores(array $categories): array
+{
+    $scoreOf = static function (array $cats, string $key): int {
+        return isset($cats[$key]['score'])
+            ? (int) round($cats[$key]['score'] * 100)
             : 0;
     };
 

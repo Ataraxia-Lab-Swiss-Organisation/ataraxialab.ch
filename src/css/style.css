@@ -1,6 +1,9 @@
 /* ═══════════════════════════════════════════════
-   ATARAXIA LAB — style.css v1.4 — 12.05.2026
-   Corrections v1.4 : contraste WCAG AA (#B35C38, #767676, hero-sub blanc)
+   ATARAXIA LAB — style.css v1.5 — 27.07.2026
+   Corrections v1.5 : fix Sonar — fusion sélecteurs dupliqués (a, .btn,
+                       nav a:hover, .valeur h2, footer a:hover), contrastes
+                       WCAG (#555 → #4a4a4a sur fonds clairs)
+                 v1.4 : contraste WCAG AA (#B35C38, #767676, hero-sub blanc)
                  v1.3 : --max-width 960px → 1280px, --espacement 2rem → 1.5rem
    ═══════════════════════════════════════════════ */
 
@@ -99,8 +102,8 @@ nav a {
 }
 
 nav a:hover {
-  color: var(--noir);
-  text-decoration: underline;
+  color: var(--accent);
+  text-decoration: none;
 }
 
 /* ─── Main ───────────────────────────────────── */
@@ -135,7 +138,7 @@ p {
 }
 
 a {
-  color: var(--noir);
+  color: var(--accent);
 }
 
 ul {
@@ -166,7 +169,7 @@ footer a {
 }
 
 footer a:hover {
-  color: var(--noir);
+  color: var(--accent);
 }
 
 /* ─── Nav social (icônes réseaux dans le header) ── */
@@ -246,8 +249,8 @@ footer a:hover {
 .btn {
   display: inline-block;
   padding: 0.75rem 2rem;
-  border: 1px solid var(--noir);
-  color: var(--noir);
+  border: 1px solid var(--accent);
+  color: var(--accent);
   text-decoration: none;
   font-size: 0.9rem;
   letter-spacing: 0.08em;
@@ -255,7 +258,7 @@ footer a:hover {
 }
 
 .btn:hover {
-  background: var(--noir);
+  background: var(--accent);
   color: var(--blanc);
 }
 
@@ -275,6 +278,7 @@ footer a:hover {
   text-transform: uppercase;
   margin-bottom: 0.75rem;
   margin-top: 0;
+  color: var(--accent);
 }
 
 .valeur p {
@@ -294,6 +298,7 @@ footer a:hover {
   text-transform: uppercase;
   margin-bottom: 1.5rem;
   margin-top: 0;
+  color: var(--accent);
 }
 
 .activites-home ul {
@@ -325,6 +330,7 @@ footer a:hover {
   text-transform: uppercase;
   margin-bottom: 1rem;
   margin-top: 0;
+  color: var(--accent);
 }
 
 .rejoindre-home p {
@@ -342,39 +348,6 @@ footer a:hover {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-}
-
-/* ─── Couleur d'accent ───────────────────────── */
-a {
-  color: var(--accent);
-}
-
-.btn {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.btn:hover {
-  background: var(--accent);
-  color: var(--blanc);
-}
-
-nav a:hover {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.valeur h2 {
-  color: var(--accent);
-}
-
-.activites-home h2,
-.rejoindre-home h2 {
-  color: var(--accent);
-}
-
-footer a:hover {
-  color: var(--accent);
 }
 
 p a {
@@ -445,7 +418,7 @@ textarea {
 
 .page-subtitle {
   font-size: 1.125rem;
-  color: #555;
+  color: #4a4a4a;
   margin: 0;
 }
 
@@ -485,7 +458,7 @@ textarea {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #555;
+  color: #4a4a4a;
 }
 
 .realisation-statut {
@@ -603,7 +576,7 @@ textarea {
 
 .tutoriel-niveau {
   background-color: #f0f0f0;
-  color: #555;
+  color: #4a4a4a;
 }
 
 .tutoriel-temps {
@@ -622,7 +595,7 @@ textarea {
 .tutoriel-description {
   font-size: 0.9rem;
   line-height: 1.6;
-  color: #555;
+  color: #4a4a4a;
   margin: 0;
   flex-grow: 1;
 }
@@ -697,7 +670,7 @@ textarea {
   font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #555;
+  color: #4a4a4a;
 }
 
 .article-body td {
@@ -760,7 +733,7 @@ textarea {
   border-top: 1px solid #e5e5e5;
   text-align: center;
   font-size: 0.95rem;
-  color: #555;
+  color: #4a4a4a;
 }
 
 .realisations-cta a {
@@ -862,7 +835,7 @@ select:focus {
 /* ─── Note confidentialité (formulaires) — 12.06.2026 ── */
 .note-confidentialite {
   font-size: 0.85rem;
-  color: #555;
+  color: #4a4a4a;
   margin-top: 1.5rem;
 }
 .note-confidentialite--bottom {
@@ -896,6 +869,7 @@ select:focus {
 .articles-lies .tutoriel-carte {
   gap: 0.5rem;
 }
+
 /* ─── Tableau pages légales (conformité, sous-traitants) — 01.07.2026 ── */
 .table-legal {
   width: 100%;
@@ -912,7 +886,7 @@ select:focus {
   font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #555;
+  color: #4a4a4a;
   background-color: #fafafa;
 }
 
