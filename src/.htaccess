@@ -5,9 +5,10 @@
 # 2 fichiers sont désormais synchronisés).
 # -----------------------------------------------
 
-# Redirection HTTPS
+# Redirection HTTPS — IK mutualisé : SSL terminé au reverse proxy, %{HTTPS} always 'on'
+# Correction : utiliser X-Forwarded-Proto (header IK) pour détecter HTTP réel
 RewriteEngine On
-RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} =http
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Exposition scores PageSpeed Insights — D-1, 30.06.2026
