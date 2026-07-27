@@ -1,11 +1,11 @@
 name: SonarCloud Analysis
 
-# Analyse qualite de code SonarCloud — projet PUBLIC ataraxialab.ch
+# Analyse qualite de code SonarCloud -- projet PUBLIC ataraxialab.ch
 # Stack : Eleventy (Nunjucks/HTML) + PHP (api/, cron/)
 # Projet Sonar : Ataraxia-Lab-Swiss-Organisation_ataraxialab.ch
 #
 # Secret requis (Settings -> Secrets -> Actions) :
-#   SONAR_TOKEN — token genere par SonarCloud lors de l'onboarding
+#   SONAR_TOKEN -- token genere par SonarCloud lors de l'onboarding
 
 on:
   push:
@@ -23,10 +23,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Historique complet requis pour blame et diff Sonar
+          fetch-depth: 0
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
