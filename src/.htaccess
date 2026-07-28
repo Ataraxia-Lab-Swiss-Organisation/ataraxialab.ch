@@ -31,6 +31,8 @@ RewriteRule ^performance\.json$ cron-data/performance.json [L]
 
   # Permissions navigateur — désactive les fonctions non utilisées
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+  # Isolation navigateur — protection Spectre
+  Header always set Cross-Origin-Opener-Policy "same-origin"
 
   # Content Security Policy — 24.05.2026 : hashes calculés sur les scripts inline (sans unsafe-inline)
   # Content Security Policy — 05.06.2026 : ajout IK Newsletter + Matomo cookieless
