@@ -26,13 +26,14 @@
   ordre: 2
 
 
-- titre: "Outil numérique — bientôt disponible"
+- titre: "seo.ataraxialab.ch — Outil d'analyse SEO multi-moteurs"
   type: "Projet en développement"
-  statut: "coming-soon"
+  statut: "en-developpement"
   url: ""
-  accroche: "Un nouvel outil numérique est en cours de développement au sein de l'association. Il sera annoncé dès sa mise en service. Restez connectés."
+  accroche: "Analyse de contenu sur 6 moteurs verticaux — YouTube, App Store, Etsy, Pinterest, Dailymotion, GitHub. Souverain, hébergé en Suisse, conforme nLPD. Programme bêta en préparation. Vous êtes consultant SEO, responsable marketing ou gérez du contenu multi-plateformes ? Nous cherchons des bêta-testeurs exigeants pour valider l'outil avant lancement. Accès anticipé, gratuit, contribution attendue en retour."
   tags:
-    - "Développement"
-    - "Numérique éthique"
-    - "À venir"
+    - "Analyse multi-moteurs"
+    - "nLPD"
+    - "SaaS"
+    - "Souveraineté numérique"
   ordre: 3

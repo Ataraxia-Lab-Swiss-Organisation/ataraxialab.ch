@@ -17,6 +17,8 @@ permalink: /realisations/
       <span class="realisation-type">{{ item.type }}</span>
       {% if item.statut == "en-ligne" %}
       <span class="realisation-statut">En ligne</span>
+      {% elif item.statut == "en-developpement" %}
+      <span class="realisation-statut realisation-statut--dev">En développement avancé</span>
       {% endif %}
     </div>
     <h2 class="realisation-titre">{{ item.titre }}</h2>
@@ -35,6 +37,8 @@ permalink: /realisations/
       referrerpolicy="no-referrer"
       aria-label="Voir le projet {{ item.titre }} (nouvelle fenêtre)"
     >Voir le projet →</a>
+    {% elif item.statut == "en-developpement" %}
+    <a href="/contact/" class="realisation-lien" aria-label="Nous contacter pour rejoindre le programme bêta">Nous contacter →</a>
     {% elif item.statut == "coming-soon" %}
     <span class="realisation-coming-soon">Annonce à venir</span>
     {% endif %}

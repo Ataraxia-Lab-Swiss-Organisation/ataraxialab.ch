@@ -459,6 +459,11 @@ textarea { resize: vertical; }
   padding: 0.1em 0.5em;
 }
 
+.realisation-statut--dev {
+  color: #5a7a5a;
+  border-color: #5a7a5a;
+}
+
 .realisation-titre,
 .tutoriel-titre {
   font-weight: 700;
