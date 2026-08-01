@@ -687,6 +687,50 @@ select:focus { border-color: var(--accent); }
   line-height: 1.5;
 }
 
+.don-virement {
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin-top: 1rem;
+  background: #fafafa;
+  max-width: 480px;
+}
+
+.don-virement-titre {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4a4a4a;
+  margin: 0 0 0.75rem 0;
+}
+
+.don-virement dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.3rem 1rem;
+  margin: 0;
+}
+
+.don-virement dt {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gris);
+  white-space: nowrap;
+}
+
+.don-virement dd {
+  font-size: 0.85rem;
+  margin: 0;
+  color: var(--texte);
+}
+
+.don-virement code {
+  font-family: monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+}
+
 .skip-nav {
   position: absolute;
   top: -40px;
