@@ -1,32 +1,58 @@
-name: SonarCloud Analysis
+name: SonarCloud Analysis — ataraxialab.ch
 
-# Analyse qualite de code SonarCloud -- projet PUBLIC ataraxialab.ch
+# ============================================================
+# Analyse qualité de code SonarCloud — projet PUBLIC ataraxialab.ch
 # Stack : Eleventy (Nunjucks/HTML) + PHP (api/, cron/)
 # Projet Sonar : Ataraxia-Lab-Swiss-Organisation_ataraxialab.ch
 #
-# Secret requis (Settings -> Secrets -> Actions) :
-#   SONAR_TOKEN -- token genere par SonarCloud lors de l'onboarding
+# Secret requis (Settings → Secrets → Actions) :
+#   SONAR_TOKEN — token généré sur sonarcloud.io
+#
+# ── PATHS FILTER ─────────────────────────────────────────────
+# Sonar ne tourne que si du code source PHP/JS/NJK est modifié.
+# Les commits purement config/doc/workflow ne déclenchent pas Sonar.
+#
+# ── CONCURRENCE ──────────────────────────────────────────────
+# cancel-in-progress: true — le dernier push gagne,
+# les scans obsolètes sont annulés pour économiser les minutes CI.
+# ============================================================
 
 on:
   push:
     branches: [main]
+    paths:
+      - 'src/**'
+      - 'api/**'
+      - 'cron/**'
+      - 'sonar-project.properties'
+      - '.github/workflows/sonarcloud.yml'
   pull_request:
     branches: [main]
+    paths:
+      - 'src/**'
+      - 'api/**'
+      - 'cron/**'
+      - 'sonar-project.properties'
   workflow_dispatch: {}
+
+concurrency:
+  group: sonar-ataraxialab-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   sonarcloud:
     name: SonarCloud Analysis
     runs-on: ubuntu-latest
+    permissions:
+      contents: read  # lecture seule — Sonar ne modifie pas le repo
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # historique complet requis pour l'analyse Sonar
 
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@v8.2.1
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io

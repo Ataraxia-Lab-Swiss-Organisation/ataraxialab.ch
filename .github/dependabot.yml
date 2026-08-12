@@ -1,0 +1,95 @@
+# ============================================================
+# dependabot.yml — ataraxialab.ch
+# ============================================================
+#
+# RÔLE DE CE FICHIER
+# Maintient automatiquement à jour :
+#   1. Les GitHub Actions utilisées dans les workflows
+#   2. Les dépendances npm (Eleventy, js-yaml)
+#
+# ÉCOSYSTÈMES SURVEILLÉS
+#   github-actions : actions/checkout, actions/setup-node,
+#                    SonarSource/sonarqube-scan-action
+#   npm            : @11ty/eleventy (devDep), js-yaml (dep)
+#
+# STRATÉGIE DE MISE À JOUR
+#   - Grouping minor+patch → 1 PR groupée par semaine (lundi 06h)
+#   - Major → PR individuelle, review manuelle obligatoire
+#     (Eleventy v3→v4 peut introduire des breaking changes templates)
+#   - Cooldown 3 jours (défaut GitHub 2026) : protection supply chain
+#
+# AUTO-MERGE
+#   Non activé — pas de branch protection ni de required checks.
+#   Les PRs Dependabot déclenchent deploy.yml (rsync IK) si src/ change.
+#   Un merge automatique sans validation CI serait risqué.
+#   À envisager uniquement pour les patch security npm.
+#
+# RÈGLE PATHS FILTER
+#   Les commits Dependabot sur .github/workflows/ ne déclenchent PAS
+#   deploy.yml (son paths filter ne couvre pas .github/).
+#   Ils déclenchent sonarcloud.yml si celui-ci couvre les workflows.
+#
+# RÉFÉRENCE
+#   technique/helper_github.md §5 (nouveau projet), §6 (reprise)
+#   https://docs.github.com/en/code-security/dependabot/dependabot-version-updates
+# ============================================================
+
+version: 2
+
+updates:
+
+  # ── GitHub Actions ───────────────────────────────────────────
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Zurich"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+    commit-message:
+      prefix: "chore(deps)"
+
+    groups:
+      github-actions-minor-patch:
+        applies-to: version-updates
+        update-types:
+          - "minor"
+          - "patch"
+
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  # ── npm (Eleventy + js-yaml) ──────────────────────────────────
+  # @11ty/eleventy : générateur de site statique — core du site
+  # js-yaml        : parsing YAML dans les scripts JS
+  # Attention : Eleventy major (v3→v4) peut casser les templates NJK
+  # → les majors sont ignorés et font l'objet d'une migration dédiée
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:30"     # 30min après les Actions pour éviter la collision de PRs
+      timezone: "Europe/Zurich"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+    commit-message:
+      prefix: "chore(deps)"
+
+    groups:
+      # Groupe toutes les mises à jour npm minor+patch en 1 PR
+      npm-minor-patch:
+        applies-to: version-updates
+        update-types:
+          - "minor"
+          - "patch"
+
+    ignore:
+      # Majors manuels : Eleventy major = migration templates requise
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]

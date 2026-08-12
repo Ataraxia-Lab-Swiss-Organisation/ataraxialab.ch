@@ -1,35 +1,65 @@
 name: Deploy ataraxialab.ch
 
-# Build Eleventy + déploiement SSH/rsync vers Infomaniak à chaque push sur main.
-# Remplacement de FTP (SamKirkland) par rsync over SSH — différentiel, plus rapide.
+# ============================================================
+# Build Eleventy + déploiement SSH/rsync vers Infomaniak.
 #
-# Compte SSH : gy877v_ataraxialab (compte maître IK) — clé ed25519 sans passphrase.
+# Compte SSH    : gy877v_ataraxialab (compte maître IK)
 # Chemin distant : /home/clients/d70b8cc9ac817101013710f75218a5cd/sites/ataraxialab.ch/
 #
-# Secrets GitHub (repo Settings → Secrets → Actions) :
+# Secrets GitHub (Settings → Secrets → Actions) :
 #   SSH_HOST        — gy877v.ftp.infomaniak.com
 #   SSH_USER        — gy877v_ataraxialab
 #   SSH_PRIVATE_KEY — clé privée ed25519 (ghactions_ataraxialab)
 #
-# Fichiers hors CI (déploiement manuel FileZilla uniquement) :
-#   secrets/             — jamais versionné
-#   cron-data/           — runtime IK
+# Fichiers hors CI (FileZilla direct uniquement) :
+#   secrets/    — jamais versionné
+#   cron-data/  — runtime IK
+#
+# ── PATHS FILTER ─────────────────────────────────────────────
+# Déploiement uniquement si le code source ou les assets changent.
+# Les commits purement config/doc/workflow ne déclenchent pas le deploy.
+# ATTENTION : les PRs Dependabot sur package.json déclenchent ce deploy.
+# Vérifier le smoke test en prod après chaque merge npm Dependabot.
+#
+# ── CONCURRENCE ──────────────────────────────────────────────
+# cancel-in-progress: false — ne jamais interrompre un rsync en cours
+# (risque de déploiement partiel, fichiers corrompus sur IK).
+#
+# ── BP#89 ────────────────────────────────────────────────────
+# Les 3 rsync utilisent ControlMaster SSH (1 seul handshake).
+# Évite le ban fail2ban IK (incident 27.07.2026).
+# ============================================================
 
 on:
   push:
     branches: [main]
+    paths:
+      - 'src/**'
+      - 'api/**'
+      - 'cron/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.eleventy.js'
+      - 'eleventy.config.*'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch: {}
+
+concurrency:
+  group: deploy-ataraxialab-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read  # checkout uniquement — pas d'écriture repo
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: '20'
           cache: 'npm'
@@ -57,33 +87,38 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -p 22 ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
 
-      - name: Deploy _site/ via rsync
+      - name: Deploy via rsync (ControlMaster SSH — BP#89)
+        # BP#89 : 1 seul handshake SSH pour les 3 rsync → évite ban fail2ban IK
         run: |
+          REMOTE="${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}"
+          REMOTE_ROOT="/home/clients/d70b8cc9ac817101013710f75218a5cd/sites/ataraxialab.ch"
+          SSH_OPTS="-i ~/.ssh/id_ed25519 -p 22 -o StrictHostKeyChecking=no \
+            -o ControlMaster=auto -o ControlPath=/tmp/ssh_atx_%h -o ControlPersist=60"
+
+          # 1. Frontend statique Eleventy
           rsync -az --delete \
             --exclude='.git*' \
             --exclude='api/' \
             --exclude='cron/' \
             --exclude='secrets/' \
             --exclude='cron-data/' \
-            -e "ssh -i ~/.ssh/id_ed25519 -p 22 -o StrictHostKeyChecking=no" \
+            -e "ssh $SSH_OPTS" \
             ./_site/ \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/clients/d70b8cc9ac817101013710f75218a5cd/sites/ataraxialab.ch/
+            "$REMOTE:$REMOTE_ROOT/"
 
-      - name: Deploy api/ via rsync
-        run: |
+          # 2. Backend PHP API
           rsync -az \
             --exclude='.git*' \
-            -e "ssh -i ~/.ssh/id_ed25519 -p 22 -o StrictHostKeyChecking=no" \
+            -e "ssh $SSH_OPTS" \
             ./api/ \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/clients/d70b8cc9ac817101013710f75218a5cd/sites/ataraxialab.ch/api/
+            "$REMOTE:$REMOTE_ROOT/api/"
 
-      - name: Deploy cron/ via rsync
-        run: |
+          # 3. Crons PHP
           rsync -az \
             --exclude='.git*' \
-            -e "ssh -i ~/.ssh/id_ed25519 -p 22 -o StrictHostKeyChecking=no" \
+            -e "ssh $SSH_OPTS" \
             ./cron/ \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/clients/d70b8cc9ac817101013710f75218a5cd/sites/ataraxialab.ch/cron/
+            "$REMOTE:$REMOTE_ROOT/cron/"
 
       - name: Cleanup SSH key
         if: always()
