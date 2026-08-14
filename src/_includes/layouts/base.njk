@@ -46,25 +46,54 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="icon" type="image/svg+xml" href="/images/logo_ataraxialab_plein.svg">
 
-  <!-- JSON-LD Organization (toutes les pages) -->
+  <!-- JSON-LD Organization + WebSite — @graph enrichi F-01/F-02 14.08.2026 -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Ataraxia Lab",
-  "url": "https://ataraxialab.ch",
-  "logo": "https://ataraxialab.ch/images/logo_ataraxialab_plein.svg",
-  "description": "Association à but non lucratif réunissant des passionné·e·s du numérique en Suisse romande pour construire ensemble une technologie éthique, ouverte et responsable.",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Crêt-Vaillant 22",
-    "addressLocality": "Le Locle",
-    "postalCode": "2400",
-    "addressCountry": "CH"
-  },
-  "email": "contact@ataraxialab.ch",
-  "foundingDate": "2026",
-  "nonprofitStatus": "NonprofitType"
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://ataraxialab.ch/#organization",
+      "name": "Ataraxia Lab",
+      "legalName": "Association Ataraxia Lab",
+      "url": "https://ataraxialab.ch",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ataraxialab.ch/images/logo_ataraxialab_plein.svg"
+      },
+      "description": "Association à but non lucratif réunissant des passionné·e·s du numérique en Suisse romande pour construire ensemble une technologie éthique, ouverte et responsable.",
+      "foundingDate": "2026-04-20",
+      "taxID": "CHE-425.759.729",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rue du Crêt-Vaillant 22",
+        "addressLocality": "Le Locle",
+        "postalCode": "2400",
+        "addressRegion": "NE",
+        "addressCountry": "CH"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "contact@ataraxialab.ch",
+        "contactType": "customer support"
+      },
+      "email": "contact@ataraxialab.ch",
+      "nonprofitStatus": "NonprofitType",
+      "sameAs": [
+        "https://www.linkedin.com/in/ataraxialab/",
+        "https://www.facebook.com/profile.php?id=61590556523200",
+        "https://github.com/Ataraxia-Lab-Swiss-Organisation"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ataraxialab.ch/#website",
+      "url": "https://ataraxialab.ch",
+      "name": "Ataraxia Lab",
+      "inLanguage": "fr-CH",
+      "publisher": { "@id": "https://ataraxialab.ch/#organization" }
+    }
+  ]
 }
 </script>
 
