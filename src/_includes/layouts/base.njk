@@ -19,13 +19,29 @@
   {% endif %}
   <meta property="og:url" content="https://ataraxialab.ch{{ page.url }}">
   <meta property="og:locale" content="fr_CH">
-  <meta property="og:image" content="https://ataraxialab.ch/images/og-default.jpg">
+{%- if type == 'tutoriel' and categorie %}
+    {%- set ogCat = categorie | lower | replace("&amp; ", "") | replace("& ", "") | replace(" ", "-") | replace("é", "e") | replace("è", "e") | replace("ê", "e") | replace("à", "a") | replace("ù", "u") | replace("ô", "o") | replace("î", "i") | replace("û", "u") %}
+    {%- if ogCat == "lpd" %}{%- set ogImg = "og-lpd.jpg" %}
+    {%- elif ogCat == "ia-ethique" %}{%- set ogImg = "og-ia-ethique.jpg" %}
+    {%- elif ogCat == "ia-pratique" %}{%- set ogImg = "og-ia-pratique.jpg" %}
+    {%- elif ogCat == "securite" %}{%- set ogImg = "og-securite.jpg" %}
+    {%- elif ogCat == "association-numerique" %}{%- set ogImg = "og-association-numerique.jpg" %}
+    {%- elif ogCat == "outils-libres" %}{%- set ogImg = "og-outils-libres.jpg" %}
+    {%- elif ogCat == "souverainete-numerique" %}{%- set ogImg = "og-souverainete-numerique.jpg" %}
+    {%- else %}{%- set ogImg = "og-tutoriels.jpg" %}
+    {%- endif %}
+  {%- else %}{%- set ogImg = "og-default.jpg" %}
+  {%- endif %}
+  <meta property="og:image" content="https://ataraxialab.ch/images/og/{{ ogImg }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{% if 'Ataraxia Lab' in title %}{{ title }}{% else %}{{ title }} — Ataraxia Lab{% endif %}">
   <meta name="twitter:description" content="{{ description }}">
-  <meta name="twitter:image" content="https://ataraxialab.ch/images/og-default.jpg">
+  <meta name="twitter:image" content="https://ataraxialab.ch/images/og/{{ ogImg }}">
 
   <link rel="stylesheet" href="/css/style.css">
   <link rel="icon" type="image/svg+xml" href="/images/logo_ataraxialab_plein.svg">
@@ -90,7 +106,7 @@
   "@type": "BlogPosting",
   "headline": "{{ title }}",
   "description": "{{ description }}",
-  "image": "https://ataraxialab.ch/images/og-default.jpg",
+  "image": "https://ataraxialab.ch/images/og/{{ ogImg }}",
   "datePublished": "{{ datePublished }}T00:00:00+02:00",
   "dateModified": "{{ datePublished }}T00:00:00+02:00",
   "url": "https://ataraxialab.ch{{ page.url }}",
