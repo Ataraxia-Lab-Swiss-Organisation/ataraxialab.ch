@@ -30,10 +30,35 @@
   type: "Projet en développement"
   statut: "en-developpement"
   url: ""
-  accroche: "Analyse de contenu sur 6 moteurs verticaux — YouTube, App Store, Etsy, Pinterest, Dailymotion, GitHub. Souverain, hébergé en Suisse, conforme nLPD. Programme bêta en préparation. Vous êtes consultant SEO, responsable marketing ou gérez du contenu multi-plateformes ? Nous cherchons des bêta-testeurs exigeants pour valider l'outil avant lancement. Accès anticipé, gratuit, contribution attendue en retour."
+  accroche: "Plateforme SaaS d'analyse SEO couvrant 8 moteurs de recherche (Google, Bing, Yandex, Baidu, Naver, Seznam, Qwant, Swisscows) et les verticaux YouTube, App Store, Etsy. 330 règles d'analyse, GEO tracking IA, export PDF/CSV. Souverain, hébergé en Suisse, conforme nLPD. Programme bêta en préparation — nous cherchons des testeurs exigeants."
   tags:
     - "Analyse multi-moteurs"
     - "nLPD"
     - "SaaS"
     - "Souveraineté numérique"
   ordre: 3
+
+- titre: "AtxCron — Planificateur de tâches PHP"
+  type: "Logiciel"
+  statut: "en-developpement"
+  url: ""
+  accroche: "Planificateur cron PHP standalone déployé en production — exécution à la minute (vs 15 min minimum sur les webcrons Infomaniak). 570 tests passés sur PHP 8.1/8.2/8.4. Plugin WordPress inclus. Modèle de distribution perpétuel, one-shot."
+  tags:
+    - "PHP"
+    - "Planificateur"
+    - "WordPress"
+    - "Open Source"
+  ordre: 4
+
+- titre: "audit360 — Framework d'audit web 360°"
+  type: "Outil professionnel"
+  statut: "en-developpement"
+  url: ""
+  accroche: "Référentiel d'audit web professionnel en 16 lots : nLPD, WCAG 2.2 AA, OWASP, E-E-A-T, performance Core Web Vitals, sécurité, IA (OWASP LLM Top 10:2025). Score global standardisé. Utilisé en interne pour chaque projet, facturable comme prestation d'audit."
+  tags:
+    - "Audit web"
+    - "nLPD"
+    - "WCAG 2.2"
+    - "OWASP"
+    - "Qualité"
+  ordre: 5

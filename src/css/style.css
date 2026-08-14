@@ -945,3 +945,41 @@ select:focus { border-color: var(--accent); }
   border: 1px solid #9a2e2c;
   color: var(--noir-doux);
 }
+/* ─── Trust bar (ajout audit 14.08.2026) ──────── */
+.trust-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem 3rem;
+  padding: 2rem var(--espacement);
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  margin: 2rem 0;
+}
+
+.trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-align: center;
+}
+
+.trust-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.trust-label {
+  font-size: 0.8rem;
+  color: var(--gris);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 600px) {
+  .trust-bar { gap: 1.5rem 2rem; }
+  .trust-number { font-size: 1.5rem; }
+}

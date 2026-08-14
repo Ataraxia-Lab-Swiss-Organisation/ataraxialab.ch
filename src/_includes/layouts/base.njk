@@ -10,7 +10,7 @@
 
   <!-- Open Graph -->
   <meta property="og:site_name" content="Ataraxia Lab">
-  <meta property="og:title" content="{{ title }} — Ataraxia Lab">
+  <meta property="og:title" content="{% if 'Ataraxia Lab' in title %}{{ title }}{% else %}{{ title }} — Ataraxia Lab{% endif %}">
   <meta property="og:description" content="{{ description }}">
   {% if type == 'tutoriel' %}
   <meta property="og:type" content="article">
@@ -23,7 +23,7 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ title }} — Ataraxia Lab">
+  <meta name="twitter:title" content="{% if 'Ataraxia Lab' in title %}{{ title }}{% else %}{{ title }} — Ataraxia Lab{% endif %}">
   <meta name="twitter:description" content="{{ description }}">
   <meta name="twitter:image" content="https://ataraxialab.ch/images/og-default.jpg">
 
@@ -51,6 +51,36 @@
   "nonprofitStatus": "NonprofitType"
 }
 </script>
+
+  <!-- JSON-LD BreadcrumbList (tutoriels) — F-10 14.08.2026 -->
+  {% if type == 'tutoriel' %}
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Accueil",
+      "item": "https://ataraxialab.ch/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tutoriels",
+      "item": "https://ataraxialab.ch/tutoriels/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ title }}",
+      "item": "https://ataraxialab.ch{{ page.url }}"
+    }
+  ]
+}
+</script>
+  {% endif %}
 
   <!-- JSON-LD BlogPosting (tutoriels uniquement) -->
   {% if type == 'tutoriel' %}
