@@ -6,6 +6,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/documents");
   eleventyConfig.addPassthroughCopy("src/fonts");
+  eleventyConfig.addPassthroughCopy("src/js");
 
   // Maillage interne tutoriels — 12.06.2026
   // Retourne jusqu'à 3 tutoriels liés : priorité à la même catégorie,
@@ -28,3 +29,4 @@ module.exports = function(eleventyConfig) {
     }
   };
 };
+
