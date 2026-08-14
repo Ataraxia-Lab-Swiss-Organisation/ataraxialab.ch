@@ -983,3 +983,142 @@ select:focus { border-color: var(--accent); }
   .trust-bar { gap: 1.5rem 2rem; }
   .trust-number { font-size: 1.5rem; }
 }
+/* ─── Page Projets (ajout F-08 14.08.2026) ──── */
+.projets-intro {
+  max-width: 680px;
+  margin: 2rem 0 2.5rem;
+  color: var(--gris);
+  line-height: 1.7;
+}
+
+.projets-grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin: 0 0 3rem;
+}
+
+.projet-carte {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: box-shadow 0.15s ease;
+}
+
+.projet-carte:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+}
+
+.projet-carte--vedette {
+  border-color: var(--accent);
+  border-width: 2px;
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 800px) {
+  .projet-carte--vedette {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    column-gap: 2rem;
+  }
+  .projet-carte--vedette .projet-entete { grid-column: 1 / -1; }
+  .projet-carte--vedette .projet-titre  { grid-column: 1 / -1; }
+  .projet-carte--vedette .projet-accroche { grid-column: 1; grid-row: 3 / 5; }
+  .projet-carte--vedette .projet-tags   { grid-column: 2; grid-row: 3; }
+  .projet-carte--vedette .projet-tarifs { grid-column: 2; grid-row: 4; }
+  .projet-carte--vedette .projet-lien   { grid-column: 2; grid-row: 5; align-self: end; }
+}
+
+.projet-entete {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.projet-type {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gris);
+  background: #f5f5f5;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+}
+
+.projet-statut {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+}
+.projet-statut--prod { background: #edf5ee; color: #1e6b2e; }
+.projet-statut--beta { background: #fef6ec; color: #c87000; }
+
+.projet-titre {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--noir-doux);
+  margin: 0;
+}
+
+.projet-accroche {
+  font-size: 0.9rem;
+  color: #4a4a4a;
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.projet-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+}
+
+.projet-tag {
+  font-size: 0.72rem;
+  background: #f0f0f0;
+  color: var(--gris);
+  padding: 0.2rem 0.55rem;
+  border-radius: 3px;
+}
+
+.projet-tarifs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.2rem;
+  font-size: 0.82rem;
+}
+
+.tarif-item { color: #4a4a4a; }
+.tarif-item strong { color: var(--noir-doux); }
+
+.projet-lien {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+.projet-lien:hover { text-decoration: underline; }
+
+.projets-cta {
+  padding: 2rem;
+  background: #faf0ec;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 3rem;
+}
+.projets-cta h2 { font-size: 1.1rem; margin-bottom: 0.5rem; }

@@ -137,7 +137,7 @@
   "description": "{{ description }}",
   "image": "https://ataraxialab.ch/images/og/{{ ogImg }}",
   "datePublished": "{{ datePublished }}T00:00:00+02:00",
-  "dateModified": "{{ datePublished }}T00:00:00+02:00",
+  "dateModified": "{% if dateModified %}{{ dateModified }}{% else %}{{ datePublished }}{% endif %}T00:00:00+02:00",
   "url": "https://ataraxialab.ch{{ page.url }}",
   "inLanguage": "fr-CH",
   "author": {
@@ -190,6 +190,7 @@
       <a href="/a-propos/">À propos</a>
       <a href="/activites/">Activités</a>
       <a href="/realisations/">Réalisations</a>
+      <a href="/projets/">Projets</a>
       <a href="/tutoriels/">Tutoriels</a>
       <a href="/rejoindre/">Rejoindre</a>
       <a href="/newsletter/">Newsletter</a>
