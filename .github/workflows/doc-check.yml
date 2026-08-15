@@ -1,0 +1,86 @@
+# doc-check.yml — Ataraxia Lab
+# Vérifie la présence et la structure de ARCHITECTURE.md dans chaque repo.
+# Obligatoire dans tous les repos avec CI GitHub Actions.
+# Push bloqué si ARCHITECTURE.md absent ou sections manquantes.
+#
+# Sections vérifiées : §1 §2 §3 §4 §5 §6 §7
+# OpenAPI obligatoire si src/api/v1_*.php ou src/api/*_public.php existe.
+#
+# BP : ne jamais supprimer ce workflow. Exception uniquement avec ADR-Exempt documenté.
+
+name: Documentation Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  doc-check:
+    name: ARCHITECTURE.md obligatoire
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Vérifier présence ARCHITECTURE.md
+        run: |
+          if [ ! -f "ARCHITECTURE.md" ]; then
+            echo "❌ ARCHITECTURE.md absent — fichier obligatoire pour tout repo Ataraxia Lab."
+            echo "   Créer depuis le template : ataraxia-journaux/pilotage/templates/ARCHITECTURE_template.md"
+            exit 1
+          fi
+          echo "✅ ARCHITECTURE.md présent"
+
+      - name: Vérifier sections obligatoires (§1 à §7)
+        run: |
+          MISSING=""
+          for section in "§1" "§2" "§3" "§4" "§5" "§6" "§7"; do
+            if ! grep -q "$section" ARCHITECTURE.md; then
+              MISSING="$MISSING $section"
+            fi
+          done
+          if [ -n "$MISSING" ]; then
+            echo "❌ Sections manquantes dans ARCHITECTURE.md :$MISSING"
+            echo "   Consulter le template : ataraxia-journaux/pilotage/templates/ARCHITECTURE_template.md"
+            exit 1
+          fi
+          echo "✅ Les 7 sections §1→§7 sont présentes"
+
+      - name: Vérifier openapi.yaml si API publique détectée
+        run: |
+          HAS_PUBLIC_API=false
+          # Chercher tout fichier v1_*.php ou *_public.php dans src/api/
+          if find . -path "*/src/api/v1_*.php" -o -path "*/src/api/*_public.php" 2>/dev/null | grep -q .; then
+            HAS_PUBLIC_API=true
+          fi
+          if [ "$HAS_PUBLIC_API" = "true" ]; then
+            if [ ! -f "openapi.yaml" ] && [ ! -f "docs/openapi.yaml" ] && [ ! -f "src/api/openapi.yaml" ]; then
+              echo "❌ API publique détectée mais openapi.yaml absent."
+              echo "   Créer une spec OpenAPI 3.1 (openapi.yaml) à la racine ou dans docs/ ou src/api/"
+              exit 1
+            fi
+            echo "✅ openapi.yaml présent pour API publique"
+          else
+            echo "ℹ️  Aucune API publique détectée — openapi.yaml non requis"
+          fi
+
+      - name: Vérifier ADR (section §3 non vide)
+        run: |
+          # Vérifier que §3 DÉCISIONS contient au moins un ADR-
+          if ! grep -A 50 "§3" ARCHITECTURE.md | grep -q "ADR-"; then
+            echo "⚠️  §3 DÉCISIONS ne contient aucun ADR documenté."
+            echo "   Ajouter au moins ADR-01 avec Contexte/Options/Décision/Conséquences."
+            exit 1
+          fi
+          echo "✅ §3 contient au moins un ADR"
+
+      - name: Résumé
+        if: success()
+        run: |
+          echo "✅ doc-check PASSED — ARCHITECTURE.md conforme"
+          echo "   Sections : §1 §2 §3 §4 §5 §6 §7"
+          grep "^VERSION" ARCHITECTURE.md || true
+          grep "^DATE_MAJ" ARCHITECTURE.md || true
+
