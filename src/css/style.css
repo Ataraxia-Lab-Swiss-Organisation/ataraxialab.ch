@@ -1060,7 +1060,7 @@ select:focus { border-color: var(--accent); }
   border-radius: 4px;
 }
 .projet-statut--prod { background: #edf5ee; color: #1e6b2e; }
-.projet-statut--beta { background: #fef6ec; color: #c87000; }
+.projet-statut--beta { background: #fef6ec; color: #7a4500; }
 
 .projet-titre {
   font-size: 1.25rem;
