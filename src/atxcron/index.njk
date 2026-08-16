@@ -1,0 +1,321 @@
+---
+layout: layouts/base.njk
+title: AtxCron — Planificateur PHP pour hébergements mutualisés
+description: "AtxCron remplace les webcrons limités par un vrai scheduler PHP. Logs persistants, alertes d'erreur, dead man's switch, API REST et interface web. Zéro dépendance. Distribué par Ataraxia Lab, Suisse."
+permalink: /atxcron/
+---
+
+<style>
+/* ── Landing AtxCron ── */
+.atx-hero{padding:4rem 0 3rem;border-bottom:1px solid #f0f0f0;}
+.atx-hero-eyebrow{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:1rem;}
+.atx-hero h1{font-size:2.6rem;font-weight:700;line-height:1.15;margin-bottom:1rem;color:var(--noir-doux);}
+.atx-hero h1 span{color:var(--accent);}
+.atx-hero-sub{font-size:1.15rem;color:var(--gris);max-width:600px;line-height:1.6;margin-bottom:2rem;}
+.atx-ctas{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:#fff;padding:.75rem 1.5rem;border-radius:6px;font-weight:600;font-size:.95rem;text-decoration:none;transition:.15s;}
+.btn-primary:hover{background:#8B3A1E;color:#fff;}
+.btn-secondary{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:var(--accent);border:1.5px solid var(--accent);padding:.75rem 1.5rem;border-radius:6px;font-weight:600;font-size:.95rem;text-decoration:none;transition:.15s;}
+.btn-secondary:hover{background:#FDF1EC;}
+.atx-badge{display:inline-block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:.2rem .6rem;border-radius:3px;background:#FDF1EC;color:var(--accent);}
+
+/* ── Problème ── */
+.atx-problem{padding:3rem 0;background:#fafafa;margin:0 -1.5rem;padding-left:1.5rem;padding-right:1.5rem;}
+.atx-problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:2rem;}
+.atx-problem-item{background:#fff;border:1px solid #e8e8e8;border-radius:8px;padding:1.25rem;}
+.atx-problem-item h3{font-size:.95rem;font-weight:600;margin-bottom:.5rem;color:var(--noir-doux);}
+.atx-problem-item p{font-size:.875rem;color:var(--gris);line-height:1.5;}
+.atx-problem-icon{font-size:1.5rem;margin-bottom:.75rem;}
+
+/* ── Features ── */
+.atx-features{padding:3.5rem 0;}
+.atx-section-title{font-size:1.6rem;font-weight:700;margin-bottom:.5rem;color:var(--noir-doux);}
+.atx-section-sub{color:var(--gris);margin-bottom:2.5rem;max-width:520px;}
+.atx-features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;}
+.atx-feature{border:1px solid #e8e8e8;border-radius:8px;padding:1.5rem;}
+.atx-feature h3{font-size:1rem;font-weight:600;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;}
+.atx-feature p{font-size:.875rem;color:var(--gris);line-height:1.6;}
+.atx-feature-new{font-size:.65rem;font-weight:700;text-transform:uppercase;background:var(--accent);color:#fff;padding:.1rem .4rem;border-radius:3px;letter-spacing:.06em;}
+
+/* ── Hosting ── */
+.atx-hosting{padding:3rem 0;background:#fafafa;margin:0 -1.5rem;padding-left:1.5rem;padding-right:1.5rem;}
+.atx-hosting table{width:100%;border-collapse:collapse;font-size:.875rem;margin-top:1.5rem;}
+.atx-hosting th{text-align:left;padding:.6rem .8rem;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--gris);border-bottom:2px solid #e8e8e8;}
+.atx-hosting td{padding:.7rem .8rem;border-bottom:1px solid #f0f0f0;vertical-align:middle;}
+.atx-hosting tr:last-child td{border-bottom:none;}
+.atx-warn{color:#B35C38;font-weight:600;}
+.atx-ok{color:#16a34a;}
+
+/* ── Pricing ── */
+.atx-pricing{padding:3.5rem 0;}
+.atx-plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-top:2rem;}
+.atx-plan{border:1.5px solid #e8e8e8;border-radius:10px;padding:1.75rem 1.5rem;display:flex;flex-direction:column;}
+.atx-plan--featured{border-color:var(--accent);position:relative;}
+.atx-plan--featured::before{content:"Recommandé";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.7rem;font-weight:700;padding:.2rem .8rem;border-radius:10px;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;}
+.atx-plan-name{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gris);margin-bottom:.5rem;}
+.atx-plan-price{font-size:2rem;font-weight:700;color:var(--noir-doux);line-height:1;margin-bottom:.25rem;}
+.atx-plan-price sup{font-size:1rem;vertical-align:super;}
+.atx-plan-period{font-size:.8rem;color:var(--gris);margin-bottom:1.25rem;}
+.atx-plan-features{list-style:none;padding:0;margin:0 0 1.5rem;flex:1;}
+.atx-plan-features li{font-size:.875rem;color:var(--noir-doux);padding:.3rem 0;display:flex;align-items:flex-start;gap:.5rem;}
+.atx-plan-features li::before{content:"✓";color:var(--accent);font-weight:700;flex-shrink:0;margin-top:.05rem;}
+.atx-plan-features li.na{color:var(--gris);}
+.atx-plan-features li.na::before{content:"—";color:#ccc;}
+.atx-plan-cta{margin-top:auto;}
+
+/* ── Install ── */
+.atx-install{padding:3rem 0;background:#fafafa;margin:0 -1.5rem;padding-left:1.5rem;padding-right:1.5rem;}
+.atx-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:2rem;counter-reset:steps;}
+.atx-step{background:#fff;border:1px solid #e8e8e8;border-radius:8px;padding:1.25rem;position:relative;counter-increment:steps;}
+.atx-step::before{content:counter(steps);position:absolute;top:-12px;left:1.25rem;width:24px;height:24px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;}
+.atx-step h3{font-size:.95rem;font-weight:600;margin:0 0 .5rem;}
+.atx-step p{font-size:.875rem;color:var(--gris);margin:0;}
+.atx-code{font-family:'JetBrains Mono',monospace;background:#1a1a1a;color:#B35C38;padding:.2rem .5rem;border-radius:3px;font-size:.8rem;}
+
+/* ── Footer section ── */
+.atx-footer-section{padding:3rem 0;text-align:center;border-top:1px solid #f0f0f0;margin-top:1rem;}
+.atx-footer-section p{color:var(--gris);font-size:.875rem;margin:.5rem 0;}
+
+/* ── Responsive ── */
+@media(max-width:640px){
+  .atx-hero h1{font-size:1.8rem;}
+  .atx-ctas{flex-direction:column;align-items:flex-start;}
+}
+</style>
+
+<!-- ═══ HERO ═══════════════════════════════════════════════════════════ -->
+<section class="atx-hero">
+  <div class="atx-hero-eyebrow">Logiciel · Ataraxia Lab · CHE-425.759.729</div>
+  <h1>Le cron qui <span>tourne vraiment</span>,<br>même sur mutualisé.</h1>
+  <p class="atx-hero-sub">AtxCron remplace les webcrons limités par un vrai scheduler PHP. Logs persistants, alertes email, dead man's switch, interface web. Zéro dépendance — un seul dossier à déposer.</p>
+  <div class="atx-ctas">
+    <a href="/contact/" class="btn-primary">🛒 Obtenir une licence →</a>
+    <a href="/atxcron/#tarifs" class="btn-secondary">Voir les tarifs</a>
+    <a href="/atxcron/#installer" class="btn-secondary">Documentation</a>
+  </div>
+  <div style="margin-top:1.5rem;display:flex;gap:.75rem;flex-wrap:wrap;">
+    <span class="atx-badge">v1.2.0</span>
+    <span class="atx-badge">PHP 8.1–8.5</span>
+    <span class="atx-badge">Standalone + WP Plugin</span>
+    <span class="atx-badge">Suisse · nLPD</span>
+    <span class="atx-badge">CLUF one-shot</span>
+  </div>
+</section>
+
+<!-- ═══ PROBLÈME ════════════════════════════════════════════════════════ -->
+<section class="atx-problem">
+  <h2 class="atx-section-title">Pourquoi les webcrons ne suffisent pas</h2>
+  <div class="atx-problem-grid">
+    <div class="atx-problem-item">
+      <div class="atx-problem-icon">⏱️</div>
+      <h3>Infomaniak : 15 min minimum</h3>
+      <p>Le planificateur IK ne permet pas moins de 15 minutes entre deux déclenchements. Vos tâches critiques attendent.</p>
+    </div>
+    <div class="atx-problem-item">
+      <div class="atx-problem-icon">🎲</div>
+      <h3>OVH : 1 heure, minutes aléatoires</h3>
+      <p>OVH mutualisé impose 1 heure minimum et choisit lui-même la minute d'exécution. Impossible de planifier précisément.</p>
+    </div>
+    <div class="atx-problem-item">
+      <div class="atx-problem-icon">🔇</div>
+      <h3>Aucun log, aucune alerte</h3>
+      <p>Les webcrons natifs s'exécutent en silence. Quand une tâche échoue, vous ne le savez pas — souvent trop tard.</p>
+    </div>
+    <div class="atx-problem-item">
+      <div class="atx-problem-icon">🧩</div>
+      <h3>WP-Cron n'est pas un vrai cron</h3>
+      <p>WP-Cron se déclenche à chaque visite. Sur un site peu visité, vos tâches planifiées sont manquées. Sur un site très visité, elles consomment inutilement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOLUTION ════════════════════════════════════════════════════════ -->
+<section class="atx-features">
+  <h2 class="atx-section-title">Ce qu'AtxCron apporte</h2>
+  <p class="atx-section-sub">Un scheduler complet, déployé en 5 minutes, qui tourne sur n'importe quel hébergement PHP.</p>
+  <div class="atx-features-grid">
+    <div class="atx-feature">
+      <h3>⚡ Logs persistants</h3>
+      <p>Chaque exécution est enregistrée en base de données — statut, durée, code HTTP, output. Consultables depuis l'interface web.</p>
+    </div>
+    <div class="atx-feature">
+      <h3>🔔 Alertes email intelligentes</h3>
+      <p>Notification par email en cas d'erreur, configurable par tâche. Cooldowns en BDD — pas de spam, pas de perte sur php-fpm mutualisé.</p>
+    </div>
+    <div class="atx-feature">
+      <h3>🔄 SelfHealing <span class="atx-feature-new">v1.2</span></h3>
+      <p>Dead man's switch intégré. Si votre webcron rate un appel, AtxCron se re-déclenche automatiquement et vous alerte.</p>
+    </div>
+    <div class="atx-feature">
+      <h3>🕐 NTP — Heure exacte <span class="atx-feature-new">v1.2</span></h3>
+      <p>Synchronisation via worldtimeapi.org (timeout 2s, fallback automatique). Vos tâches s'exécutent à l'heure — même quand le serveur dérive.</p>
+    </div>
+    <div class="atx-feature">
+      <h3>📊 Interface web admin</h3>
+      <p>Dashboard live : stats 24h, gestion des tâches, logs filtrables, health check, SelfHealing. Aucune installation supplémentaire.</p>
+    </div>
+    <div class="atx-feature">
+      <h3>🔌 API REST (Solo+)</h3>
+      <p>CRUD complet sur les tâches, historique, trigger manuel, export CSV/JSON. Intégration avec vos outils existants.</p>
+    </div>
+    <div class="atx-feature">
+      <h3>🛠️ Zéro dépendance</h3>
+      <p>Pas de Composer, pas de framework, pas de bibliothèque externe. Un dossier à déposer sur votre serveur — c'est tout.</p>
+    </div>
+    <div class="atx-feature">
+      <h3>🔒 CLUF suisse, one-shot</h3>
+      <p>Licence perpétuelle à usage unique. Vous payez une fois, vous utilisez pour toujours. Pas d'abonnement, pas de renouvellement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMPATIBILITÉ HÉBERGEURS ════════════════════════════════════════ -->
+<section class="atx-hosting" id="hebergeurs">
+  <h2 class="atx-section-title">Compatible avec tous les hébergements PHP</h2>
+  <p class="atx-section-sub">AtxCron tourne sur n'importe quel hébergement PHP 8.1+. L'assistant d'installation détecte votre hébergeur et affiche les instructions exactes.</p>
+  <table>
+    <thead>
+      <tr><th>Hébergeur</th><th>Intervalle minimum</th><th>Déclencheur</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Infomaniak</strong> (mutualisé)</td><td class="atx-warn">15 min</td><td>Planificateur IK</td><td>Compatible — tâches < 15 min via cron-job.org</td></tr>
+      <tr><td><strong>OVH</strong> (mutualisé)</td><td class="atx-warn">1 heure</td><td>cron-job.org (gratuit)</td><td>OVH natif trop limité → cron-job.org recommandé</td></tr>
+      <tr><td><strong>o2switch</strong></td><td class="atx-ok">1 min</td><td>cPanel</td><td>Pleine liberté — proche d'un dédié</td></tr>
+      <tr><td><strong>Hostinger</strong></td><td class="atx-ok">1 min</td><td>hPanel</td><td>UTC uniquement</td></tr>
+      <tr><td><strong>VPS Linux</strong></td><td class="atx-ok">1 min</td><td>crontab système</td><td>Mode CLI direct disponible</td></tr>
+      <tr><td><strong>Windows Server</strong></td><td class="atx-ok">1 min</td><td>Task Scheduler</td><td></td></tr>
+      <tr><td><strong>Docker / K8s</strong></td><td class="atx-ok">1 min</td><td>crontab / CronJob</td><td></td></tr>
+      <tr><td><strong>Railway / Render / Fly</strong></td><td class="atx-ok">1 min</td><td>Cron natif plateforme</td><td></td></tr>
+      <tr><td><strong>Tout hébergeur</strong></td><td class="atx-ok">1 min</td><td><a href="https://cron-job.org" target="_blank">cron-job.org</a> (gratuit)</td><td>Solution universelle — zéro configuration</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:1.5rem;font-size:.875rem;color:var(--gris);">
+    → <a href="/atxcron/docs/hosting/">Documentation complète par hébergeur</a>
+  </p>
+</section>
+
+<!-- ═══ TARIFS ══════════════════════════════════════════════════════════ -->
+<section class="atx-pricing" id="tarifs">
+  <h2 class="atx-section-title">Tarifs — licence perpétuelle one-shot</h2>
+  <p class="atx-section-sub">Vous payez une fois. Vous utilisez pour toujours. Pas d'abonnement, pas de renouvellement, pas de surprises.</p>
+  <div class="atx-plans">
+
+    <div class="atx-plan">
+      <div class="atx-plan-name">Community</div>
+      <div class="atx-plan-price">Gratuit</div>
+      <div class="atx-plan-period">Toujours</div>
+      <ul class="atx-plan-features">
+        <li>5 tâches maximum</li>
+        <li>Interface web admin</li>
+        <li>Logs persistants</li>
+        <li>Alertes email</li>
+        <li>SelfHealing &amp; NTP</li>
+        <li class="na">API REST</li>
+        <li class="na">Export CSV/JSON</li>
+        <li class="na">Support</li>
+      </ul>
+      <div class="atx-plan-cta">
+        <a href="/contact/" class="btn-secondary" style="width:100%;justify-content:center;">Télécharger</a>
+      </div>
+    </div>
+
+    <div class="atx-plan atx-plan--featured">
+      <div class="atx-plan-name">Solo</div>
+      <div class="atx-plan-price"><sup>CHF</sup> 49</div>
+      <div class="atx-plan-period">One-shot · perpétuel</div>
+      <ul class="atx-plan-features">
+        <li>Tâches illimitées</li>
+        <li>Interface web admin</li>
+        <li>Logs persistants</li>
+        <li>Alertes email</li>
+        <li>SelfHealing &amp; NTP</li>
+        <li>API REST complète</li>
+        <li>Export CSV/JSON</li>
+        <li>Support email</li>
+      </ul>
+      <div class="atx-plan-cta">
+        <a href="/contact/" class="btn-primary" style="width:100%;justify-content:center;">Obtenir Solo →</a>
+      </div>
+    </div>
+
+    <div class="atx-plan">
+      <div class="atx-plan-name">Agency</div>
+      <div class="atx-plan-price"><sup>CHF</sup> 149</div>
+      <div class="atx-plan-period">One-shot · perpétuel</div>
+      <ul class="atx-plan-features">
+        <li>Tout Solo inclus</li>
+        <li>Multi-site</li>
+        <li>Usage client illimité</li>
+        <li>VENDOR_SECRET propre</li>
+        <li>Support prioritaire</li>
+        <li>Mises à jour majeures incluses</li>
+        <li class="na"></li>
+        <li class="na"></li>
+      </ul>
+      <div class="atx-plan-cta">
+        <a href="/contact/" class="btn-secondary" style="width:100%;justify-content:center;">Obtenir Agency</a>
+      </div>
+    </div>
+
+    <div class="atx-plan">
+      <div class="atx-plan-name">WP Plugin</div>
+      <div class="atx-plan-price"><sup>CHF</sup> 29<span style="font-size:1rem;">–39</span></div>
+      <div class="atx-plan-period">One-shot · perpétuel</div>
+      <ul class="atx-plan-features">
+        <li>Plugin WordPress natif</li>
+        <li>Remplace WP-Cron</li>
+        <li>Interface wp-admin</li>
+        <li>Détection hébergeur auto</li>
+        <li>Alertes &amp; SelfHealing</li>
+        <li>Support email</li>
+        <li class="na"></li>
+        <li class="na"></li>
+      </ul>
+      <div class="atx-plan-cta">
+        <a href="/contact/" class="btn-secondary" style="width:100%;justify-content:center;">Obtenir WP Plugin</a>
+      </div>
+    </div>
+
+  </div>
+  <p style="text-align:center;margin-top:2rem;font-size:.875rem;color:var(--gris);">
+    Toutes les licences incluent le droit d'usage perpétuel du code source v1.x. Mise à jour vers v2.x non incluse.<br>
+    <a href="/conditions/" style="color:var(--accent);">CLUF Ataraxia Lab</a> · Facturation CHF · TVA non applicable (association à but non lucratif)
+  </p>
+</section>
+
+<!-- ═══ INSTALLATION ════════════════════════════════════════════════════ -->
+<section class="atx-install" id="installer">
+  <h2 class="atx-section-title">Installation en 3 étapes</h2>
+  <p class="atx-section-sub">L'assistant d'installation détecte votre hébergeur et configure tout automatiquement.</p>
+  <div class="atx-steps">
+    <div class="atx-step">
+      <h3>Déposer AtxCron/</h3>
+      <p>Uploadez le dossier <code class="atx-code">AtxCron/</code> à la racine de votre site via FTP ou votre gestionnaire de fichiers.</p>
+    </div>
+    <div class="atx-step">
+      <h3>Ouvrir le wizard</h3>
+      <p>Accédez à <code class="atx-code">votre-site.com/AtxCron/atxcron-setup.php</code>. L'assistant en 7 étapes configure tout — ou lancez <code class="atx-code">php atxcron-setup.php</code> en CLI.</p>
+    </div>
+    <div class="atx-step">
+      <h3>Configurer le déclencheur</h3>
+      <p>Copiez l'URL affichée dans votre Webcron, crontab, ou <a href="https://cron-job.org" target="_blank">cron-job.org</a> (gratuit). C'est tout.</p>
+    </div>
+  </div>
+  <div style="margin-top:2rem;text-align:center;">
+    <a href="/contact/" class="btn-primary">Obtenir AtxCron →</a>
+    <a href="/atxcron/docs/" class="btn-secondary" style="margin-left:1rem;">Documentation complète</a>
+  </div>
+</section>
+
+<!-- ═══ FOOTER SECTION ══════════════════════════════════════════════════ -->
+<section class="atx-footer-section">
+  <p style="font-size:.8rem;color:#aaa;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem;">Ataraxia Lab · CHE-425.759.729 · Le Locle, Suisse</p>
+  <p>AtxCron est un logiciel propriétaire développé et distribué par <a href="/a-propos/">Ataraxia Lab</a>.</p>
+  <p>Community edition disponible sous MIT (5 tâches max). Hébergé en Suisse. Conforme nLPD.</p>
+  <p style="margin-top:1.5rem;font-size:.8rem;">
+    <a href="/conditions/">CLUF</a> ·
+    <a href="/confidentialite/">Politique de confidentialité</a> ·
+    <a href="/contact/">Support</a> ·
+    <a href="mailto:contact@ataraxialab.ch">contact@ataraxialab.ch</a>
+  </p>
+</section>
