@@ -1,0 +1,120 @@
+name: Invariants — ataraxialab.ch
+
+# Lint PHP · JS · CSS en parallèle à chaque push.
+# Chaque job est indépendant — un échec n'annule pas les autres.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'api/**'
+      - 'cron/**'
+      - '.stylelintrc.json'
+      - 'eslint.config.mjs'
+      - '.github/workflows/invariants.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'api/**'
+      - 'cron/**'
+      - '.stylelintrc.json'
+      - 'eslint.config.mjs'
+
+concurrency:
+  group: invariants-ataraxialab-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ────────────────────────────────────────────────────────────────────────
+  # PHP-LINT — Syntaxe PHP (php -l) sur api/ + cron/
+  # ────────────────────────────────────────────────────────────────────────
+  php-lint:
+    name: PHP — Syntaxe
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: "PHP | Lint syntaxe api/ + cron/"
+        run: |
+          echo "Vérification php -l sur api/ et cron/"
+          ERRORS=0
+          while IFS= read -r file; do
+            OUT=$(php -l "$file" 2>&1)
+            if echo "$OUT" | grep -qE 'Parse error|Fatal error'; then
+              echo "ERREUR $file"
+              echo "$OUT"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done < <(find api cron -name "*.php")
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "$ERRORS fichier(s) PHP invalide(s)"
+            exit 1
+          fi
+          echo "OK PHP lint OK"
+
+  # ────────────────────────────────────────────────────────────────────────
+  # JS-LINT — ESLint v10 sur src/js/ + src/_data/ + eleventy.config.js
+  # ────────────────────────────────────────────────────────────────────────
+  js-lint:
+    name: JS — ESLint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: "JS | ESLint src/js/ + src/_data/ + eleventy.config.js"
+        run: |
+          echo "ESLint sur JS source"
+          npx eslint "src/js/**/*.js" "src/_data/**/*.js" "eleventy.config.js" --max-warnings 999
+          echo "OK ESLint OK"
+
+  # ────────────────────────────────────────────────────────────────────────
+  # CSS-LINT — stylelint sur src/css/
+  # ────────────────────────────────────────────────────────────────────────
+  css-lint:
+    name: CSS — Stylelint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: "CSS | Stylelint src/css/"
+        run: |
+          echo "Stylelint sur src/css/**/*.css"
+          npx stylelint "src/css/**/*.css"
+          echo "OK Stylelint OK"

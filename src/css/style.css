@@ -43,10 +43,10 @@
 
 /* ─── Variables ──────────────────────────────── */
 :root {
-  --noir: #000000;
+  --noir: #000;
   --noir-doux: #1a1a1a;
   --gris: #767676;
-  --blanc: #ffffff;
+  --blanc: #fff;
   --max-width: 1280px;
   --espacement: 1.5rem;
   --accent: #B35C38;
@@ -180,7 +180,7 @@ footer a:hover {
   gap: 0.75rem;
   margin-left: 1rem;
   padding-left: 1rem;
-  border-left: 1px solid rgba(0,0,0,0.12);
+  border-left: 1px solid rgb(0 0 0 / 12%);
 }
 
 .nav-social a {
@@ -195,12 +195,12 @@ footer a:hover {
   color: var(--accent);
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .nav-social {
     margin-left: 0;
     padding-left: 1.5rem;
     border-left: none;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgb(255 255 255 / 8%);
     padding-top: 0.75rem;
     margin-top: 0.25rem;
     gap: 1.25rem;
@@ -383,7 +383,7 @@ footer a:hover {
   color: var(--gris);
 }
 
-@media (max-width: 680px) {
+@media (width <= 680px) {
   .hero h1 { font-size: 2rem; }
   .valeurs { grid-template-columns: 1fr; gap: 2rem; }
 }
@@ -476,7 +476,7 @@ textarea { resize: vertical; }
 
 .realisation-carte:hover,
 .tutoriel-carte:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 8%);
 }
 
 .realisation-entete,
@@ -544,7 +544,7 @@ textarea { resize: vertical; }
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background-color: rgba(181, 96, 58, 0.1);
+  background-color: rgb(181 96 58 / 10%);
   color: var(--accent);
   border-radius: 2px;
   padding: 0.2em 0.6em;
@@ -651,7 +651,7 @@ textarea { resize: vertical; }
   padding: 2rem;
   border: 1px solid var(--accent);
   border-radius: 4px;
-  background-color: rgba(181, 96, 58, 0.04);
+  background-color: rgb(181 96 58 / 4%);
 }
 
 .article-cta h2 {
@@ -705,7 +705,7 @@ textarea { resize: vertical; }
   text-underline-offset: 3px;
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   .page-hero { padding: 2rem 0 1.5rem; }
   .realisation-carte { padding: 1.5rem; }
 }
@@ -749,7 +749,7 @@ select:focus { border-color: var(--accent); }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #4a4a4a;
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 0.75rem;
 }
 
 .don-virement dl {
@@ -801,6 +801,7 @@ select:focus { border-color: var(--accent); }
   gap: 5px;
   z-index: 200;
 }
+
 .nav-toggle span {
   display: block;
   width: 24px;
@@ -810,9 +811,10 @@ select:focus { border-color: var(--accent); }
   transition: transform 0.3s, opacity 0.3s;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   header { position: relative; flex-wrap: wrap; }
   .nav-toggle { display: flex; }
+
   nav {
     display: none;
     flex-direction: column;
@@ -821,9 +823,10 @@ select:focus { border-color: var(--accent); }
     padding: 0.5rem 0;
   }
   nav.open { display: flex; }
+
   nav a {
     padding: 0.75rem 1.5rem;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgb(255 255 255 / 8%);
   }
 }
 
@@ -832,6 +835,7 @@ select:focus { border-color: var(--accent); }
   color: #4a4a4a;
   margin-top: 1.5rem;
 }
+
 .note-confidentialite--bottom {
   margin-top: 0;
   margin-bottom: 1rem;
@@ -855,7 +859,6 @@ select:focus { border-color: var(--accent); }
 .articles-lies ul.tutoriels-grille {
   list-style: none;
   padding: 0;
-  padding-bottom: 0;
   margin: 0;
 }
 
@@ -888,7 +891,7 @@ select:focus { border-color: var(--accent); }
 
 .table-legal tr:last-child td { border-bottom: none; }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   .table-legal {
     font-size: 0.8rem;
     display: block;
@@ -935,16 +938,17 @@ select:focus { border-color: var(--accent); }
 
 /* Texte var(--noir-doux) : ratio 19:1 sur tout fond clair — WCAG AAA garanti */
 .bandeau-confirmation {
-  background-color: rgba(80, 150, 90, 0.12);
+  background-color: rgb(80 150 90 / 12%);
   border: 1px solid #3a7a4a;
   color: var(--noir-doux);
 }
 
 .bandeau-erreur {
-  background-color: rgba(181, 60, 58, 0.10);
+  background-color: rgb(181 60 58 / 10%);
   border: 1px solid #9a2e2c;
   color: var(--noir-doux);
 }
+
 /* ─── Trust bar (ajout audit 14.08.2026) ──────── */
 .trust-bar {
   display: flex;
@@ -979,10 +983,11 @@ select:focus { border-color: var(--accent); }
   letter-spacing: 0.05em;
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   .trust-bar { gap: 1.5rem 2rem; }
   .trust-number { font-size: 1.5rem; }
 }
+
 /* ─── Page Projets (ajout F-08 14.08.2026) ──── */
 .projets-intro {
   max-width: 680px;
@@ -1009,7 +1014,7 @@ select:focus { border-color: var(--accent); }
 }
 
 .projet-carte:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 7%);
 }
 
 .projet-carte--vedette {
@@ -1018,7 +1023,7 @@ select:focus { border-color: var(--accent); }
   grid-column: 1 / -1;
 }
 
-@media (min-width: 800px) {
+@media (width >= 800px) {
   .projet-carte--vedette {
     display: grid;
     grid-template-columns: 1fr 1fr;
