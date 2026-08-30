@@ -1,0 +1,57 @@
+---
+layout: layouts/base.njk
+title: AtaraxiaLabBot — Robot de surveillance SEO
+description: Informations sur le robot automatique AtaraxiaLabBot opéré par l'Association Ataraxia Lab pour la surveillance des sources officielles SEO.
+---
+<section>
+  <h1>AtaraxiaLabBot</h1>
+  <p><em>Page d'identification du robot automatique — Association Ataraxia Lab</em></p>
+
+  <h2>Qu'est-ce que ce robot ?</h2>
+  <p>
+    AtaraxiaLabBot est un robot de surveillance automatique opéré par l'Association Ataraxia Lab
+    (CHE-425.759.729, Le Locle, Suisse). Il se présente avec l'identifiant suivant :
+  </p>
+  <pre><code>AtaraxiaLabBot/1.0 (+https://ataraxialab.ch/bot; SEO-rules-monitor)</code></pre>
+
+  <h2>Finalité</h2>
+  <p>
+    Ce robot visite périodiquement (une fois par semaine) des pages de documentation officielle
+    publiques — changelogs de moteurs de recherche, spécifications techniques, guidelines de
+    plateformes — afin de détecter les changements susceptibles d'affecter les règles SEO
+    stockées dans notre base de données.
+  </p>
+  <p>
+    Il ne collecte aucune donnée personnelle, ne stocke pas le contenu des pages (uniquement
+    une empreinte numérique anonyme), et respecte les directives <code>robots.txt</code>
+    de chaque site visité.
+  </p>
+
+  <h2>Comportement</h2>
+  <ul>
+    <li>Fréquence : hebdomadaire (dimanche)</li>
+    <li>Délai entre requêtes : 10 à 15 secondes minimum</li>
+    <li>Respect de <code>robots.txt</code> et des directives <code>Crawl-delay</code></li>
+    <li>Aucune collecte de données personnelles (conforme LPD / RGPD)</li>
+    <li>Sources visitées : documentation officielle publique uniquement</li>
+  </ul>
+
+  <h2>Demande d'exclusion</h2>
+  <p>
+    Si vous souhaitez que notre robot n'accède plus à votre site, deux options :
+  </p>
+  <ul>
+    <li>Ajouter <code>User-agent: AtaraxiaLabBot</code> + <code>Disallow: /</code> dans votre <code>robots.txt</code></li>
+    <li>Nous contacter directement : <a href="mailto:contact@ataraxialab.ch">contact@ataraxialab.ch</a></li>
+  </ul>
+  <p>Nous traiterons toute demande d'exclusion dans un délai de 7 jours ouvrables.</p>
+
+  <h2>Opérateur</h2>
+  <p>
+    <strong>Association Ataraxia Lab</strong><br>
+    IDE : CHE-425.759.729<br>
+    Rue du Crêt-Vaillant 22, 2400 Le Locle, Suisse<br>
+    Email : <a href="mailto:contact@ataraxialab.ch">contact@ataraxialab.ch</a><br>
+    Site : <a href="https://ataraxialab.ch">ataraxialab.ch</a>
+  </p>
+</section>

@@ -1,4 +1,4 @@
-# doc-check.yml — Ataraxia Lab
+﻿# doc-check.yml — Ataraxia Lab
 # Vérifie la présence et la structure de ARCHITECTURE.md dans chaque repo.
 # Obligatoire dans tous les repos avec CI GitHub Actions.
 # Push bloqué si ARCHITECTURE.md absent ou sections manquantes.
@@ -13,9 +13,19 @@ name: Documentation Check
 on:
   push:
     branches: [main]
+    paths:
+      - 'ARCHITECTURE.md'
+      - '**/*.md'
+      - 'openapi.yaml'
   pull_request:
     branches: [main]
+    paths:
+      - 'ARCHITECTURE.md'
+      - '**/*.md'
 
+concurrency:
+  group: doc-check-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   doc-check:
     name: ARCHITECTURE.md obligatoire
