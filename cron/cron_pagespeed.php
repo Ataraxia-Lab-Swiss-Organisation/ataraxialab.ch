@@ -6,12 +6,16 @@
  * d'accueil et écrit le résultat en JSON, exposé publiquement pour lecture
  * par audits/agents IA. Voir D-1, sites/ataraxialab.md.
  *
- * Déclenchement : cron IK Manager par URL (pattern identique aux autres
- * crons de l'association — token en query string).
+ * Déclenchement : AtxCron par URL (fire_and_forget désactivé — script répond
+ * 202 immédiatement via fastcgi_finish_request() puis traite en background).
  *   https://ataraxialab.ch/cron/cron_pagespeed.php?token=XXX
  *
  * Fréquence : hebdomadaire, lundi matin.
  * Idempotent : écrase intégralement le fichier de sortie à chaque exécution.
+ *
+ * PATCH-IK-BG-002 13.09.2026 : fastcgi_finish_request() — réponse immédiate,
+ * traitement long en background (remplace ignore_user_abort seul — PATCH-IK-BG-001).
+ * AtxCron : fire_and_forget=0, timeout=10 (suffisant pour recevoir le 202).
  *
  * Secrets : clé API PageSpeed + token cron lus depuis un fichier hors-repo
  * — JAMAIS en dur dans ce script (cf. RÈGLES ABSOLUES DE SÉCURITÉ,
@@ -20,7 +24,9 @@
 
 declare(strict_types=1);
 
-header('Content-Type: application/json; charset=utf-8');
+// IK mutualisé PHP-FPM : traitement long après fermeture connexion client
+ignore_user_abort(true);
+set_time_limit(300);
 
 const TARGET_URL    = 'https://ataraxialab.ch/';
 const OUTPUT_PATH   = __DIR__ . '/../cron-data/performance.json';
@@ -32,12 +38,14 @@ function loadSecrets(): array
     if (!file_exists(SECRET_PATH)) {
         http_response_code(500);
         echo json_encode(['error' => 'secret_file_missing']);
+        flushAndFinish();
         exit;
     }
     $secrets = require_once SECRET_PATH;
     if (!is_array($secrets) || empty($secrets['api_key']) || empty($secrets['cron_token'])) {
         http_response_code(500);
         echo json_encode(['error' => 'secret_file_invalid']);
+        flushAndFinish();
         exit;
     }
     return $secrets;
@@ -49,7 +57,23 @@ function checkToken(string $expectedToken): void
     if (!is_string($provided) || $provided === '' || !hash_equals($expectedToken, $provided)) {
         http_response_code(403);
         echo json_encode(['error' => 'forbidden']);
+        flushAndFinish();
         exit;
+    }
+}
+
+/**
+ * Ferme la connexion HTTP vers AtxCron et continue en background (PHP-FPM).
+ * Doit être appelé APRÈS avoir envoyé tous les headers et le body.
+ */
+function flushAndFinish(): void
+{
+    if (ob_get_level() > 0) {
+        ob_end_flush();
+    }
+    flush();
+    if (function_exists('fastcgi_finish_request')) {
+        fastcgi_finish_request();
     }
 }
 
@@ -122,8 +146,18 @@ function fetchScores(string $url, string $strategy, string $apiKey): ?array
     );
 }
 
+// ── Entrée principale ─────────────────────────────────────────────────────────
+
 $secrets = loadSecrets();
 checkToken($secrets['cron_token']);
+
+// Répondre 202 immédiatement — AtxCron considère la tâche comme lancée
+http_response_code(202);
+header('Content-Type: application/json; charset=utf-8');
+echo json_encode(['status' => 'accepted', 'message' => 'pagespeed background processing started']);
+flushAndFinish();
+
+// ── Traitement en background (connexion client fermée) ────────────────────────
 
 $apiKey = $secrets['api_key'];
 
@@ -132,8 +166,6 @@ $desktopScores = fetchScores(TARGET_URL, 'desktop', $apiKey);
 
 if ($mobileScores === null || $desktopScores === null) {
     error_log('[cron_pagespeed] Échec API PageSpeed. Fichier non mis à jour.');
-    http_response_code(502);
-    echo json_encode(['status' => 'error', 'message' => 'pagespeed_api_failure']);
     exit;
 }
 
@@ -154,9 +186,4 @@ if (!is_dir($outputDir)) {
 $written = file_put_contents(OUTPUT_PATH, $json . "\n");
 if ($written === false) {
     error_log('[cron_pagespeed] Erreur : impossible d\'écrire ' . OUTPUT_PATH);
-    http_response_code(500);
-    echo json_encode(['status' => 'error', 'message' => 'write_failure']);
-    exit;
 }
-
-echo json_encode(['status' => 'ok', 'written_at' => OUTPUT_PATH, 'timestamp' => $result['updated_at']]);
